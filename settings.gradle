@@ -1,0 +1,2 @@
+include ':app', ':indicatorview'
+rootProject.name='ViewPagerIndicator'
