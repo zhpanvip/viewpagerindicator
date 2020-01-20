@@ -18,7 +18,7 @@ public class IndicatorUtils {
 
     public static float getCoordinateX(IndicatorOptions indicatorOptions, float maxDiameter, int index) {
         float normalIndicatorWidth = indicatorOptions.getNormalSliderWidth();
-        return maxDiameter / 2 + (normalIndicatorWidth + indicatorOptions.getSliderSpace()) * index;
+        return maxDiameter / 2 + (normalIndicatorWidth + indicatorOptions.getSliderGap()) * index;
     }
 
     public static float getCoordinateY(float maxDiameter) {

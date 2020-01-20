@@ -16,16 +16,13 @@ import com.zhpan.indicator.utils.IndicatorUtils;
  */
 public class IndicatorOptions {
 
-    private IndicatorOptions(Builder builder) {
-        this.slideMode = builder.slideMode;
-        this.mIndicatorStyle = builder.mIndicatorStyle;
-        this.pageSize = builder.pageSize;
-        this.normalColor = builder.normalColor;
-        this.checkedColor = builder.checkedColor;
-        this.sliderSpace = builder.sliderSpace;
-        this.sliderHeight = builder.sliderHeight;
-        this.normalSliderWidth = builder.normalSliderWidth;
-        this.checkedSliderWidth = builder.checkedSliderWidth;
+    public IndicatorOptions() {
+        normalSliderWidth = IndicatorUtils.dp2px(8);
+        checkedSliderWidth = normalSliderWidth;
+        sliderGap = normalSliderWidth;
+        normalColor = Color.parseColor("#8C18171C");
+        checkedColor = Color.parseColor("#8C6C6D72");
+        slideMode = IndicatorSlideMode.NORMAL;
     }
 
     private @AIndicatorStyle
@@ -55,7 +52,7 @@ public class IndicatorOptions {
     /**
      * Indicator间距
      */
-    private float sliderSpace;
+    private float sliderGap;
 
     private float sliderHeight;
 
@@ -89,12 +86,12 @@ public class IndicatorOptions {
         this.checkedColor = checkedColor;
     }
 
-    public float getSliderSpace() {
-        return sliderSpace;
+    public float getSliderGap() {
+        return sliderGap;
     }
 
-    public void setSliderSpace(float sliderSpace) {
-        this.sliderSpace = sliderSpace;
+    public void setSliderGap(float sliderGap) {
+        this.sliderGap = sliderGap;
     }
 
     public float getSlideProgress() {
@@ -146,72 +143,21 @@ public class IndicatorOptions {
         this.pageSize = pageSize;
     }
 
-    public static class Builder {
+    public void setIndicatorStyle(int indicatorStyle) {
+        mIndicatorStyle = indicatorStyle;
+    }
 
-        public Builder() {
-            normalSliderWidth = IndicatorUtils.dp2px(8);
-            checkedSliderWidth = normalSliderWidth;
-            sliderSpace = normalSliderWidth;
-            normalColor = Color.parseColor("#8C18171C");
-            checkedColor = Color.parseColor("#8C6C6D72");
-            slideMode = IndicatorSlideMode.NORMAL;
-        }
+    public void setSliderWidth(float normalIndicatorWidth, float checkedIndicatorWidth) {
+        this.normalSliderWidth = normalIndicatorWidth;
+        this.checkedSliderWidth = checkedIndicatorWidth;
+    }
 
-        @AIndicatorStyle
-        int mIndicatorStyle;
-        @AIndicatorSlideMode
-        int slideMode;
-        int pageSize;
-        int normalColor;
-        int checkedColor;
-        float sliderSpace;
-        float sliderHeight;
-        float normalSliderWidth;
-        float checkedSliderWidth;
+    public void setSliderWidth(float sliderWidth) {
+        setSliderWidth(sliderWidth, sliderWidth);
+    }
 
-        public Builder setIndicatorStyle(int indicatorStyle) {
-            mIndicatorStyle = indicatorStyle;
-            return this;
-        }
-
-        public Builder setSlideMode(int slideMode) {
-            this.slideMode = slideMode;
-            return this;
-        }
-
-        public Builder setPageSize(int pageSize) {
-            this.pageSize = pageSize;
-            return this;
-        }
-
-        public Builder setSliderSpace(float sliderSpace) {
-            this.sliderSpace = sliderSpace;
-            return this;
-        }
-
-        public Builder setSliderHeight(float sliderHeight) {
-            this.sliderHeight = sliderHeight;
-            return this;
-        }
-
-        public IndicatorOptions build() {
-            return new IndicatorOptions(this);
-        }
-
-        public Builder setSliderWidth(float normalIndicatorWidth, float checkedIndicatorWidth) {
-            this.normalSliderWidth = normalIndicatorWidth;
-            this.checkedSliderWidth = checkedIndicatorWidth;
-            return this;
-        }
-
-        public Builder setSliderWidth(float sliderWidth) {
-            return setSliderWidth(sliderWidth, sliderWidth);
-        }
-
-        public Builder setSliderColor(int normalColor, int checkedColor) {
-            this.normalColor = normalColor;
-            this.checkedColor = checkedColor;
-            return this;
-        }
+    public void setSliderColor(int normalColor, int checkedColor) {
+        this.normalColor = normalColor;
+        this.checkedColor = checkedColor;
     }
 }

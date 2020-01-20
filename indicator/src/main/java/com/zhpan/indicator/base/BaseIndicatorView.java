@@ -5,10 +5,13 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.zhpan.indicator.annotation.AIndicatorSlideMode;
+import com.zhpan.indicator.annotation.AIndicatorStyle;
 import com.zhpan.indicator.enums.IndicatorSlideMode;
 import com.zhpan.indicator.option.IndicatorOptions;
 
@@ -24,6 +27,9 @@ public class BaseIndicatorView extends View implements IIndicator {
 
     protected Paint mPaint;
 
+    private ViewPager mViewPager;
+    private ViewPager2 mViewPager2;
+
     public BaseIndicatorView(Context context) {
         super(context);
     }
@@ -34,7 +40,7 @@ public class BaseIndicatorView extends View implements IIndicator {
 
     public BaseIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mIndicatorOptions = new IndicatorOptions.Builder().build();
+        mIndicatorOptions = new IndicatorOptions();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
     }
@@ -71,12 +77,82 @@ public class BaseIndicatorView extends View implements IIndicator {
         }
     }
 
+    private ViewPager2.OnPageChangeCallback mOnPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            BaseIndicatorView.this.onPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            BaseIndicatorView.this.onPageSelected(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            BaseIndicatorView.this.onPageScrollStateChanged(state);
+        }
+    };
+
     @Override
-    public void setPageSize(int pageSize) {
-        mIndicatorOptions.setPageSize(pageSize);
+    public void notifyDataChanged() {
+        setupViewPager();
         requestLayout();
+        invalidate();
     }
 
+    private void setupViewPager() {
+        if (mViewPager != null) {
+            mViewPager.removeOnPageChangeListener(this);
+            mViewPager.addOnPageChangeListener(this);
+            if (mViewPager.getAdapter() != null)
+                setPageSize(mViewPager.getAdapter().getCount());
+        } else if (mViewPager2 != null) {
+            mViewPager2.unregisterOnPageChangeCallback(mOnPageChangeCallback);
+            mViewPager2.registerOnPageChangeCallback(mOnPageChangeCallback);
+            if (mViewPager2.getAdapter() != null)
+                setPageSize(mViewPager2.getAdapter().getItemCount());
+        }
+    }
+
+    private void setPageSize(int pageSize) {
+        mIndicatorOptions.setPageSize(pageSize);
+    }
+
+    public BaseIndicatorView setSliderColor(@ColorInt int normalColor, @ColorInt int selectedColor) {
+        mIndicatorOptions.setSliderColor(normalColor, selectedColor);
+        return this;
+    }
+
+    public BaseIndicatorView setSliderWidth(float sliderWidth) {
+        mIndicatorOptions.setSliderWidth(sliderWidth);
+        return this;
+    }
+
+    public BaseIndicatorView setSliderWidth(float normalSliderWidth, float selectedSliderWidth) {
+        mIndicatorOptions.setSliderWidth(normalSliderWidth, selectedSliderWidth);
+        return this;
+    }
+
+    public BaseIndicatorView setSliderGap(float sliderGap) {
+        mIndicatorOptions.setSliderGap(sliderGap);
+        return this;
+    }
+
+    public BaseIndicatorView setSlideMode(@AIndicatorSlideMode int slideMode) {
+        mIndicatorOptions.setSlideMode(slideMode);
+        return this;
+    }
+
+    public BaseIndicatorView setIndicatorStyle(@AIndicatorStyle int indicatorStyle) {
+        mIndicatorOptions.setIndicatorStyle(indicatorStyle);
+        return this;
+    }
+
+    public BaseIndicatorView setSliderHeight(float sliderHeight) {
+        mIndicatorOptions.setSliderHeight(sliderHeight);
+        return this;
+    }
 
     public int getPageSize() {
         return mIndicatorOptions.getPageSize();
@@ -91,7 +167,7 @@ public class BaseIndicatorView extends View implements IIndicator {
     }
 
     public float getIndicatorGap() {
-        return mIndicatorOptions.getSliderSpace();
+        return mIndicatorOptions.getSliderGap();
     }
 
     public float getSlideProgress() {
@@ -118,35 +194,18 @@ public class BaseIndicatorView extends View implements IIndicator {
         mIndicatorOptions.setSlideProgress(slideProgress);
     }
 
-    protected void setCurrentPosition(int currentPosition) {
+    private void setCurrentPosition(int currentPosition) {
         mIndicatorOptions.setCurrentPosition(currentPosition);
     }
 
     public void setupWithViewPager(ViewPager viewPager) {
-        if (viewPager != null) {
-            viewPager.addOnPageChangeListener(this);
-        }
+        mViewPager = viewPager;
+        notifyDataChanged();
     }
 
-    public void setupWithViewPager2(ViewPager2 viewPager2) {
-        if (viewPager2 != null) {
-            viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                    BaseIndicatorView.this.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-                    BaseIndicatorView.this.onPageSelected(position);
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-                    BaseIndicatorView.this.onPageScrollStateChanged(state);
-                }
-            });
-        }
+    public void setupWithViewPager(ViewPager2 viewPager2) {
+        mViewPager2 = viewPager2;
+        notifyDataChanged();
     }
 
     public IndicatorOptions getIndicatorOptions() {

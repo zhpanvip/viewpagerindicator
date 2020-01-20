@@ -13,7 +13,7 @@ import com.zhpan.indicator.option.IndicatorOptions;
  */
 public interface IIndicator extends ViewPager.OnPageChangeListener{
 
-    void setPageSize(int pageSize);
+    void notifyDataChanged();
 
     void setIndicatorOptions(IndicatorOptions options);
 

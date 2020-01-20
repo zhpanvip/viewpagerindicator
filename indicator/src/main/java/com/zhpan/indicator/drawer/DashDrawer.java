@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 
 import com.zhpan.indicator.option.IndicatorOptions;
 
-
 /**
  * <pre>
  *   Created by zhpan on 2019/11/23.

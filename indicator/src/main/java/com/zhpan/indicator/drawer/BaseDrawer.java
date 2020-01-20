@@ -42,7 +42,7 @@ public abstract class BaseDrawer implements IDrawer {
 
     private int measureWidth() {
         int pageSize = mIndicatorOptions.getPageSize();
-        float indicatorGap = mIndicatorOptions.getSliderSpace();
+        float indicatorGap = mIndicatorOptions.getSliderGap();
         return (int) ((pageSize - 1) * indicatorGap + maxWidth + (pageSize - 1) * minWidth);
     }
 

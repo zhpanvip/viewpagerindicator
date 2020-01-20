@@ -37,7 +37,7 @@ public class RectDrawer extends BaseDrawer {
         for (int i = 0; i < pageSize; i++) {
             mPaint.setColor(mIndicatorOptions.getNormalSliderColor());
             float sliderHeight = mIndicatorOptions.getSliderHeight();
-            float left = i * (maxWidth) + i * +mIndicatorOptions.getSliderSpace() + (maxWidth - minWidth);
+            float left = i * (maxWidth) + i * +mIndicatorOptions.getSliderGap() + (maxWidth - minWidth);
             mRectF.set(left, 0, left + minWidth, sliderHeight);
             drawRoundRect(canvas, sliderHeight, sliderHeight);
         }
@@ -45,7 +45,7 @@ public class RectDrawer extends BaseDrawer {
 
     private void drawInequalitySlider(Canvas canvas, int i) {
         int normalColor = mIndicatorOptions.getNormalSliderColor();
-        float indicatorGap = mIndicatorOptions.getSliderSpace();
+        float indicatorGap = mIndicatorOptions.getSliderGap();
         float sliderHeight = mIndicatorOptions.getSliderHeight();
         int currentPosition = mIndicatorOptions.getCurrentPosition();
         if (i < currentPosition) {
@@ -82,7 +82,7 @@ public class RectDrawer extends BaseDrawer {
         float sliderHeight = mIndicatorOptions.getSliderHeight();
         float slideProgress = mIndicatorOptions.getSlideProgress();
         int currentPosition = mIndicatorOptions.getCurrentPosition();
-        float distance = mIndicatorOptions.getSliderSpace() + mIndicatorOptions.getNormalSliderWidth();
+        float distance = mIndicatorOptions.getSliderGap() + mIndicatorOptions.getNormalSliderWidth();
         float startCoordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition);
         float left = startCoordinateX + Math.max(distance * (slideProgress - 0.5f) * 2.0f, 0) - mIndicatorOptions.getNormalSliderWidth() / 2;
         float right = startCoordinateX + Math.min((distance * slideProgress * 2), distance) + mIndicatorOptions.getNormalSliderWidth() / 2;
@@ -92,7 +92,7 @@ public class RectDrawer extends BaseDrawer {
 
     private void drawSmoothSlider(Canvas canvas) {
         int currentPosition = mIndicatorOptions.getCurrentPosition();
-        float indicatorGap = mIndicatorOptions.getSliderSpace();
+        float indicatorGap = mIndicatorOptions.getSliderGap();
         float sliderHeight = mIndicatorOptions.getSliderHeight();
         float left = currentPosition * (maxWidth) + currentPosition * +indicatorGap + (maxWidth + indicatorGap) * mIndicatorOptions.getSlideProgress();
         mRectF.set(left, 0, left + maxWidth, sliderHeight);

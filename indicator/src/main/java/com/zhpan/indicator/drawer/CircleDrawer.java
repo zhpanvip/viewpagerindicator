@@ -73,7 +73,7 @@ public class CircleDrawer extends BaseDrawer {
     private void drawWormSlider(Canvas canvas, float sliderHeight) {
         float slideProgress = mIndicatorOptions.getSlideProgress();
         int currentPosition = mIndicatorOptions.getCurrentPosition();
-        float distance = mIndicatorOptions.getSliderSpace() + mIndicatorOptions.getNormalSliderWidth();
+        float distance = mIndicatorOptions.getSliderGap() + mIndicatorOptions.getNormalSliderWidth();
         float startCoordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition);
         float left = startCoordinateX + Math.max(distance * (slideProgress - 0.5f) * 2.0f, 0) - mIndicatorOptions.getNormalSliderWidth() / 2;
         float right = startCoordinateX + Math.min((distance * slideProgress * 2), distance) + mIndicatorOptions.getNormalSliderWidth() / 2;

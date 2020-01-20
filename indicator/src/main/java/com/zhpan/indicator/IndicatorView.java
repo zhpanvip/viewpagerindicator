@@ -63,4 +63,10 @@ public class IndicatorView extends BaseIndicatorView implements IIndicator {
         super.setIndicatorOptions(indicatorOptions);
         mDrawerProxy.setIndicatorOptions(indicatorOptions);
     }
+
+    @Override
+    public void notifyDataChanged() {
+        mDrawerProxy = new DrawerProxy(getIndicatorOptions());
+        super.notifyDataChanged();
+    }
 }
