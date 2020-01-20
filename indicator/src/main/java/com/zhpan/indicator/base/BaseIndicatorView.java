@@ -10,8 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.zhpan.indicator.enums.IndicatorSlideMode;
-import com.zhpan.indicator.model.IndicatorOptions;
-
+import com.zhpan.indicator.option.IndicatorOptions;
 
 /**
  * <pre>
@@ -35,7 +34,7 @@ public class BaseIndicatorView extends View implements IIndicator {
 
     public BaseIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mIndicatorOptions = new IndicatorOptions();
+        mIndicatorOptions = new IndicatorOptions.Builder().build();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
     }
@@ -72,17 +71,6 @@ public class BaseIndicatorView extends View implements IIndicator {
         }
     }
 
-//    private boolean isSlideToRight(int position, float positionOffset) {
-//        int prePosition = mIndicatorOptions.getPrePosition();
-//        if ((prePosition == 0 && position == getPageSize() - 1)) {
-//            return false;
-//        } else if (prePosition == getPageSize() - 1 && position == 0) {
-//            return true;
-//        } else {
-//            return (position + positionOffset - prePosition) > 0;
-//        }
-//    }
-
     @Override
     public void setPageSize(int pageSize) {
         mIndicatorOptions.setPageSize(pageSize);
@@ -95,15 +83,15 @@ public class BaseIndicatorView extends View implements IIndicator {
     }
 
     public int getNormalColor() {
-        return mIndicatorOptions.getNormalColor();
+        return mIndicatorOptions.getNormalSliderColor();
     }
 
     public int getCheckedColor() {
-        return mIndicatorOptions.getCheckedColor();
+        return mIndicatorOptions.getCheckedSliderColor();
     }
 
     public float getIndicatorGap() {
-        return mIndicatorOptions.getIndicatorGap();
+        return mIndicatorOptions.getSliderSpace();
     }
 
     public float getSlideProgress() {
@@ -114,41 +102,25 @@ public class BaseIndicatorView extends View implements IIndicator {
         return mIndicatorOptions.getCurrentPosition();
     }
 
-    public void setCurrentPosition(int currentPosition) {
-        mIndicatorOptions.setCurrentPosition(currentPosition);
-    }
-
-    public void setIndicatorOptions(IndicatorOptions indicatorOptions) {
-        mIndicatorOptions = indicatorOptions;
-    }
-
-//    public boolean isSlideToRight() {
-//        return mIndicatorOptions.isSlideToRight();
-//    }
-
     public int getSlideMode() {
         return mIndicatorOptions.getSlideMode();
     }
 
-    public float getNormalIndicatorWidth() {
-        return mIndicatorOptions.getNormalIndicatorWidth();
+    public float getNormalSliderWidth() {
+        return mIndicatorOptions.getNormalSliderWidth();
     }
 
-    public float getCheckedIndicatorWidth() {
-        return mIndicatorOptions.getCheckedIndicatorWidth();
+    public float getCheckedSliderWidth() {
+        return mIndicatorOptions.getCheckedSliderWidth();
     }
 
     private void setSlideProgress(float slideProgress) {
         mIndicatorOptions.setSlideProgress(slideProgress);
     }
 
-//    private void setPrePosition(int prePosition) {
-//        mIndicatorOptions.setPrePosition(prePosition);
-//    }
-
-//    private void setSlideToRight(boolean slideToRight) {
-//        mIndicatorOptions.setSlideToRight(slideToRight);
-//    }
+    protected void setCurrentPosition(int currentPosition) {
+        mIndicatorOptions.setCurrentPosition(currentPosition);
+    }
 
     public void setupWithViewPager(ViewPager viewPager) {
         if (viewPager != null) {
@@ -183,5 +155,9 @@ public class BaseIndicatorView extends View implements IIndicator {
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    public void setIndicatorOptions(IndicatorOptions indicatorOptions) {
+        mIndicatorOptions = indicatorOptions;
     }
 }

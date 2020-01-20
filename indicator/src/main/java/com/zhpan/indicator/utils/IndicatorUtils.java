@@ -2,7 +2,7 @@ package com.zhpan.indicator.utils;
 
 import android.content.res.Resources;
 
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 /**
  * <pre>
@@ -17,8 +17,8 @@ public class IndicatorUtils {
     }
 
     public static float getCoordinateX(IndicatorOptions indicatorOptions, float maxDiameter, int index) {
-        float normalIndicatorWidth = indicatorOptions.getNormalIndicatorWidth();
-        return maxDiameter / 2 + (normalIndicatorWidth + indicatorOptions.getIndicatorGap()) * index;
+        float normalIndicatorWidth = indicatorOptions.getNormalSliderWidth();
+        return maxDiameter / 2 + (normalIndicatorWidth + indicatorOptions.getSliderSpace()) * index;
     }
 
     public static float getCoordinateY(float maxDiameter) {

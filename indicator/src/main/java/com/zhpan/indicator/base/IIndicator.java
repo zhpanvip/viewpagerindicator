@@ -2,7 +2,7 @@ package com.zhpan.indicator.base;
 
 import androidx.viewpager.widget.ViewPager;
 
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 
 /**

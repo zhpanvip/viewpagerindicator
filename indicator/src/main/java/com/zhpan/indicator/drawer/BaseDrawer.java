@@ -3,7 +3,7 @@ package com.zhpan.indicator.drawer;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 
 /**
@@ -30,8 +30,8 @@ public abstract class BaseDrawer implements IDrawer {
     }
 
     public MeasureResult onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        maxWidth = Math.max(mIndicatorOptions.getNormalIndicatorWidth(), mIndicatorOptions.getCheckedIndicatorWidth());
-        minWidth = Math.min(mIndicatorOptions.getNormalIndicatorWidth(), mIndicatorOptions.getCheckedIndicatorWidth());
+        maxWidth = Math.max(mIndicatorOptions.getNormalSliderWidth(), mIndicatorOptions.getCheckedSliderWidth());
+        minWidth = Math.min(mIndicatorOptions.getNormalSliderWidth(), mIndicatorOptions.getCheckedSliderWidth());
         mMeasureResult.setMeasureResult(measureWidth(), measureHeight());
         return mMeasureResult;
     }
@@ -42,7 +42,7 @@ public abstract class BaseDrawer implements IDrawer {
 
     private int measureWidth() {
         int pageSize = mIndicatorOptions.getPageSize();
-        float indicatorGap = mIndicatorOptions.getIndicatorGap();
+        float indicatorGap = mIndicatorOptions.getSliderSpace();
         return (int) ((pageSize - 1) * indicatorGap + maxWidth + (pageSize - 1) * minWidth);
     }
 
@@ -73,6 +73,6 @@ public abstract class BaseDrawer implements IDrawer {
     }
 
     protected boolean isWidthEquals() {
-        return mIndicatorOptions.getNormalIndicatorWidth() == mIndicatorOptions.getCheckedIndicatorWidth();
+        return mIndicatorOptions.getNormalSliderWidth() == mIndicatorOptions.getCheckedSliderWidth();
     }
 }

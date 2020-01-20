@@ -17,6 +17,6 @@ import java.lang.annotation.Target;
  */
 @IntDef({IndicatorStyle.CIRCLE, IndicatorStyle.DASH, IndicatorStyle.ROUND_RECT})
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.PARAMETER)
+@Target({ElementType.PARAMETER,ElementType.FIELD})
 public @interface AIndicatorStyle {
 }

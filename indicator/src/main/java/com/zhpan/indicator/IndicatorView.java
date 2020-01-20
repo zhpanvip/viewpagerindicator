@@ -10,7 +10,7 @@ import com.zhpan.indicator.base.BaseIndicatorView;
 import com.zhpan.indicator.base.IIndicator;
 import com.zhpan.indicator.drawer.BaseDrawer;
 import com.zhpan.indicator.drawer.DrawerProxy;
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 
 /**

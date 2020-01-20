@@ -1,6 +1,6 @@
 package com.zhpan.indicator.drawer;
 
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 import static com.zhpan.indicator.enums.IndicatorStyle.DASH;
 import static com.zhpan.indicator.enums.IndicatorStyle.ROUND_RECT;

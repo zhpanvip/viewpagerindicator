@@ -2,7 +2,7 @@ package com.zhpan.indicator.drawer;
 
 import android.graphics.Canvas;
 
-import com.zhpan.indicator.model.IndicatorOptions;
+import com.zhpan.indicator.option.IndicatorOptions;
 
 
 /**
