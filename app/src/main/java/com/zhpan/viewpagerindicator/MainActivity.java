@@ -6,10 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
-import com.zhpan.indicatorview.IndicatorView;
-import com.zhpan.indicatorview.enums.IndicatorSlideMode;
-import com.zhpan.indicatorview.enums.IndicatorStyle;
-import com.zhpan.indicatorview.model.IndicatorOptions;
+import com.zhpan.indicator.IndicatorView;
+import com.zhpan.indicator.enums.IndicatorSlideMode;
+import com.zhpan.indicator.enums.IndicatorStyle;
+import com.zhpan.indicator.model.IndicatorOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +25,7 @@ public class MainActivity extends AppCompatActivity {
         indicatorView.setIndicatorOptions(getIndicatorOption());
         indicatorView.setPageSize(getData().size());
         viewPager.setAdapter(new ViewPagerAdapter(getData()));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                indicatorView.onPageSelected(position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                indicatorView.onPageScrollStateChanged(state);
-            }
-        });
+        indicatorView.setupWithViewPager(viewPager);
     }
 
     private IndicatorOptions getIndicatorOption() {

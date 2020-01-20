@@ -1,2 +1,2 @@
-include ':app', ':indicatorview'
+include ':app', ':indicator'
 rootProject.name='ViewPagerIndicator'
