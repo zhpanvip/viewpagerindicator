@@ -21,11 +21,11 @@ open class MainActivity : BaseDataActivity() {
                 .setSliderWidth(resources.getDimension(R.dimen.dp_17))
                 .setSliderHeight(resources.getDimension(R.dimen.dp_5))
                 .setSlideMode(IndicatorSlideMode.WORM)
-                .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
+                .setIndicatorStyle(IndicatorStyle.CIRCLE)
                 .setupWithViewPager(viewPager)
 
-        viewPager.adapter = ViewPagerAdapter(getData(3))
-        indicatorView.notifyDataChanged()
+//        viewPager.adapter = ViewPagerAdapter(getData(3))
+//        indicatorView.notifyDataChanged()
     }
 
 }

@@ -13,7 +13,7 @@ internal object DrawerFactory {
     fun createDrawer(indicatorOptions: IndicatorOptions): IDrawer {
         return when (indicatorOptions.indicatorStyle) {
             IndicatorStyle.DASH -> DashDrawer(indicatorOptions)
-            IndicatorStyle.CIRCLE -> RoundRectDrawer(indicatorOptions)
+            IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions)
             else -> CircleDrawer(indicatorOptions)
         }
     }
