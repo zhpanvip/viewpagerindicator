@@ -1,16 +1,13 @@
-# BannerViewPager
+# ViewPagerIndicator
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 ![MinSdk](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
-
+[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 
 ## Preview
 
-
-
 IndicatorView supports three Indicator Styles and three Indicator Slide mode now.
 
-[Sample Click Here](https://github.com/zhpanvip/BannerViewPager/blob/master/app/src/main/java/com/example/zhpan/circleviewpager/fragment/IndicatorFragment.java)
 
 | Attrs | CIRCLE | DASH | ROUND_RECT |
 |--|--|--|--|
@@ -26,10 +23,10 @@ IndicatorView supports three Indicator Styles and three Indicator Slide mode now
 | setIndicatorStyle(Int) | set indicator style | enum(CIRCLE, DASH、ROUND_RECT) default CIRCLE  |
 | setSliderColor(normalColor: Int,selectedColor: Int)| set indicator slider color |normalColor：color of indicator dot not selected, default value  "#8C6C6D72"， checkedColor：color of indicator selected default value is "#8C18171C" |
 | setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM），default value NORMAL  |
-| setSliderWidth(indicatorWidth:Int) | set indicator dot width，if it's Circle indicator the parameter is diameter of circle | default value is 8dp|
-| setSliderWidth(normalWidth Int , checkWidth Int) | set indicator dot width，if is circle style，the width is diameter of circle | default is 8dp |
+| setSliderWidth(indicatorWidth:Int) | set indicator slider width，if it's Circle indicator the parameter is diameter of circle | default value is 8dp|
+| setSliderWidth(normalWidth Int , checkWidth Int) | set indicator slider width，if is circle style，the width is diameter of circle | default is 8dp |
 | setIndicatorHeight(indicatorHeight Int) | set indicator hight，it's only used when the indicator style is DASH or ROUND_RECT | default value is normalIndicatorWidth/2 |
-| setSliderGap(indicatorMargin Int ) | set the gap of indicator Slider| default value is indicator dot width（or the diameter of circle）|
+| setSliderGap(indicatorMargin Int ) | set the gap of indicator slider| default value is indicator slider width（or the diameter of circle）|
 | setupWithViewPager(ViewPager) | To link a IndicatorView with a ViewPager together. |  |
 | setupWithViewPager(ViewPager2) | To link a IndicatorView with a ViewPager2 together. |  |
 
@@ -56,7 +53,7 @@ implementation 'com.github.zhpanvip:viewpagerindicator:latestVersion'
 
 ```
 
-latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/BannerViewPager.svg)](https://jitpack.io/#zhpanvip/BannerViewPager)
+latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 
 
 ### 2.Add IndicatorView in layout.xml
