@@ -30,8 +30,8 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): MeasureResult {
-        maxWidth = Math.max(mIndicatorOptions.normalSliderWidth, mIndicatorOptions.checkedSliderWidth)
-        minWidth = Math.min(mIndicatorOptions.normalSliderWidth, mIndicatorOptions.checkedSliderWidth)
+        maxWidth = mIndicatorOptions.normalSliderWidth.coerceAtLeast(mIndicatorOptions.checkedSliderWidth)
+        minWidth = mIndicatorOptions.normalSliderWidth.coerceAtMost(mIndicatorOptions.checkedSliderWidth)
         mMeasureResult.setMeasureResult(measureWidth(), measureHeight())
         return mMeasureResult
     }
