@@ -96,6 +96,13 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
 ```
 
+## FAQ
+
+If you have any question you can scan the QR code to join the QQ group to communicate.
+
+ ![QQ交流群60902509](https://github.com/zhpanvip/BannerViewPager/blob/master/image/qq_group.png)
+
+
 ## <span id="Sponsor"> Sponsor </span>
 
 **开源不易 随心赞赏**
@@ -103,12 +110,6 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 | Alipay | WeChat |
 |--|--|
 | ![Alipay](https://github.com/zhpanvip/viewpagerindicator/blob/master/image/pay_alipay.jpg) |  ![WeChat](https://github.com/zhpanvip/viewpagerindicator/blob/master/image/pay_wechat.png) |
-
-
-## If you have any question you can scan the QR code to join the QQ group to communicate.
-
- ![QQ交流群60902509](https://github.com/zhpanvip/BannerViewPager/blob/master/image/qq_group.png)
-
 
 
 License
