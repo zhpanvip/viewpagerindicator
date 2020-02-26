@@ -82,7 +82,7 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
 
 
-### 3.Use IndicatorView with ViewPager:
+### 3.Use IndicatorView with ViewPager/ViewPager2:
 
 
 ```
