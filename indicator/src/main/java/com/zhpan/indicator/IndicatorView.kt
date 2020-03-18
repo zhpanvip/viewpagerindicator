@@ -6,7 +6,6 @@ import android.util.AttributeSet
 
 import com.zhpan.indicator.base.BaseIndicatorView
 import com.zhpan.indicator.base.IIndicator
-import com.zhpan.indicator.drawer.BaseDrawer
 import com.zhpan.indicator.drawer.DrawerProxy
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -25,7 +24,7 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
     private var mDrawerProxy: DrawerProxy? = null
 
     init {
-        mDrawerProxy = DrawerProxy(mIndicatorOptions!!)
+        mDrawerProxy = DrawerProxy(mIndicatorOptions)
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -44,13 +43,13 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
         mDrawerProxy?.onDraw(canvas)
     }
 
-    override fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {
-        super.setIndicatorOptions(indicatorOptions)
-        mDrawerProxy?.setIndicatorOptions(indicatorOptions)
+    override fun setIndicatorOptions(options: IndicatorOptions) {
+        super.setIndicatorOptions(options)
+        mDrawerProxy?.setIndicatorOptions(options)
     }
 
     override fun notifyDataChanged() {
-        mDrawerProxy = DrawerProxy(mIndicatorOptions!!)
+        mDrawerProxy = DrawerProxy(mIndicatorOptions)
         super.notifyDataChanged()
     }
 }
