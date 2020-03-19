@@ -1,7 +1,6 @@
 package com.zhpan.indicator.base
 
 import android.content.Context
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 
@@ -20,68 +19,64 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description:IndicatorView基类，处理了页面滑动。
 </pre> *
  */
-open class BaseIndicatorView : View, IIndicator {
+open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr), IIndicator {
 
-    var mIndicatorOptions: IndicatorOptions? = null
+    var mIndicatorOptions: IndicatorOptions
 
     private var mViewPager: ViewPager? = null
     private var mViewPager2: ViewPager2? = null
 
     private val mOnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            this@BaseIndicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            this.onPageScrolled(position, positionOffset, positionOffsetPixels)
         }
 
         override fun onPageSelected(position: Int) {
-            this@BaseIndicatorView.onPageSelected(position)
+            this.onPageSelected(position)
         }
 
         override fun onPageScrollStateChanged(state: Int) {
-            this@BaseIndicatorView.onPageScrollStateChanged(state)
+            this.onPageScrollStateChanged(state)
         }
     }
 
     var pageSize: Int
-        get() = mIndicatorOptions!!.pageSize
+        get() = mIndicatorOptions.pageSize
         private set(pageSize) {
-            mIndicatorOptions!!.pageSize = pageSize
+            mIndicatorOptions.pageSize = pageSize
         }
 
     val normalColor: Int
-        get() = mIndicatorOptions!!.normalSliderColor
+        get() = mIndicatorOptions.normalSliderColor
 
     val checkedColor: Int
-        get() = mIndicatorOptions!!.checkedSliderColor
+        get() = mIndicatorOptions.checkedSliderColor
 
     val indicatorGap: Float
-        get() = mIndicatorOptions!!.sliderGap
+        get() = mIndicatorOptions.sliderGap
 
     var slideProgress: Float
-        get() = mIndicatorOptions!!.slideProgress
+        get() = mIndicatorOptions.slideProgress
         private set(slideProgress) {
-            mIndicatorOptions!!.slideProgress = slideProgress
+            mIndicatorOptions.slideProgress = slideProgress
         }
 
     var currentPosition: Int
-        get() = mIndicatorOptions!!.currentPosition
+        get() = mIndicatorOptions.currentPosition
         private set(currentPosition) {
-            mIndicatorOptions!!.currentPosition = currentPosition
+            mIndicatorOptions.currentPosition = currentPosition
         }
 
     val slideMode: Int
-        get() = mIndicatorOptions!!.slideMode
+        get() = mIndicatorOptions.slideMode
 
     val normalSliderWidth: Float
-        get() = mIndicatorOptions!!.normalSliderWidth
+        get() = mIndicatorOptions.normalSliderWidth
 
     val checkedSliderWidth: Float
-        get() = mIndicatorOptions!!.checkedSliderWidth
+        get() = mIndicatorOptions.checkedSliderWidth
 
-    constructor(context: Context) : super(context) {}
-
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {}
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    init {
         mIndicatorOptions = IndicatorOptions()
     }
 
@@ -136,37 +131,37 @@ open class BaseIndicatorView : View, IIndicator {
     }
 
     fun setSliderColor(@ColorInt normalColor: Int, @ColorInt selectedColor: Int): BaseIndicatorView {
-        mIndicatorOptions!!.setSliderColor(normalColor, selectedColor)
+        mIndicatorOptions.setSliderColor(normalColor, selectedColor)
         return this
     }
 
     fun setSliderWidth(sliderWidth: Float): BaseIndicatorView {
-        mIndicatorOptions!!.setSliderWidth(sliderWidth)
+        mIndicatorOptions.setSliderWidth(sliderWidth)
         return this
     }
 
     fun setSliderWidth(normalSliderWidth: Float, selectedSliderWidth: Float): BaseIndicatorView {
-        mIndicatorOptions!!.setSliderWidth(normalSliderWidth, selectedSliderWidth)
+        mIndicatorOptions.setSliderWidth(normalSliderWidth, selectedSliderWidth)
         return this
     }
 
     fun setSliderGap(sliderGap: Float): BaseIndicatorView {
-        mIndicatorOptions!!.sliderGap = sliderGap
+        mIndicatorOptions.sliderGap = sliderGap
         return this
     }
 
     fun setSlideMode(@AIndicatorSlideMode slideMode: Int): BaseIndicatorView {
-        mIndicatorOptions!!.slideMode = slideMode
+        mIndicatorOptions.slideMode = slideMode
         return this
     }
 
     fun setIndicatorStyle(@AIndicatorStyle indicatorStyle: Int): BaseIndicatorView {
-        mIndicatorOptions!!.indicatorStyle = indicatorStyle
+        mIndicatorOptions.indicatorStyle = indicatorStyle
         return this
     }
 
     fun setSliderHeight(sliderHeight: Float): BaseIndicatorView {
-        mIndicatorOptions!!.sliderHeight = sliderHeight
+        mIndicatorOptions.sliderHeight = sliderHeight
         return this
     }
 
@@ -186,7 +181,7 @@ open class BaseIndicatorView : View, IIndicator {
 
     override fun onPageScrollStateChanged(state: Int) {}
 
-    override fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {
-        mIndicatorOptions = indicatorOptions
+    override fun setIndicatorOptions(options: IndicatorOptions) {
+        mIndicatorOptions = options
     }
 }
