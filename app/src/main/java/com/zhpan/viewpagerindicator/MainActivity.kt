@@ -1,9 +1,8 @@
 package com.zhpan.viewpagerindicator
 
-import androidx.viewpager.widget.ViewPager
-
 import android.os.Bundle
-
+import androidx.viewpager.widget.ViewPager
+import com.zhpan.indicator.DrawableIndicator
 import com.zhpan.indicator.IndicatorView
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
