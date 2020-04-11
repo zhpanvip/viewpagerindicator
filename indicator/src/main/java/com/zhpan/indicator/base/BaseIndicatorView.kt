@@ -28,15 +28,15 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
 
     private val mOnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            this.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            pageScrolled(position, positionOffset, positionOffsetPixels)
         }
 
         override fun onPageSelected(position: Int) {
-            this.onPageSelected(position)
+            pageSelected(position)
         }
 
         override fun onPageScrollStateChanged(state: Int) {
-            this.onPageScrollStateChanged(state)
+            pageScrollStateChanged(state)
         }
     }
 
@@ -81,6 +81,10 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     override fun onPageSelected(position: Int) {
+        pageSelected(position)
+    }
+
+    private fun pageSelected(position: Int) {
         if (slideMode == IndicatorSlideMode.NORMAL) {
             currentPosition = position
             slideProgress = 0f
@@ -89,6 +93,10 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        pageScrolled(position, positionOffset, positionOffsetPixels);
+    }
+
+    private fun pageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (slideMode != IndicatorSlideMode.NORMAL && pageSize > 1) {
             scrollSlider(position, positionOffset)
             invalidate()
@@ -179,7 +187,12 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
         return mIndicatorOptions
     }
 
-    override fun onPageScrollStateChanged(state: Int) {}
+    override fun onPageScrollStateChanged(state: Int) {
+        pageScrollStateChanged(state)
+    }
+
+    private fun pageScrollStateChanged(state: Int) {
+    }
 
     override fun setIndicatorOptions(options: IndicatorOptions) {
         mIndicatorOptions = options
