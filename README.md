@@ -88,6 +88,7 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
 
 ```
+        val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
         indicatorView
                     .setSliderColor(getResColor(R.color.red_normal_color), getResColor(R.color.red_checked_color))
                     .setSliderWidth(resources.getDimension(R.dimen.dp_17))
@@ -96,6 +97,103 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                     .setIndicatorStyle(IndicatorStyle.CIRCLE)
                     .setupWithViewPager(viewPager)
 
+```
+
+## 4.DrawableIndicator,Supported Bitmap Drawable and VectorDrawable
+
+| BitmapDrawable|
+|--|
+| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/drawable_indicator.gif) |
+
+```
+        val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
+                val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
+                indicatorView
+                        .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+                        .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
+                        .setIndicatorSize(dp10, dp10, dp10, dp10)
+                        .setupWithViewPager(viewPager)
+```
+
+### 5.Custom IndicatorView Supported
+
+The example will implement an custom IndicatorView as the follow gif.
+
+| Custom IndicatorView Style|
+|--|
+| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/banner/style_custum.gif) |
+
+**(1)Custom View and extends BaseIndicatorView**
+
+```
+public class FigureIndicatorView extends BaseIndicatorView {
+
+    private int radius = DpUtils.dp2px(20);
+
+    private int backgroundColor = Color.parseColor("#88FF5252");
+
+    private int textColor = Color.WHITE;
+
+    private int textSize=DpUtils.dp2px(13);
+
+    public FigureIndicatorView(Context context) {
+        this(context, null);
+    }
+
+    public FigureIndicatorView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public FigureIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        mPaint = new Paint();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(2 * radius, 2 * radius);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        mPaint.setColor(backgroundColor);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, radius, mPaint);
+        mPaint.setColor(textColor);
+        mPaint.setTextSize(textSize);
+        String text = currentPosition + 1 + "/" + pageSize;
+        int textWidth = (int) mPaint.measureText(text);
+        Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
+        int baseline = (getMeasuredHeight() - fontMetricsInt.bottom + fontMetricsInt.top) / 2 - fontMetricsInt.top;
+        canvas.drawText(text, (getWidth() - textWidth) / 2, baseline, mPaint);
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+}
+```
+**(2)User custom indicator with ViewPager/ViewPager2**
+
+```
+    val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
+            indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
+            indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
+                    .setupWithViewPager(viewPager)
 ```
 
 ## FAQ

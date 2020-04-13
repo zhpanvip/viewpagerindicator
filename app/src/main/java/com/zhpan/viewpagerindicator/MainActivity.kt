@@ -14,8 +14,8 @@ open class MainActivity : BaseDataActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val viewPager = findViewById<ViewPager>(R.id.banner_view)
-        val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
         viewPager.adapter = ViewPagerAdapter(getData(4))
+        val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
         val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
         indicatorView
                 .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
