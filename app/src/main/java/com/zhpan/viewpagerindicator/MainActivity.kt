@@ -26,8 +26,8 @@ open class MainActivity : BaseDataActivity() {
         val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
         view_pager2.adapter = ViewPager2Adapter(getData(4))
 
-        figureIndicator.setRadius(IndicatorUtils.dp2px(18f))
-        figureIndicator.setTextSize(IndicatorUtils.dp2px(13f))
+        figureIndicator.setRadius(IndicatorUtils.dp2px(15f))
+        figureIndicator.setTextSize(IndicatorUtils.dp2px(12f))
                 .setupWithViewPager(view_pager2)
         figureIndicator.setBackgroundColor(Color.parseColor("#aa118EEA"))
         normalColor = getResColor(R.color.red_normal_color)

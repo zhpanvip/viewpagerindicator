@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="2">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,21 +23,57 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/dp_10" />
 
-        <com.zhpan.indicator.DrawableIndicator
-            android:id="@+id/drawableIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dp_10" />
 
-        <com.zhpan.viewpagerindicator.FigureIndicatorView
-            android:id="@+id/figureIndicator"
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="#FF7F50">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <com.zhpan.indicator.DrawableIndicator
+                android:id="@+id/drawableIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_alignParentBottom="true"
+                android:text="DrawableIndicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dp_10" />
+            android:layout_marginEnd="@dimen/dp_10"
+            android:orientation="vertical">
 
+            <com.zhpan.viewpagerindicator.FigureIndicatorView
+                android:id="@+id/figureIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_alignParentBottom="true"
+                android:text="Custom Indicator" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
