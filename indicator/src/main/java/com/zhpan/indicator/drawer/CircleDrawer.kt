@@ -69,8 +69,9 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
     }
 
     private fun drawScaleSlider(canvas: Canvas) {
+        val currentPosition = mIndicatorOptions.currentPosition
         val slideProgress = mIndicatorOptions.slideProgress
-        val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, mIndicatorOptions.currentPosition)
+        val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
         val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
         if (slideProgress < 1) {
             val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
@@ -78,14 +79,22 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
             val radius = mIndicatorOptions.checkedSliderWidth / 2 - (mIndicatorOptions.checkedSliderWidth / 2 - mIndicatorOptions.normalSliderWidth / 2) * slideProgress
             drawCircle(canvas, coordinateX, coordinateY, radius)
         }
-        if (mIndicatorOptions.currentPosition != mIndicatorOptions.pageSize - 1)
+
+        if (currentPosition == mIndicatorOptions.pageSize - 1) {
+            val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.normalSliderColor, mIndicatorOptions.checkedSliderColor)
+            mPaint.color = evaluate as Int
+            val nextCoordinateX = maxWidth / 2
+            val nextRadius = minWidth / 2 + (maxWidth / 2 - minWidth / 2) * (slideProgress)
+            drawCircle(canvas, nextCoordinateX, coordinateY, nextRadius)
+        } else {
             if (slideProgress > 0) {
-                val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.normalSliderColor, mIndicatorOptions.checkedSliderColor)
                 mPaint.color = evaluate as Int
                 val nextCoordinateX = coordinateX + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
                 val nextRadius = mIndicatorOptions.normalSliderWidth / 2 + (mIndicatorOptions.checkedSliderWidth / 2 - mIndicatorOptions.normalSliderWidth / 2) * slideProgress
                 drawCircle(canvas, nextCoordinateX, coordinateY, nextRadius)
             }
+        }
     }
 
     private fun drawCircleSlider(canvas: Canvas) {
