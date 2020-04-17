@@ -32,6 +32,7 @@
         android:background="#FF7F50">
 
         <RelativeLayout
+            android:id="@+id/rl_bitmap"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -47,9 +48,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
                 android:layout_alignParentBottom="true"
-                android:text="DrawableIndicator" />
+                android:text="(Bitmap Drawable)"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_toEndOf="@id/rl_bitmap"
+            android:orientation="vertical">
+
+            <com.zhpan.indicator.DrawableIndicator
+                android:id="@+id/vectorIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="(Vector Drawable)"
+                android:textColor="#FFFFFF" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -69,9 +93,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
                 android:layout_alignParentBottom="true"
-                android:text="Custom Indicator" />
+                android:text="(Custom)"
+                android:textColor="#FFFFFF" />
 
         </RelativeLayout>
     </RelativeLayout>

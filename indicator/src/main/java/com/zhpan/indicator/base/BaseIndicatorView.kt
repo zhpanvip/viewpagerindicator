@@ -104,18 +104,24 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     private fun scrollSlider(position: Int, positionOffset: Float) {
-        if (position % pageSize == pageSize - 1) { //   最后一个页面与第一个页面
-            if (positionOffset < 0.5) {
-                currentPosition = position
-                slideProgress = 0f
-            } else {
-                currentPosition = 0
-                slideProgress = 0f
-            }
-        } else {    //  中间页面
+        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
             currentPosition = position
             slideProgress = positionOffset
+        } else {
+            if (position % pageSize == pageSize - 1) { //   最后一个页面与第一个页面
+                if (positionOffset < 0.5) {
+                    currentPosition = position
+                    slideProgress = 0f
+                } else {
+                    currentPosition = 0
+                    slideProgress = 0f
+                }
+            } else {    //  中间页面
+                currentPosition = position
+                slideProgress = positionOffset
+            }
         }
+
     }
 
     override fun notifyDataChanged() {

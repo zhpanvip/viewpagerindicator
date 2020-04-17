@@ -36,11 +36,17 @@ open class MainActivity : BaseDataActivity() {
         checkedColor = getResColor(R.color.red_checked_color)
         normalWidth = resources.getDimension(R.dimen.dp_10)
         checkedWidth = normalWidth
+        val dp6 = resources.getDimensionPixelOffset(R.dimen.dp_6)
         drawableIndicator
                 .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
                 .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
                 .setIndicatorSize(dp10, dp10, dp10, dp10)
                 .setupWithViewPager(view_pager2)
+        vectorIndicator.setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+                .setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
+                .setIndicatorSize(dp6, dp6, resources.getDimensionPixelOffset(R.dimen.dp_13), dp6)
+                .setupWithViewPager(view_pager2)
+
         indicatorView
                 .setSliderColor(normalColor, checkedColor)
                 .setSliderWidth(resources.getDimension(R.dimen.dp_10))
@@ -97,17 +103,9 @@ open class MainActivity : BaseDataActivity() {
 
     private fun setupRoundRectIndicator() {
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            if (mSlideMode == SCALE)
-                normalColor = checkedColor
-            else {
-                normalColor = getResColor(R.color.red_normal_color)
-                checkedColor = getResColor(R.color.red_checked_color)
-            }
-            normalWidth = getNormalWidth()
+            normalWidth = resources.getDimension(R.dimen.dp_4)
             checkedWidth = resources.getDimension(R.dimen.dp_10)
         } else {
-            normalColor = getResColor(R.color.red_normal_color)
-            checkedColor = getResColor(R.color.red_checked_color)
             normalWidth = checkedWidth
         }
         indicatorView.setIndicatorStyle(IndicatorStyle.ROUND_RECT)
@@ -121,17 +119,9 @@ open class MainActivity : BaseDataActivity() {
 
     private fun setupDashIndicator() {
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            if (mSlideMode == SCALE)
-                normalColor = checkedColor
-            else {
-                normalColor = getResColor(R.color.red_normal_color)
-                checkedColor = getResColor(R.color.red_checked_color)
-            }
-            normalWidth = getNormalWidth()
+            normalWidth = resources.getDimension(R.dimen.dp_4)
             checkedWidth = resources.getDimension(R.dimen.dp_10)
         } else {
-            normalColor = getResColor(R.color.red_normal_color)
-            checkedColor = getResColor(R.color.red_checked_color)
             normalWidth = checkedWidth
         }
         indicatorView.setIndicatorStyle(IndicatorStyle.DASH)
@@ -144,11 +134,9 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun setupCircleIndicator() {
-        normalColor = getResColor(R.color.red_normal_color)
-        checkedColor = getResColor(R.color.red_checked_color)
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            normalWidth = resources.getDimension(R.dimen.dp_10)
-            checkedWidth = normalWidth * 1.2.toFloat()
+            normalWidth = resources.getDimension(R.dimen.dp_8)
+            checkedWidth = normalWidth * 1.4.toFloat()
         } else {
             normalWidth = checkedWidth
         }
@@ -160,13 +148,4 @@ open class MainActivity : BaseDataActivity() {
                 .setSliderWidth(normalWidth, checkedWidth)
         indicatorView.notifyDataChanged()
     }
-
-    private fun getNormalWidth(): Float {
-        return if (mSlideMode == IndicatorSlideMode.SMOOTH || mSlideMode == IndicatorSlideMode.WORM) {
-            resources.getDimension(R.dimen.dp_10)
-        } else {
-            resources.getDimension(R.dimen.dp_4)
-        }
-    }
-
 }

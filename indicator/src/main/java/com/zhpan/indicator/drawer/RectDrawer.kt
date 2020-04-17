@@ -51,15 +51,6 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             i == currentPosition -> {
                 mPaint.color = mIndicatorOptions.checkedSliderColor
                 val slideProgress = mIndicatorOptions.slideProgress
-                if (slideProgress > 0) {
-                    val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
-                    mPaint.color = evaluate as Int
-                    val right = i * minWidth + i * indicatorGap + minWidth + (indicatorGap + maxWidth)
-                    val left = right - (minWidth) - (maxWidth - minWidth) * (slideProgress)
-                    mRectF.set(left, 0f, right, sliderHeight)
-                    drawRoundRect(canvas, sliderHeight, sliderHeight)
-                }
-
                 if (slideProgress < 1) {
                     val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
                     mPaint.color = (evaluate as Int)
@@ -68,12 +59,35 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
                     mRectF.set(left, 0f, right, sliderHeight)
                     drawRoundRect(canvas, sliderHeight, sliderHeight)
                 }
+
+                if (currentPosition == mIndicatorOptions.pageSize - 1) {
+                    if (slideProgress > 0) {
+                        val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                        mPaint.color = evaluate as Int
+                        val left = 0f
+                        val right = left + minWidth + (maxWidth - minWidth) * slideProgress
+
+                        mRectF.set(left, 0f, right, sliderHeight)
+                        drawRoundRect(canvas, sliderHeight, sliderHeight)
+                    }
+                } else {
+                    if (slideProgress > 0) {
+                        val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                        mPaint.color = evaluate as Int
+                        val right = i * minWidth + i * indicatorGap + minWidth + (indicatorGap + maxWidth)
+                        val left = right - (minWidth) - (maxWidth - minWidth) * (slideProgress)
+                        mRectF.set(left, 0f, right, sliderHeight)
+                        drawRoundRect(canvas, sliderHeight, sliderHeight)
+                    }
+                }
             }
             else -> {
-                mPaint.color = normalColor
-                val left = i * minWidth + i * indicatorGap + (maxWidth - minWidth)
-                mRectF.set(left, 0f, left + minWidth, sliderHeight)
-                drawRoundRect(canvas, sliderHeight, sliderHeight)
+                if ((currentPosition + 1 != i || mIndicatorOptions.slideProgress == 0f)) {
+                    mPaint.color = normalColor
+                    val left = i * minWidth + i * indicatorGap + (maxWidth - minWidth)
+                    mRectF.set(left, 0f, left + minWidth, sliderHeight)
+                    drawRoundRect(canvas, sliderHeight, sliderHeight)
+                }
             }
         }
     }
@@ -134,14 +148,18 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             mRectF.set(left, 0f, left + minWidth, mIndicatorOptions.sliderHeight)
             drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
         }
+        if (currentPosition == mIndicatorOptions.pageSize - 1) {
 
-        if (slideProgress > 0.01) {
-            val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
-            mPaint.color = evaluate as Int
-            val nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
-            mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
-            drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+        } else {
+            if (slideProgress > 0.01) {
+                val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                mPaint.color = evaluate as Int
+                val nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
+                mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
+                drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+            }
         }
+
     }
 
     private fun drawWormSlider(canvas: Canvas) {
