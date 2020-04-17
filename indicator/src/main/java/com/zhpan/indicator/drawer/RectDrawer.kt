@@ -21,9 +21,59 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
                 drawUncheckedSlider(canvas, pageSize)
                 drawCheckedSlider(canvas)
             } else {    // 单独处理normalWidth与checkedWidth不一致的情况
+
                 for (i in 0 until pageSize) {
-                    drawInequalitySlider(canvas, i)
+                    if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE) {
+                        drawScaleSlider(canvas, i)
+                    } else {
+                        drawInequalitySlider(canvas, i)
+                    }
                 }
+
+
+            }
+        }
+    }
+
+    private fun drawScaleSlider(canvas: Canvas, i: Int) {
+        val normalColor = mIndicatorOptions.normalSliderColor
+        val checkedColor = mIndicatorOptions.checkedSliderColor
+        val indicatorGap = mIndicatorOptions.sliderGap
+        val sliderHeight = mIndicatorOptions.sliderHeight
+        val currentPosition = mIndicatorOptions.currentPosition
+        when {
+            i < currentPosition -> {
+                mPaint.color = normalColor
+                val left = i * minWidth + i * indicatorGap
+                mRectF.set(left, 0f, left + minWidth, sliderHeight)
+                drawRoundRect(canvas, sliderHeight, sliderHeight)
+            }
+            i == currentPosition -> {
+                mPaint.color = mIndicatorOptions.checkedSliderColor
+                val slideProgress = mIndicatorOptions.slideProgress
+                if (slideProgress > 0) {
+                    val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                    mPaint.color = evaluate as Int
+                    val right = i * minWidth + i * indicatorGap + minWidth + (indicatorGap + maxWidth)
+                    val left = right - (minWidth) - (maxWidth - minWidth) * (slideProgress)
+                    mRectF.set(left, 0f, right, sliderHeight)
+                    drawRoundRect(canvas, sliderHeight, sliderHeight)
+                }
+
+                if (slideProgress < 1) {
+                    val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+                    mPaint.color = (evaluate as Int)
+                    val left = i * minWidth + i * indicatorGap
+                    val right = left + minWidth + (maxWidth - minWidth) * (1 - slideProgress)
+                    mRectF.set(left, 0f, right, sliderHeight)
+                    drawRoundRect(canvas, sliderHeight, sliderHeight)
+                }
+            }
+            else -> {
+                mPaint.color = normalColor
+                val left = i * minWidth + i * indicatorGap + (maxWidth - minWidth)
+                mRectF.set(left, 0f, left + minWidth, sliderHeight)
+                drawRoundRect(canvas, sliderHeight, sliderHeight)
             }
         }
     }
@@ -43,21 +93,25 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
         val indicatorGap = mIndicatorOptions.sliderGap
         val sliderHeight = mIndicatorOptions.sliderHeight
         val currentPosition = mIndicatorOptions.currentPosition
-        if (i < currentPosition) {
-            mPaint.color = normalColor
-            val left = i * minWidth + i * indicatorGap
-            mRectF.set(left, 0f, left + minWidth, sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
-        } else if (i == currentPosition) {
-            mPaint.color = mIndicatorOptions.checkedSliderColor
-            val left = i * minWidth + i * indicatorGap
-            mRectF.set(left, 0f, left + minWidth + (maxWidth - minWidth), sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
-        } else {
-            mPaint.color = normalColor
-            val left = i * minWidth + i * indicatorGap + (maxWidth - minWidth)
-            mRectF.set(left, 0f, left + minWidth, sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
+        when {
+            i < currentPosition -> {
+                mPaint.color = normalColor
+                val left = i * minWidth + i * indicatorGap
+                mRectF.set(left, 0f, left + minWidth, sliderHeight)
+                drawRoundRect(canvas, sliderHeight, sliderHeight)
+            }
+            i == currentPosition -> {
+                mPaint.color = mIndicatorOptions.checkedSliderColor
+                val left = i * minWidth + i * indicatorGap
+                mRectF.set(left, 0f, left + minWidth + (maxWidth - minWidth), sliderHeight)
+                drawRoundRect(canvas, sliderHeight, sliderHeight)
+            }
+            else -> {
+                mPaint.color = normalColor
+                val left = i * minWidth + i * indicatorGap + (maxWidth - minWidth)
+                mRectF.set(left, 0f, left + minWidth, sliderHeight)
+                drawRoundRect(canvas, sliderHeight, sliderHeight)
+            }
         }
     }
 
@@ -66,6 +120,27 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
         when (mIndicatorOptions.slideMode) {
             IndicatorSlideMode.SMOOTH -> drawSmoothSlider(canvas)
             IndicatorSlideMode.WORM -> drawWormSlider(canvas)
+            IndicatorSlideMode.COLOR -> drawColorSlider(canvas)
+        }
+    }
+
+    private fun drawColorSlider(canvas: Canvas) {
+        val currentPosition = mIndicatorOptions.currentPosition
+        val slideProgress = mIndicatorOptions.slideProgress
+        val left = currentPosition * minWidth + currentPosition * mIndicatorOptions.sliderGap
+        if (slideProgress < 0.99) {
+            val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+            mPaint.color = (evaluate as Int)
+            mRectF.set(left, 0f, left + minWidth, mIndicatorOptions.sliderHeight)
+            drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+        }
+
+        if (slideProgress > 0.01) {
+            val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+            mPaint.color = evaluate as Int
+            val nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
+            mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
+            drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
         }
     }
 

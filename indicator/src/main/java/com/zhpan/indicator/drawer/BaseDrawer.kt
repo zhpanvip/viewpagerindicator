@@ -1,7 +1,9 @@
 package com.zhpan.indicator.drawer
 
+import android.animation.ArgbEvaluator
 import android.graphics.Paint
 import android.graphics.RectF
+import com.zhpan.indicator.enums.IndicatorSlideMode
 
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -19,6 +21,8 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     internal var minWidth: Float = 0.toFloat()
     internal var mPaint: Paint = Paint()
     internal var mRectF: RectF
+    internal var argbEvaluator: ArgbEvaluator? = null
+
 
     protected val isWidthEquals: Boolean
         get() = mIndicatorOptions.normalSliderWidth == mIndicatorOptions.checkedSliderWidth
@@ -27,6 +31,9 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
         mPaint.isAntiAlias = true
         mMeasureResult = MeasureResult()
         mRectF = RectF()
+        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
+            argbEvaluator = ArgbEvaluator()
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): MeasureResult {
