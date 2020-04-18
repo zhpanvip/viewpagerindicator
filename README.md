@@ -5,10 +5,17 @@
 [![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ViewPagerIndicator-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8096)
 
+## [Use case of ViewPagerIndicator](https://github.com/zhpanvip/BannerViewPager)
+
 ## Preview
 
-IndicatorView supports three Indicator Styles and three Indicator Slide mode now.
+ ### [Click here or scan the QR code to download demo apk](https://github.com/zhpanvip/viewpagerindicator/raw/master/app/release/app-release.apk)
 
+![QRCode](https://github.com/zhpanvip/Resource/blob/master/image/indicator/qrcode.png)
+
+This library supports mutiple Indicator Styles and mutiple Indicator Slide mode now.It's also support drawable indicator and custom indicator.
+
+### IndicatorView
 
 | Attrs | CIRCLE | DASH | ROUND_RECT |
 |--|--|--|--|
@@ -18,7 +25,12 @@ IndicatorView supports three Indicator Styles and three Indicator Slide mode now
 | COLOR| ![CIRCLE_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_color.gif) |
 | SCALE| ![CIRCLE_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_scale.gif) |
 
-[More information click here.](https://github.com/zhpanvip/BannerViewPager)
+### DrawableIndicator
+
+| Bitmap Drawable| Vector Drawable|
+|--|--|
+| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/vector_drawable_indicator.gif) |
+
 
 ## API
 
@@ -37,7 +49,7 @@ IndicatorView supports three Indicator Styles and three Indicator Slide mode now
 
 ## Usage
 
-### 1.Gradle dependency
+### Gradle dependency
    
 Please add it in your root build.gradle at the end of repositories:
 
@@ -59,8 +71,11 @@ implementation 'com.github.zhpanvip:viewpagerindicator:latestVersion'
 
 latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 
+### 1.IndicatorView
 
-### 2.Add IndicatorView in layout.xml
+The IndicatorView is supported three indicator styles and five slide mode as so far.
+
+#### (1).Add IndicatorView in layout.xml
 
 ```
     <RelativeLayout
@@ -84,8 +99,7 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
     </RelativeLayout>
 ```
 
-### 3.Use IndicatorView with ViewPager/ViewPager2:
-
+#### (2).Use IndicatorView with ViewPager/ViewPager2:
 
 ```
         val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
@@ -98,24 +112,46 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                     .setupWithViewPager(viewPager)
 
 ```
+### 2.DrawableIndicator
 
-## 4.DrawableIndicator,Supported Bitmap Drawable and VectorDrawable
+You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable ealisy.
 
-| BitmapDrawable|
-|--|
-| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/drawable_indicator.gif) |
+#### (1) Add IndicatorView in layout.xml
+```
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            tools:context=".MainActivity">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/banner_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.zhpan.indicator.DrawableIndicator
+                android:id="@+id/indicator_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/dp_10" />
+
+    </RelativeLayout>
+```
+
+#### (2) Use DrawableIndicator with ViewPager/ViewPager2:
 
 ```
         val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
-                val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
-                indicatorView
-                        .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
-                        .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
-                        .setIndicatorSize(dp10, dp10, dp10, dp10)
-                        .setupWithViewPager(viewPager)
+        val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
+        indicatorView
+              .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+              .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
+              .setIndicatorSize(dp10, dp10, dp10, dp10)
+              .setupWithViewPager(viewPager)
 ```
 
-### 5.Custom IndicatorView Supported
+### 3.Custom IndicatorView Supported
 
 The example will implement an custom IndicatorView as the follow gif.
 
@@ -123,7 +159,7 @@ The example will implement an custom IndicatorView as the follow gif.
 |--|
 | ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/banner/style_custum.gif) |
 
-**(1)Custom View and extends BaseIndicatorView**
+#### (1)Custom View and extends BaseIndicatorView
 
 ```
 public class FigureIndicatorView extends BaseIndicatorView {
@@ -187,7 +223,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
     }
 }
 ```
-**(2)User custom indicator with ViewPager/ViewPager2**
+#### (2)User custom indicator with ViewPager/ViewPager2
 
 ```
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
@@ -198,9 +234,9 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ## FAQ
 
-If you have any question you can scan the QR code to join the QQ group to communicate.
+ **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
 
- ![QQ交流群60902509](https://github.com/zhpanvip/BannerViewPager/blob/master/image/qq_group.png)
+![QQ交流群60902509](https://github.com/zhpanvip/Resource/blob/master/image/group/qq_group.png)
 
 
 ## <span id="Sponsor"> Sponsor </span>
