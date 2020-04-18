@@ -54,18 +54,20 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
         val slideProgress = mIndicatorOptions.slideProgress
         val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
         val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
-        if (slideProgress < 1) {
-            val evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
-            mPaint.color = (evaluate as Int)
-            drawCircle(canvas, coordinateX, coordinateY, mIndicatorOptions.normalSliderWidth / 2)
+        var evaluate = argbEvaluator?.evaluate(slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+        mPaint.color = (evaluate as Int)
+        drawCircle(canvas, coordinateX, coordinateY, mIndicatorOptions.normalSliderWidth / 2)
+
+        // 绘制可循环的ViewPager指示器渐变
+        evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+        mPaint.color = evaluate as Int
+        val nextCoordinateX = if (currentPosition == mIndicatorOptions.pageSize - 1) {
+            IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, 0)
+        } else {
+            coordinateX + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
         }
-        if (currentPosition != mIndicatorOptions.pageSize - 1)
-            if (slideProgress > 0) {
-                val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
-                mPaint.color = evaluate as Int
-                val nextCoordinateX = coordinateX + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
-                drawCircle(canvas, nextCoordinateX, coordinateY, mIndicatorOptions.checkedSliderWidth / 2)
-            }
+        drawCircle(canvas, nextCoordinateX, coordinateY, mIndicatorOptions.checkedSliderWidth / 2)
+
     }
 
     private fun drawScaleSlider(canvas: Canvas) {

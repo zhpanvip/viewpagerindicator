@@ -15,8 +15,8 @@ IndicatorView supports three Indicator Styles and three Indicator Slide mode now
 | NORMAL| ![CIRCLE_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_normal.gif) | ![DASH_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_normal.gif) | ![ROUND_RECT_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_normal.gif) |
 | SMOOTH| ![CIRCLE_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_smooth.gif) | ![DASH_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_smooth.gif) | ![ROUND_RECT_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_smooth.gif) |
 | WORM| ![CIRCLE_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_worm.gif) | ![DASH_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_worm.gif) | ![ROUND_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_worm.gif) |
-| COLOR| ![CIRCLE_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_color.gif) | ![DASH_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_color.gif) | ![ROUND_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_color.gif) |
-| SCALE| ![CIRCLE_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_scale.gif) | ![DASH_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_scale.gif) | ![ROUND_WORM](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_scale.gif) |
+| COLOR| ![CIRCLE_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_color.gif) |
+| SCALE| ![CIRCLE_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_scale.gif) |
 
 [More information click here.](https://github.com/zhpanvip/BannerViewPager)
 
@@ -24,15 +24,15 @@ IndicatorView supports three Indicator Styles and three Indicator Slide mode now
 
 | Method | Description | Default |
 |--|--|--|
-| setIndicatorStyle(Int) | set indicator style | enum(CIRCLE, DASH、ROUND_RECT) default CIRCLE  |
+| setIndicatorStyle(Int) | set indicator style | enum(CIRCLE；DASH；ROUND_RECT) default CIRCLE  |
 | setSliderColor(normalColor: Int,selectedColor: Int)| set indicator slider color |normalColor：color of indicator dot not selected, default value  "#8C6C6D72"， checkedColor：color of indicator selected default value is "#8C18171C" |
-| setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM），default value NORMAL  |
+| setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM;COLOR;SCALE），default value NORMAL  |
 | setSliderWidth(indicatorWidth:Int) | set indicator slider width，if it's Circle indicator the parameter is diameter of circle | default value is 8dp|
 | setSliderWidth(normalWidth Int , checkWidth Int) | set indicator slider width，if is circle style，the width is diameter of circle | default is 8dp |
 | setIndicatorHeight(indicatorHeight Int) | set indicator hight，it's only used when the indicator style is DASH or ROUND_RECT | default value is normalIndicatorWidth/2 |
 | setSliderGap(indicatorMargin Int ) | set the gap of indicator slider| default value is indicator slider width（or the diameter of circle）|
-| setupWithViewPager(ViewPager) | To link a IndicatorView with a ViewPager together. |  |
-| setupWithViewPager(ViewPager2) | To link a IndicatorView with a ViewPager2 together. |  |
+| setupWithViewPager(ViewPager) | To link IndicatorView with ViewPager together. |  |
+| setupWithViewPager(ViewPager2) | To link IndicatorView with ViewPager2 together. |  |
 
 
 ## Usage
@@ -83,8 +83,6 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
     </RelativeLayout>
 ```
-
-
 
 ### 3.Use IndicatorView with ViewPager/ViewPager2:
 
