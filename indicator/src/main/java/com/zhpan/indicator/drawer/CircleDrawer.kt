@@ -1,6 +1,5 @@
 package com.zhpan.indicator.drawer
 
-import android.animation.ArgbEvaluator
 import android.graphics.Canvas
 import android.graphics.RectF
 import com.zhpan.indicator.enums.IndicatorSlideMode

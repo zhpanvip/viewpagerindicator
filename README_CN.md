@@ -5,21 +5,21 @@
 [![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ViewPagerIndicator-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8096)
 
-## English | [中文](https://github.com/zhpanvip/viewpagerindicator/blob/master/README_CN.md)
+## [English](https://github.com/zhpanvip/viewpagerindicator) | 中文
 
-## [Use case of ViewPagerIndicator](https://github.com/zhpanvip/BannerViewPager)
+## [ViewPagerIndicator使用案例](https://github.com/zhpanvip/BannerViewPager)
 
-## Preview
+## 预览
 
- ### [Click here or scan the QR code to download demo apk](https://github.com/zhpanvip/viewpagerindicator/raw/master/app/release/app-release.apk)
+ ### [点击链接或扫描二维码下载demo APK](https://github.com/zhpanvip/viewpagerindicator/raw/master/app/release/app-release.apk)
 
 ![QRCode](https://github.com/zhpanvip/Resource/blob/master/image/indicator/qrcode.png)
 
-Various Indicator Styles and various Indicator Slide mode was supported now.It's also support drawable indicator and custom indicator.
+目前，该库已经可以支持多种指示器样式和多种滑动模式，同时，也支持Drawable指示器和自定义指示器
 
 ### IndicatorView
 
-| Attrs | CIRCLE | DASH | ROUND_RECT |
+| 属性 | CIRCLE | DASH | ROUND_RECT |
 |--|--|--|--|
 | NORMAL| ![CIRCLE_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_normal.gif) | ![DASH_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_normal.gif) | ![ROUND_RECT_NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_normal.gif) |
 | SMOOTH| ![CIRCLE_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/slide_circle_smooth.gif) | ![DASH_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_dash_smooth.gif) | ![ROUND_RECT_SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/indicator/style_round_rect_smooth.gif) |
@@ -38,22 +38,22 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 
 | Method | Description | Default |
 |--|--|--|
-| setIndicatorStyle(Int) | set indicator style | enum(CIRCLE；DASH；ROUND_RECT) default CIRCLE  |
-| setSliderColor(normalColor: Int,selectedColor: Int)| set indicator slider color |normalColor：color of indicator dot not selected, default value  "#8C6C6D72"， checkedColor：color of indicator selected default value is "#8C18171C" |
-| setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM;COLOR;SCALE），default value NORMAL  |
-| setSliderWidth(indicatorWidth:Int) | set indicator slider width，if it's Circle indicator the parameter is diameter of circle | default value is 8dp|
-| setSliderWidth(normalWidth Int , checkWidth Int) | set indicator slider width，if is circle style，the width is diameter of circle | default is 8dp |
-| setIndicatorHeight(indicatorHeight Int) | set indicator hight，it's only used when the indicator style is DASH or ROUND_RECT | default value is normalIndicatorWidth/2 |
-| setSliderGap(indicatorMargin Int ) | set the gap of indicator slider| default value is indicator slider width（or the diameter of circle）|
-| setupWithViewPager(ViewPager) | To link IndicatorView with ViewPager together. |  |
-| setupWithViewPager(ViewPager2) | To link IndicatorView with ViewPager2 together. |  |
+| setIndicatorStyle(Int) | 设置指示器样式 | 枚举类型(CIRCLE；DASH；ROUND_RECT) 默认值：CIRCLE  |
+| setSliderColor(normalColor: Int,selectedColor: Int)| 设置指示器滑块颜色 |normalColor：未选中时的滑块颜色, 默认值："#8C6C6D72"， checkedColor：选中时滑块颜色，默认值："#8C18171C" |
+| setSlideMode(slideMode: Int)  | 设置滑块滑动模式 | 枚举类型（NORMAL;SMOOTH;WORM;COLOR;SCALE），默认值：NORMAL  |
+| setSliderWidth(indicatorWidth:Int) | 设置滑块宽度，如果是圆形指示器则为滑块直径 | 默认值：8dp|
+| setSliderWidth(normalWidth Int , checkWidth Int) | 设置滑块宽度，如果是圆形指示器则为滑块直径 | 默认值 8dp |
+| setIndicatorHeight(indicatorHeight Int) | 设置指示器高度，只有在DASH和ROUND_RECT样式下有效 | 默认值为：normalIndicatorWidth/2 |
+| setSliderGap(indicatorMargin Int ) | 设置滑块之间的间距| 默认值为滑块宽度或者直径|
+| setupWithViewPager(ViewPager) | indicator与ViewPager关联 |  |
+| setupWithViewPager(ViewPager2) | indicator与ViewPager2关联 |  |
 
 
-## Usage
+## 如何使用
 
-### Gradle dependency
+### 添加依赖
    
-Please add it in your root build.gradle at the end of repositories:
+在项目的gradle中添加如下依赖：
 
 ```
 allprojects {
@@ -64,7 +64,7 @@ allprojects {
 	}
 	
 ```
-Then add the dependency in your app build.gradle
+在模块的gradle中添加如下依赖：
 
 ```
 implementation 'com.github.zhpanvip:viewpagerindicator:latestVersion'
@@ -75,9 +75,9 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
 ### 1.IndicatorView
 
-Three indicator styles and five slide mode supported with IndicatorView as so far.
+到目前为止IndicatorView已经可以支持三种indicator样式以及五种滑动样式，具体使用步骤如下：
 
-#### (1).Add IndicatorView in layout.xml
+#### (1).在layout.xml文件中添加如下代码：
 
 ```
     <RelativeLayout
@@ -101,7 +101,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
     </RelativeLayout>
 ```
 
-#### (2).Use IndicatorView with ViewPager/ViewPager2:
+#### (2) 为IndicatorView配置参数以及关联ViewPager/ViewPager2:
 
 ```
         val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
@@ -116,7 +116,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 ```
 ### 2.DrawableIndicator
 
-You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.
+使用DrawableIndicator可以设置bitmap drawable或者vector drawable,可以自定义drawable的大小,具体使用步骤如下：
 
 #### (1) Add IndicatorView in layout.xml
 ```
@@ -141,7 +141,7 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
     </RelativeLayout>
 ```
 
-#### (2) Use DrawableIndicator with ViewPager/ViewPager2:
+#### (2) DrawableIndicator与ViewPager/ViewPager2关联:
 
 ```
         val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
@@ -153,15 +153,15 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
               .setupWithViewPager(viewPager)
 ```
 
-### 3.Custom IndicatorView Supported
+### 3.自定义Indicator样式
 
-The example will implement an custom IndicatorView as the follow gif.
+例子将实现一个如下图的indicator样式
 
 | Custom IndicatorView Style|
 |--|
 | ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/banner/style_custum.gif) |
 
-#### (1)Custom View and extends BaseIndicatorView
+#### (1)自定义View并继承BaseIndicatorView
 
 ```
 public class FigureIndicatorView extends BaseIndicatorView {
@@ -225,7 +225,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
     }
 }
 ```
-#### (2)User custom indicator with ViewPager/ViewPager2
+#### (2)自定义的indicator与ViewPager/ViewPager2关联
 
 ```
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
@@ -236,7 +236,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ## FAQ
 
- **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
+ **如有问题可以加入QQ群交流**
 
 ![QQ交流群60902509](https://github.com/zhpanvip/Resource/blob/master/image/group/qq_group.png)
 

@@ -12,7 +12,7 @@ import com.zhpan.indicator.option.IndicatorOptions
  */
 class DrawerProxy(indicatorOptions: IndicatorOptions) : IDrawer {
 
-    private var mIDrawer: IDrawer? = null
+    private lateinit var mIDrawer: IDrawer
 
     init {
         init(indicatorOptions)
@@ -27,11 +27,11 @@ class DrawerProxy(indicatorOptions: IndicatorOptions) : IDrawer {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): BaseDrawer.MeasureResult {
-        return mIDrawer!!.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        return mIDrawer.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
     override fun onDraw(canvas: Canvas) {
-        mIDrawer!!.onDraw(canvas)
+        mIDrawer.onDraw(canvas)
     }
 
     fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {

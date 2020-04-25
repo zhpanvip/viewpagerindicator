@@ -2,7 +2,6 @@ package com.zhpan.indicator.drawer
 
 import android.animation.ArgbEvaluator
 import android.graphics.Paint
-import android.graphics.RectF
 import com.zhpan.indicator.enums.IndicatorSlideMode
 
 import com.zhpan.indicator.option.IndicatorOptions
@@ -20,7 +19,6 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     internal var maxWidth: Float = 0.toFloat()
     internal var minWidth: Float = 0.toFloat()
     internal var mPaint: Paint = Paint()
-    internal var mRectF: RectF
     internal var argbEvaluator: ArgbEvaluator? = null
 
 
@@ -30,8 +28,8 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     init {
         mPaint.isAntiAlias = true
         mMeasureResult = MeasureResult()
-        mRectF = RectF()
-        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
+        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE
+                || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
             argbEvaluator = ArgbEvaluator()
         }
     }
@@ -44,7 +42,7 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     }
 
     protected open fun measureHeight(): Int {
-        return mIndicatorOptions.sliderHeight.toInt()
+        return mIndicatorOptions.sliderHeight.toInt() + 1
     }
 
     private fun measureWidth(): Int {
