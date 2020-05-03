@@ -161,18 +161,15 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             mRectF.set(left, 0f, left + minWidth, mIndicatorOptions.sliderHeight)
             drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
         }
+
+        var nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
         if (currentPosition == mIndicatorOptions.pageSize - 1) {
-
-        } else {
-            if (slideProgress > 0.01) {
-                val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
-                mPaint.color = evaluate as Int
-                val nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
-                mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
-                drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
-            }
+            nextSliderLeft = 0f;
         }
-
+        val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
+        mPaint.color = evaluate as Int
+        mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
+        drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
     }
 
     private fun drawWormSlider(canvas: Canvas) {
