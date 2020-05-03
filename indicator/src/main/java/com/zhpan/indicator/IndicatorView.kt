@@ -19,7 +19,7 @@ import com.zhpan.indicator.option.IndicatorOptions
  * [com.zhpan.indicator.enums.IndicatorStyle.ROUND_RECT]
 </pre> *
  */
-class IndicatorView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseIndicatorView(context, attrs, defStyleAttr), IIndicator {
+class IndicatorView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseIndicatorView(context, attrs, defStyleAttr) {
 
     private var mDrawerProxy: DrawerProxy? = null
 
