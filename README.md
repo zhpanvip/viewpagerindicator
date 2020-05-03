@@ -243,11 +243,15 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ## <span id="Sponsor"> Sponsor </span>
 
-**开源不易 随心赞赏**
+**如果您觉得BannerViewPager库还不错，帮您省了不少时间，可以点击Star表示对作者的支持，也可以扫描二维码请作者喝杯咖啡。**
 
 | Alipay | WeChat |
 |--|--|
 | ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/pay/pay_alipay.jpg) |  ![SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/pay/pay_wechat.png) |
+
+##  More details
+
+[《聊一聊ViewPagerIndicator重构的一些经验》](https://juejin.im/post/5dda0b6d518825731f569a8c)
 
 
 License
