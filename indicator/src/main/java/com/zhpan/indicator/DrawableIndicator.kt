@@ -46,16 +46,20 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
                 var top: Int
                 var bitmap = mNormalBitmap
                 val index = i - 1
-                if (index < currentPosition) {
-                    left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
-                    top = measuredHeight / 2 - mNormalBitmapHeight / 2
-                } else if (index == currentPosition) {
-                    left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
-                    top = measuredHeight / 2 - mCheckedBitmapHeight / 2
-                    bitmap = mCheckedBitmap
-                } else {
-                    left = (i - 1) * mIndicatorPadding + (i - 2) * mNormalBitmapWidth + mCheckedBitmapWidth
-                    top = measuredHeight / 2 - mNormalBitmapHeight / 2
+                when {
+                    index < currentPosition -> {
+                        left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
+                        top = measuredHeight / 2 - mNormalBitmapHeight / 2
+                    }
+                    index == currentPosition -> {
+                        left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
+                        top = measuredHeight / 2 - mCheckedBitmapHeight / 2
+                        bitmap = mCheckedBitmap
+                    }
+                    else -> {
+                        left = (i - 1) * mIndicatorPadding + (i - 2) * mNormalBitmapWidth + mCheckedBitmapWidth
+                        top = measuredHeight / 2 - mNormalBitmapHeight / 2
+                    }
                 }
                 drawIcon(canvas, left, top, bitmap)
             }
@@ -109,8 +113,7 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
     }
 
     fun setIndicatorDrawable(@DrawableRes normalDrawable: Int, @DrawableRes checkedDrawable: Int): DrawableIndicator {
-        mCheckedBitmap = BitmapFactory.decodeResource(resources, normalDrawable)
-        mNormalBitmap = mCheckedBitmap
+        mNormalBitmap = BitmapFactory.decodeResource(resources, normalDrawable)
         mCheckedBitmap = BitmapFactory.decodeResource(resources, checkedDrawable)
         if (mNormalBitmap == null) {
             mNormalBitmap = getBitmapFromVectorDrawable(context, normalDrawable)
@@ -142,18 +145,16 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
 
     internal class IndicatorSize(var normalWidth: Int, var normalHeight: Int, var checkedWidth: Int, var checkedHeight: Int)
 
-    companion object {
-        private fun getBitmapFromVectorDrawable(context: Context, drawableId: Int): Bitmap {
-            var drawable = context.resources.getDrawable(drawableId)
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                drawable = DrawableCompat.wrap(drawable).mutate()
-            }
-            val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth,
-                    drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            drawable.setBounds(0, 0, canvas.width, canvas.height)
-            drawable.draw(canvas)
-            return bitmap
+    private fun getBitmapFromVectorDrawable(context: Context, drawableId: Int): Bitmap {
+        var drawable = context.resources.getDrawable(drawableId)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            drawable = DrawableCompat.wrap(drawable).mutate()
         }
+        val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth,
+                drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
     }
 }
