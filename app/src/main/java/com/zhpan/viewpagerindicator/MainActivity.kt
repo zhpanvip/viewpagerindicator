@@ -59,7 +59,7 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun initRadioGroup() {
-        radioGroupStyle.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int -> checkedChange(checkedId.also { mCheckId = it }) }
+        radioGroupStyle.setOnCheckedChangeListener { _, checkedId -> checkedChange(checkedId) }
         radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             when (checkedId) {
                 R.id.rb_normal -> {
@@ -94,6 +94,7 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun checkedChange(checkedId: Int) {
+        mCheckId=checkedId
         when (checkedId) {
             R.id.rb_circle -> setupCircleIndicator()
             R.id.rb_dash -> setupDashIndicator()
