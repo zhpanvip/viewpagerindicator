@@ -114,9 +114,9 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
         val currentPosition = mIndicatorOptions.currentPosition
         val distance = mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
         val startCoordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
-        val left = startCoordinateX + Math.max(distance * (slideProgress - 0.5f) * 2.0f, 0f) - mIndicatorOptions.normalSliderWidth / 2
-        val right = startCoordinateX + Math.min(distance * slideProgress * 2f, distance) + mIndicatorOptions.normalSliderWidth / 2
-        rectF.set(left, 0f, right, sliderHeight)
+        val left = startCoordinateX + (distance * (slideProgress - 0.5f) * 2.0f).coerceAtLeast(0f) - mIndicatorOptions.normalSliderWidth / 2 + INDICATOR_PADDING
+        val right = startCoordinateX + (distance * slideProgress * 2f).coerceAtMost(distance) + mIndicatorOptions.normalSliderWidth / 2 + INDICATOR_PADDING
+        rectF.set(left, INDICATOR_PADDING.toFloat(), right, sliderHeight + INDICATOR_PADDING)
         canvas.drawRoundRect(rectF, sliderHeight, sliderHeight, mPaint)
     }
 

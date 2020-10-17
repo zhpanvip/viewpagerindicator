@@ -63,27 +63,27 @@ open class MainActivity : BaseDataActivity() {
         radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             when (checkedId) {
                 R.id.rb_normal -> {
-                    normalWidth = resources.getDimension(R.dimen.dp_10)
+                    normalWidth = resources.getDimension(R.dimen.dp_20)
                     checkedWidth = normalWidth;
                     mSlideMode = IndicatorSlideMode.NORMAL
                 }
                 R.id.rb_worm -> {
-                    normalWidth = resources.getDimension(R.dimen.dp_10)
+                    normalWidth = resources.getDimension(R.dimen.dp_20)
                     checkedWidth = normalWidth;
                     mSlideMode = IndicatorSlideMode.WORM
                 }
                 R.id.rb_smooth -> {
-                    normalWidth = resources.getDimension(R.dimen.dp_10)
+                    normalWidth = resources.getDimension(R.dimen.dp_20)
                     checkedWidth = normalWidth;
                     mSlideMode = IndicatorSlideMode.SMOOTH
                 }
                 R.id.rb_scale -> {
-                    normalWidth = resources.getDimension(R.dimen.dp_10)
+                    normalWidth = resources.getDimension(R.dimen.dp_20)
                     checkedWidth = normalWidth * 1.2.toFloat()
                     mSlideMode = SCALE
                 }
                 R.id.rb_color -> {
-                    normalWidth = resources.getDimension(R.dimen.dp_10)
+                    normalWidth = resources.getDimension(R.dimen.dp_20)
                     checkedWidth = normalWidth * 1.2.toInt()
                     mSlideMode = IndicatorSlideMode.COLOR
                 }
@@ -104,8 +104,8 @@ open class MainActivity : BaseDataActivity() {
 
     private fun setupRoundRectIndicator() {
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            normalWidth = resources.getDimension(R.dimen.dp_4)
-            checkedWidth = resources.getDimension(R.dimen.dp_10)
+            normalWidth = resources.getDimension(R.dimen.dp_8)
+            checkedWidth = resources.getDimension(R.dimen.dp_20)
         } else {
             normalWidth = checkedWidth
         }
@@ -120,15 +120,15 @@ open class MainActivity : BaseDataActivity() {
 
     private fun setupDashIndicator() {
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            normalWidth = resources.getDimension(R.dimen.dp_4)
-            checkedWidth = resources.getDimension(R.dimen.dp_10)
+            normalWidth = resources.getDimension(R.dimen.dp_12)
+            checkedWidth = resources.getDimension(R.dimen.dp_20)
         } else {
             normalWidth = checkedWidth
         }
         indicatorView.setIndicatorStyle(IndicatorStyle.DASH)
-                .setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_3).toFloat())
+                .setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
                 .setSlideMode(mSlideMode)
-                .setSliderGap(resources.getDimension(R.dimen.dp_3))
+                .setSliderGap(resources.getDimension(R.dimen.dp_6))
                 .setSliderWidth(normalWidth, checkedWidth)
                 .setSliderColor(normalColor, checkedColor)
         indicatorView.notifyDataChanged()
@@ -136,7 +136,7 @@ open class MainActivity : BaseDataActivity() {
 
     private fun setupCircleIndicator() {
         if (mSlideMode == SCALE || mSlideMode == NORMAL) {
-            normalWidth = resources.getDimension(R.dimen.dp_8)
+            normalWidth = resources.getDimension(R.dimen.dp_16)
             checkedWidth = normalWidth * 1.4.toFloat()
         } else {
             normalWidth = checkedWidth
@@ -144,7 +144,7 @@ open class MainActivity : BaseDataActivity() {
         indicatorView.setIndicatorStyle(IndicatorStyle.CIRCLE)
                 .setSlideMode(mSlideMode)
                 .setSliderGap(resources.getDimension(R.dimen.dp_6))
-                .setSliderHeight(resources.getDimension(R.dimen.dp_4))
+                .setSliderHeight(resources.getDimension(R.dimen.dp_8))
                 .setSliderColor(normalColor, checkedColor)
                 .setSliderWidth(normalWidth, checkedWidth)
         indicatorView.notifyDataChanged()
