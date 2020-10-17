@@ -18,7 +18,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
     private val rectF = RectF()
 
     override fun measureHeight(): Int {
-        return maxWidth.toInt()
+        return maxWidth.toInt() + INDICATOR_PADDING_ADDITION
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -121,6 +121,6 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
     }
 
     private fun drawCircle(canvas: Canvas, coordinateX: Float, coordinateY: Float, radius: Float) {
-        canvas.drawCircle(coordinateX, coordinateY, radius, mPaint)
+        canvas.drawCircle(coordinateX + INDICATOR_PADDING, coordinateY + INDICATOR_PADDING, radius, mPaint)
     }
 }

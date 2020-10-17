@@ -21,6 +21,11 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     internal var mPaint: Paint = Paint()
     internal var argbEvaluator: ArgbEvaluator? = null
 
+    companion object {
+        const val INDICATOR_PADDING_ADDITION = 6
+        const val INDICATOR_PADDING = 3
+    }
+
 
     protected val isWidthEquals: Boolean
         get() = mIndicatorOptions.normalSliderWidth == mIndicatorOptions.checkedSliderWidth
@@ -42,13 +47,13 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     }
 
     protected open fun measureHeight(): Int {
-        return mIndicatorOptions.sliderHeight.toInt() + 1
+        return mIndicatorOptions.sliderHeight.toInt() + INDICATOR_PADDING
     }
 
     private fun measureWidth(): Int {
         val pageSize = mIndicatorOptions.pageSize
         val indicatorGap = mIndicatorOptions.sliderGap
-        return ((pageSize - 1) * indicatorGap + maxWidth + (pageSize - 1) * minWidth).toInt()
+        return ((pageSize - 1) * indicatorGap + maxWidth + (pageSize - 1) * minWidth).toInt() + INDICATOR_PADDING_ADDITION
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {

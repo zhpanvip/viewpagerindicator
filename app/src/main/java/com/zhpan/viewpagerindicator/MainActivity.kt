@@ -34,7 +34,7 @@ open class MainActivity : BaseDataActivity() {
         figureIndicator.setBackgroundColor(Color.parseColor("#aa118EEA"))
         normalColor = getResColor(R.color.red_normal_color)
         checkedColor = getResColor(R.color.red_checked_color)
-        normalWidth = resources.getDimension(R.dimen.dp_10)
+        normalWidth = resources.getDimension(R.dimen.dp_20)
         checkedWidth = normalWidth
         val dp6 = resources.getDimensionPixelOffset(R.dimen.dp_6)
         drawableIndicator
@@ -59,7 +59,7 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun initRadioGroup() {
-        radioGroupStyle.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int -> checkedChange(checkedId.also { mCheckId = it }) }
+        radioGroupStyle.setOnCheckedChangeListener { _, checkedId -> checkedChange(checkedId) }
         radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             when (checkedId) {
                 R.id.rb_normal -> {
