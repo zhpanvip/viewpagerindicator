@@ -94,6 +94,7 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun checkedChange(checkedId: Int) {
+        mCheckId=checkedId
         when (checkedId) {
             R.id.rb_circle -> setupCircleIndicator()
             R.id.rb_dash -> setupDashIndicator()
