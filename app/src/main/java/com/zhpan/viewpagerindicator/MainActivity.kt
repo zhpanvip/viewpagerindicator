@@ -25,7 +25,7 @@ open class MainActivity : BaseDataActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
+        val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
         view_pager2.adapter = ViewPager2Adapter(getData(4))
 
         figureIndicator.setRadius(IndicatorUtils.dp2px(15f))
@@ -36,15 +36,15 @@ open class MainActivity : BaseDataActivity() {
         checkedColor = getResColor(R.color.red_checked_color)
         normalWidth = resources.getDimension(R.dimen.dp_20)
         checkedWidth = normalWidth
-        val dp6 = resources.getDimensionPixelOffset(R.dimen.dp_6)
+        val dp12 = resources.getDimensionPixelOffset(R.dimen.dp_12)
         drawableIndicator
                 .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
                 .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
-                .setIndicatorSize(dp10, dp10, dp10, dp10)
+                .setIndicatorSize(dp20, dp20, dp20, dp20)
                 .setupWithViewPager(view_pager2)
         vectorIndicator.setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
                 .setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
-                .setIndicatorSize(dp6, dp6, resources.getDimensionPixelOffset(R.dimen.dp_13), dp6)
+                .setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
                 .setupWithViewPager(view_pager2)
 
         indicatorView

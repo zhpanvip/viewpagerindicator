@@ -41,6 +41,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
     public FigureIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint = new Paint();
+        mPaint.setAntiAlias(true);
     }
 
     @Override
