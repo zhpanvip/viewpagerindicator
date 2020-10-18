@@ -49,7 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="(Bitmap Drawable)"
+                android:text="Bitmap"
+                android:layout_centerHorizontal="true"
                 android:textColor="#FFFFFF" />
         </RelativeLayout>
 
@@ -58,8 +59,6 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_toEndOf="@id/rl_bitmap"
             android:orientation="vertical">
 
             <com.zhpan.indicator.DrawableIndicator
@@ -71,8 +70,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:text="(Vector Drawable)"
+                android:text="Vector"
                 android:textColor="#FFFFFF" />
         </RelativeLayout>
 
@@ -88,13 +88,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/dp_5" />
+                android:layout_marginTop="@dimen/dp_10"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="(Custom)"
+                android:text="Custom"
                 android:textColor="#FFFFFF" />
 
         </RelativeLayout>

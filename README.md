@@ -224,7 +224,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
     }
 }
 ```
-#### (2)User custom indicator with ViewPager/ViewPager2
+#### (2)Use custom indicator with ViewPager/ViewPager2
 
 ```
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
@@ -238,11 +238,6 @@ public class FigureIndicatorView extends BaseIndicatorView {
  **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
 
 ![QQ交流群60902509](https://github.com/zhpanvip/Resource/blob/master/image/group/qq_group.png)
-
-
-## <span id="Sponsor"> Sponsor </span>
-
-**如果您觉得BannerViewPager库还不错，帮您省了不少时间，可以点击Star表示对作者的支持，也可以扫描二维码请作者喝杯咖啡。**
 
 | Alipay | WeChat |
 |--|--|
