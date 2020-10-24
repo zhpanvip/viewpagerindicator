@@ -8,6 +8,7 @@ import android.graphics.Matrix
 import android.os.Build
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.zhpan.indicator.base.BaseIndicatorView
 
@@ -17,14 +18,21 @@ import com.zhpan.indicator.base.BaseIndicatorView
  * @ desc: 选中与未选中的图片长宽可能不一样
  */
 class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseIndicatorView(context!!, attrs, defStyleAttr) {
-    // 选中与未选中的图片
+    // 选中时的Bitmap
     private var mCheckedBitmap: Bitmap? = null
+
+    // 未选中时的Bitmap
     private var mNormalBitmap: Bitmap? = null
+
     // 图片之间的间距
     private var mIndicatorPadding = 0
-    // 选中图片的宽高
+
+    // 选中图片的宽度
     private var mCheckedBitmapWidth = 0
+
+    // 选中图片的高度
     private var mCheckedBitmapHeight = 0
+
     //未选中图片的宽高
     private var mNormalBitmapWidth = 0
     private var mNormalBitmapHeight = 0
@@ -74,8 +82,8 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
     }
 
     private fun initIconSize() {
-        if (mCheckedBitmap != null) {
-            if (mIndicatorSize != null) {
+        mCheckedBitmap?.let {
+            mIndicatorSize?.let {
                 if (mCheckedBitmap!!.isMutable && checkCanResize) {
                     mCheckedBitmap!!.width = mIndicatorSize!!.checkedWidth
                     mCheckedBitmap!!.height = mIndicatorSize!!.checkedHeight
@@ -92,8 +100,8 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
             mCheckedBitmapWidth = mCheckedBitmap!!.width
             mCheckedBitmapHeight = mCheckedBitmap!!.height
         }
-        if (mNormalBitmap != null) {
-            if (mIndicatorSize != null) {
+        mNormalBitmap?.let {
+            mIndicatorSize?.let {
                 if (mNormalBitmap!!.isMutable && normalCanResize) {
                     mNormalBitmap!!.width = mIndicatorSize!!.normalWidth
                     mNormalBitmap!!.height = mIndicatorSize!!.normalHeight
@@ -145,16 +153,19 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
 
     internal class IndicatorSize(var normalWidth: Int, var normalHeight: Int, var checkedWidth: Int, var checkedHeight: Int)
 
-    private fun getBitmapFromVectorDrawable(context: Context, drawableId: Int): Bitmap {
-        var drawable = context.resources.getDrawable(drawableId)
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            drawable = DrawableCompat.wrap(drawable).mutate()
+    private fun getBitmapFromVectorDrawable(context: Context, drawableId: Int): Bitmap? {
+        var drawable = ContextCompat.getDrawable(context, drawableId)
+        drawable?.let {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                drawable = DrawableCompat.wrap(drawable!!).mutate()
+            }
+            val bitmap = Bitmap.createBitmap(drawable!!.intrinsicWidth,
+                    drawable!!.intrinsicHeight, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(bitmap)
+            drawable!!.setBounds(0, 0, canvas.width, canvas.height)
+            drawable!!.draw(canvas)
+            return bitmap
         }
-        val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth,
-                drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.width, canvas.height)
-        drawable.draw(canvas)
-        return bitmap
+        return null
     }
 }

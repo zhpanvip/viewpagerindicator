@@ -147,7 +147,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
 
         var nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
         if (currentPosition == mIndicatorOptions.pageSize - 1) {
-            nextSliderLeft = 0f;
+            nextSliderLeft = 0f
         }
         val evaluate = argbEvaluator?.evaluate(1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor)
         mPaint.color = evaluate as Int
@@ -161,8 +161,8 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
         val currentPosition = mIndicatorOptions.currentPosition
         val distance = mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
         val startCoordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
-        val left = startCoordinateX + Math.max(distance * (slideProgress - 0.5f) * 2.0f, 0f) - mIndicatorOptions.normalSliderWidth / 2
-        val right = startCoordinateX + Math.min(distance * slideProgress * 2f, distance) + mIndicatorOptions.normalSliderWidth / 2
+        val left = startCoordinateX + (distance * (slideProgress - 0.5f) * 2.0f).coerceAtLeast(0f) - mIndicatorOptions.normalSliderWidth / 2
+        val right = startCoordinateX + (distance * slideProgress * 2f).coerceAtMost(distance) + mIndicatorOptions.normalSliderWidth / 2
         mRectF.set(left, 0f, right, sliderHeight)
         drawRoundRect(canvas, sliderHeight, sliderHeight)
     }

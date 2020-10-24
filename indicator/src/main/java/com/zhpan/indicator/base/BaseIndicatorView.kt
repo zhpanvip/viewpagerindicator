@@ -17,9 +17,9 @@ import com.zhpan.indicator.option.IndicatorOptions
  * <pre>
  * Created by zhangpan on 2019-09-04.
  * Description:IndicatorView基类，处理了页面滑动。
-</pre> *
+ * </pre>
  */
-open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr), IIndicator {
+open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr), IIndicator {
 
     var mIndicatorOptions: IndicatorOptions
 
@@ -28,15 +28,15 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
 
     private val mOnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            pageScrolled(position, positionOffset, positionOffsetPixels)
+            this@BaseIndicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
         }
 
         override fun onPageSelected(position: Int) {
-            pageSelected(position)
+            this@BaseIndicatorView.onPageSelected(position)
         }
 
         override fun onPageScrollStateChanged(state: Int) {
-            pageScrollStateChanged(state)
+            this@BaseIndicatorView.onPageScrollStateChanged(state)
         }
     }
 
@@ -81,10 +81,6 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     override fun onPageSelected(position: Int) {
-        pageSelected(position)
-    }
-
-    private fun pageSelected(position: Int) {
         if (slideMode == IndicatorSlideMode.NORMAL) {
             currentPosition = position
             slideProgress = 0f
@@ -93,10 +89,6 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        pageScrolled(position, positionOffset, positionOffsetPixels);
-    }
-
-    private fun pageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (slideMode != IndicatorSlideMode.NORMAL && pageSize > 1) {
             scrollSlider(position, positionOffset)
             invalidate()
@@ -104,7 +96,8 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     private fun scrollSlider(position: Int, positionOffset: Float) {
-        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
+        if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE
+                || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
             currentPosition = position
             slideProgress = positionOffset
         } else {
@@ -131,16 +124,20 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     private fun setupViewPager() {
-        if (mViewPager != null) {
-            mViewPager!!.removeOnPageChangeListener(this)
-            mViewPager!!.addOnPageChangeListener(this)
-            if (mViewPager!!.adapter != null)
+        mViewPager?.let {
+            mViewPager?.removeOnPageChangeListener(this)
+            mViewPager?.addOnPageChangeListener(this)
+            mViewPager?.adapter?.let {
                 pageSize = mViewPager!!.adapter!!.count
-        } else if (mViewPager2 != null) {
-            mViewPager2!!.unregisterOnPageChangeCallback(mOnPageChangeCallback)
-            mViewPager2!!.registerOnPageChangeCallback(mOnPageChangeCallback)
-            if (mViewPager2!!.adapter != null)
-                pageSize = mViewPager2!!.adapter!!.itemCount
+            }
+        }
+
+        mViewPager2?.let {
+            mViewPager2?.unregisterOnPageChangeCallback(mOnPageChangeCallback)
+            mViewPager2?.registerOnPageChangeCallback(mOnPageChangeCallback)
+            mViewPager2?.adapter?.let {
+                pageSize = mViewPager2?.adapter?.itemCount!!
+            }
         }
     }
 
@@ -194,10 +191,6 @@ open class BaseIndicatorView @JvmOverloads constructor(context: Context, attrs: 
     }
 
     override fun onPageScrollStateChanged(state: Int) {
-        pageScrollStateChanged(state)
-    }
-
-    private fun pageScrollStateChanged(state: Int) {
     }
 
     override fun setIndicatorOptions(options: IndicatorOptions) {
