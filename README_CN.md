@@ -105,14 +105,39 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 
 ```
         val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
-        indicatorView
-                    .setSliderColor(getResColor(R.color.red_normal_color), getResColor(R.color.red_checked_color))
-                    .setSliderWidth(resources.getDimension(R.dimen.dp_17))
-                    .setSliderHeight(resources.getDimension(R.dimen.dp_5))
-                    .setSlideMode(IndicatorSlideMode.WORM)
-                    .setIndicatorStyle(IndicatorStyle.CIRCLE)
-                    .setupWithViewPager(viewPager)
+        indicatorView.apply {
+                    setSliderColor(normalColor, checkedColor)
+                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                    setSlideMode(IndicatorSlideMode.WORM)
+                    setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    setupWithViewPager(view_pager2)
+                }
 
+```
+
+ 或者：
+
+```
+         indicatorView.apply {
+                             setSliderColor(normalColor, checkedColor)
+                             setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                             setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                             setSlideMode(IndicatorSlideMode.WORM)
+                             setIndicatorStyle(IndicatorStyle.CIRCLE)
+                             setPageSize(view_pager2!!.adapter!!.itemCount)
+                         }
+         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                 indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
+             }
+
+             override fun onPageSelected(position: Int) {
+                 super.onPageSelected(position)
+                 indicatorView.onPageSelected(position)
+             }
+         })
 ```
 ### 2.DrawableIndicator
 
@@ -146,11 +171,12 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 ```
         val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
         val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
-        indicatorView
-              .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
-              .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
-              .setIndicatorSize(dp10, dp10, dp10, dp10)
-              .setupWithViewPager(viewPager)
+        drawableIndicator.apply {
+                    setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+                    setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
+                    setIndicatorSize(dp20, dp20, dp20, dp20)
+                    setupWithViewPager(view_pager2)
+                }
 ```
 
 ### 3.自定义Indicator样式

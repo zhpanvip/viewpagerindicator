@@ -17,8 +17,10 @@ open class MainActivity : BaseDataActivity() {
     private var mCheckId = R.id.rb_circle
     private var normalWidth: Float = 0f
     private var checkedWidth: Float = 0f
+
     @androidx.annotation.ColorInt
     private var normalColor: Int = 0
+
     @androidx.annotation.ColorInt
     private var checkedColor: Int = 0
 
@@ -37,24 +39,42 @@ open class MainActivity : BaseDataActivity() {
         normalWidth = resources.getDimension(R.dimen.dp_20)
         checkedWidth = normalWidth
         val dp12 = resources.getDimensionPixelOffset(R.dimen.dp_12)
-        drawableIndicator
-                .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
-                .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
-                .setIndicatorSize(dp20, dp20, dp20, dp20)
-                .setupWithViewPager(view_pager2)
-        vectorIndicator.setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
-                .setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
-                .setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
-                .setupWithViewPager(view_pager2)
 
-        indicatorView
-                .setSliderColor(normalColor, checkedColor)
-                .setSliderWidth(resources.getDimension(R.dimen.dp_10))
-                .setSliderHeight(resources.getDimension(R.dimen.dp_5))
-                .setSlideMode(IndicatorSlideMode.WORM)
-                .setIndicatorStyle(IndicatorStyle.CIRCLE)
-                .setupWithViewPager(view_pager2)
+        drawableIndicator.apply {
+            setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+            setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
+            setIndicatorSize(dp20, dp20, dp20, dp20)
+            setupWithViewPager(view_pager2)
+        }
 
+        vectorIndicator.apply {
+            setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+            setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
+            setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
+            setupWithViewPager(view_pager2)
+        }
+
+        indicatorView.apply {
+            setSliderColor(normalColor, checkedColor)
+            setSliderWidth(resources.getDimension(R.dimen.dp_10))
+            setSliderHeight(resources.getDimension(R.dimen.dp_5))
+            setSlideMode(IndicatorSlideMode.WORM)
+            setIndicatorStyle(IndicatorStyle.CIRCLE)
+            setupWithViewPager(view_pager2)
+        }
+
+//        indicatorView.setPageSize(view_pager2!!.adapter!!.itemCount)
+//        view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+//                indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                indicatorView.onPageSelected(position)
+//            }
+//        })
         initRadioGroup()
     }
 
@@ -94,7 +114,7 @@ open class MainActivity : BaseDataActivity() {
     }
 
     private fun checkedChange(checkedId: Int) {
-        mCheckId=checkedId
+        mCheckId = checkedId
         when (checkedId) {
             R.id.rb_circle -> setupCircleIndicator()
             R.id.rb_dash -> setupDashIndicator()
@@ -109,13 +129,15 @@ open class MainActivity : BaseDataActivity() {
         } else {
             normalWidth = checkedWidth
         }
-        indicatorView.setIndicatorStyle(IndicatorStyle.ROUND_RECT)
-                .setSliderGap(IndicatorUtils.dp2px(4f).toFloat())
-                .setSlideMode(mSlideMode)
-                .setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
-                .setSliderColor(normalColor, checkedColor)
-                .setSliderWidth(normalWidth, checkedWidth)
-        indicatorView.notifyDataChanged()
+        indicatorView.apply {
+            setIndicatorStyle(IndicatorStyle.ROUND_RECT)
+            setSliderGap(IndicatorUtils.dp2px(4f).toFloat())
+            setSlideMode(mSlideMode)
+            setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
+            setSliderColor(normalColor, checkedColor)
+            setSliderWidth(normalWidth, checkedWidth)
+            notifyDataChanged()
+        }
     }
 
     private fun setupDashIndicator() {
@@ -125,13 +147,15 @@ open class MainActivity : BaseDataActivity() {
         } else {
             normalWidth = checkedWidth
         }
-        indicatorView.setIndicatorStyle(IndicatorStyle.DASH)
-                .setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
-                .setSlideMode(mSlideMode)
-                .setSliderGap(resources.getDimension(R.dimen.dp_6))
-                .setSliderWidth(normalWidth, checkedWidth)
-                .setSliderColor(normalColor, checkedColor)
-        indicatorView.notifyDataChanged()
+        indicatorView.apply {
+            setIndicatorStyle(IndicatorStyle.DASH)
+            setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
+            setSlideMode(mSlideMode)
+            setSliderGap(resources.getDimension(R.dimen.dp_6))
+            setSliderWidth(normalWidth, checkedWidth)
+            setSliderColor(normalColor, checkedColor)
+            notifyDataChanged()
+        }
     }
 
     private fun setupCircleIndicator() {
@@ -141,12 +165,15 @@ open class MainActivity : BaseDataActivity() {
         } else {
             normalWidth = checkedWidth
         }
-        indicatorView.setIndicatorStyle(IndicatorStyle.CIRCLE)
-                .setSlideMode(mSlideMode)
-                .setSliderGap(resources.getDimension(R.dimen.dp_6))
-                .setSliderHeight(resources.getDimension(R.dimen.dp_8))
-                .setSliderColor(normalColor, checkedColor)
-                .setSliderWidth(normalWidth, checkedWidth)
-        indicatorView.notifyDataChanged()
+
+        indicatorView.apply {
+            setIndicatorStyle(IndicatorStyle.CIRCLE)
+            setSliderGap(resources.getDimension(R.dimen.dp_6))
+            setSlideMode(mSlideMode)
+            setSliderHeight(resources.getDimension(R.dimen.dp_8))
+            setSliderColor(normalColor, checkedColor)
+            setSliderWidth(normalWidth, checkedWidth)
+            notifyDataChanged()
+        }
     }
 }

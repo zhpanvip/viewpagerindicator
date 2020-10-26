@@ -37,12 +37,10 @@ class IndicatorOptions {
      * 未选中时Indicator颜色
      */
     var normalSliderColor: Int = 0
-        private set
     /**
      * 选中时Indicator颜色
      */
     var checkedSliderColor: Int = 0
-        private set
     /**
      * Indicator间距
      */
@@ -52,10 +50,8 @@ class IndicatorOptions {
         get() = if (field > 0) field else normalSliderWidth / 2
 
     var normalSliderWidth: Float = 0.toFloat()
-        private set
 
     var checkedSliderWidth: Float = 0.toFloat()
-        private set
 
     /**
      * 指示器当前位置

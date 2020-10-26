@@ -104,15 +104,41 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 
 ```
         val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
-        indicatorView
-                    .setSliderColor(getResColor(R.color.red_normal_color), getResColor(R.color.red_checked_color))
-                    .setSliderWidth(resources.getDimension(R.dimen.dp_17))
-                    .setSliderHeight(resources.getDimension(R.dimen.dp_5))
-                    .setSlideMode(IndicatorSlideMode.WORM)
-                    .setIndicatorStyle(IndicatorStyle.CIRCLE)
-                    .setupWithViewPager(viewPager)
+        indicatorView.apply {
+                    setSliderColor(normalColor, checkedColor)
+                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                    setSlideMode(IndicatorSlideMode.WORM)
+                    setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    setupWithViewPager(view_pager2)
+                }
 
 ```
+
+Or you can do like this:
+
+```
+         indicatorView.apply {
+                             setSliderColor(normalColor, checkedColor)
+                             setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                             setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                             setSlideMode(IndicatorSlideMode.WORM)
+                             setIndicatorStyle(IndicatorStyle.CIRCLE)
+                             setPageSize(view_pager2!!.adapter!!.itemCount)
+                         }
+         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                 indicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
+             }
+
+             override fun onPageSelected(position: Int) {
+                 super.onPageSelected(position)
+                 indicatorView.onPageSelected(position)
+             }
+         })
+```
+
 ### 2.DrawableIndicator
 
 You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.

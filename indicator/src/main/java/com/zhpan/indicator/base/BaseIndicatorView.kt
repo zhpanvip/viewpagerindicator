@@ -40,56 +40,20 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
         }
     }
 
-    var pageSize: Int
-        get() = mIndicatorOptions.pageSize
-        private set(pageSize) {
-            mIndicatorOptions.pageSize = pageSize
-        }
-
-    val normalColor: Int
-        get() = mIndicatorOptions.normalSliderColor
-
-    val checkedColor: Int
-        get() = mIndicatorOptions.checkedSliderColor
-
-    val indicatorGap: Float
-        get() = mIndicatorOptions.sliderGap
-
-    var slideProgress: Float
-        get() = mIndicatorOptions.slideProgress
-        private set(slideProgress) {
-            mIndicatorOptions.slideProgress = slideProgress
-        }
-
-    var currentPosition: Int
-        get() = mIndicatorOptions.currentPosition
-        private set(currentPosition) {
-            mIndicatorOptions.currentPosition = currentPosition
-        }
-
-    val slideMode: Int
-        get() = mIndicatorOptions.slideMode
-
-    val normalSliderWidth: Float
-        get() = mIndicatorOptions.normalSliderWidth
-
-    val checkedSliderWidth: Float
-        get() = mIndicatorOptions.checkedSliderWidth
-
     init {
         mIndicatorOptions = IndicatorOptions()
     }
 
     override fun onPageSelected(position: Int) {
-        if (slideMode == IndicatorSlideMode.NORMAL) {
-            currentPosition = position
-            slideProgress = 0f
+        if (getSlideMode() == IndicatorSlideMode.NORMAL) {
+            setCurrentPosition(position)
+            setSlideProgress(0f)
             invalidate()
         }
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        if (slideMode != IndicatorSlideMode.NORMAL && pageSize > 1) {
+        if (getSlideMode() != IndicatorSlideMode.NORMAL && getPageSize() > 1) {
             scrollSlider(position, positionOffset)
             invalidate()
         }
@@ -98,20 +62,20 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     private fun scrollSlider(position: Int, positionOffset: Float) {
         if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE
                 || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR) {
-            currentPosition = position
-            slideProgress = positionOffset
+            setCurrentPosition(position)
+            setSlideProgress(positionOffset)
         } else {
-            if (position % pageSize == pageSize - 1) { //   最后一个页面与第一个页面
+            if (position % getPageSize() == getPageSize() - 1) { //   最后一个页面与第一个页面
                 if (positionOffset < 0.5) {
-                    currentPosition = position
-                    slideProgress = 0f
+                    setCurrentPosition(position)
+                    setSlideProgress(0f)
                 } else {
-                    currentPosition = 0
-                    slideProgress = 0f
+                    setCurrentPosition(0)
+                    setSlideProgress(0f)
                 }
             } else {    //  中间页面
-                currentPosition = position
-                slideProgress = positionOffset
+                setCurrentPosition(position)
+                setSlideProgress(positionOffset)
             }
         }
 
@@ -128,7 +92,7 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
             mViewPager?.removeOnPageChangeListener(this)
             mViewPager?.addOnPageChangeListener(this)
             mViewPager?.adapter?.let {
-                pageSize = mViewPager!!.adapter!!.count
+                setPageSize(mViewPager!!.adapter!!.count)
             }
         }
 
@@ -136,9 +100,75 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
             mViewPager2?.unregisterOnPageChangeCallback(mOnPageChangeCallback)
             mViewPager2?.registerOnPageChangeCallback(mOnPageChangeCallback)
             mViewPager2?.adapter?.let {
-                pageSize = mViewPager2?.adapter?.itemCount!!
+                setPageSize(mViewPager2!!.adapter!!.itemCount)
             }
         }
+    }
+
+    fun getNormalSlideWidth(): Float {
+        return mIndicatorOptions.normalSliderWidth
+    }
+
+    fun setNormalSlideWidth(normalSliderWidth: Float) {
+        mIndicatorOptions.normalSliderWidth = normalSliderWidth;
+    }
+
+
+    fun getCheckedSlideWidth(): Float {
+        return mIndicatorOptions.checkedSliderWidth
+    }
+
+    fun setCheckedSlideWidth(checkedSliderWidth: Float) {
+        mIndicatorOptions.checkedSliderWidth = checkedSliderWidth;
+    }
+
+    val checkedSliderWidth: Float
+        get() = mIndicatorOptions.checkedSliderWidth
+
+
+    fun setCurrentPosition(currentPosition: Int) {
+        mIndicatorOptions.currentPosition = currentPosition
+    }
+
+    fun getCurrentPosition(): Int {
+        return mIndicatorOptions.currentPosition
+    }
+
+    fun getIndicatorGap(indicatorGap: Float) {
+        mIndicatorOptions.sliderGap = indicatorGap
+    }
+
+    fun setIndicatorGap(indicatorGap: Float) {
+        mIndicatorOptions.sliderGap = indicatorGap
+    }
+
+    fun setCheckedColor(@ColorInt normalColor: Int) {
+        mIndicatorOptions.checkedSliderColor = normalColor
+    }
+
+    fun getCheckedColor(): Int {
+        return mIndicatorOptions.checkedSliderColor
+    }
+
+    fun setNormalColor(@ColorInt normalColor: Int) {
+        mIndicatorOptions.normalSliderColor = normalColor
+    }
+
+    fun getSlideProgress(): Float {
+        return mIndicatorOptions.slideProgress
+    }
+
+    fun setSlideProgress(slideProgress: Float) {
+        mIndicatorOptions.slideProgress = slideProgress
+    }
+
+    fun getPageSize(): Int {
+        return mIndicatorOptions.pageSize
+    }
+
+    fun setPageSize(pageSize: Int): BaseIndicatorView {
+        mIndicatorOptions.pageSize = pageSize
+        return this
     }
 
     fun setSliderColor(@ColorInt normalColor: Int, @ColorInt selectedColor: Int): BaseIndicatorView {
@@ -159,6 +189,10 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     fun setSliderGap(sliderGap: Float): BaseIndicatorView {
         mIndicatorOptions.sliderGap = sliderGap
         return this
+    }
+
+    fun getSlideMode(): Int {
+        return mIndicatorOptions.slideMode
     }
 
     fun setSlideMode(@AIndicatorSlideMode slideMode: Int): BaseIndicatorView {

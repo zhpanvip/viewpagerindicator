@@ -42,24 +42,24 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val maxHeight = mCheckedBitmapHeight.coerceAtLeast(mNormalBitmapHeight)
-        val realWidth = mCheckedBitmapWidth + (mNormalBitmapWidth + mIndicatorPadding) * (pageSize - 1)
+        val realWidth = mCheckedBitmapWidth + (mNormalBitmapWidth + mIndicatorPadding) * (getPageSize() - 1)
         setMeasuredDimension(realWidth, maxHeight)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (pageSize > 1 && mCheckedBitmap != null && mNormalBitmap != null) {
-            for (i in 1 until pageSize + 1) {
+        if (getPageSize() > 1 && mCheckedBitmap != null && mNormalBitmap != null) {
+            for (i in 1 until getPageSize() + 1) {
                 var left: Int
                 var top: Int
                 var bitmap = mNormalBitmap
                 val index = i - 1
                 when {
-                    index < currentPosition -> {
+                    index < getCurrentPosition() -> {
                         left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
                         top = measuredHeight / 2 - mNormalBitmapHeight / 2
                     }
-                    index == currentPosition -> {
+                    index == getCurrentPosition() -> {
                         left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
                         top = measuredHeight / 2 - mCheckedBitmapHeight / 2
                         bitmap = mCheckedBitmap
