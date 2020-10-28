@@ -104,21 +104,6 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 #### (2) 为IndicatorView配置参数以及关联ViewPager/ViewPager2:
 
 ```
-        val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
-        indicatorView.apply {
-                    setSliderColor(normalColor, checkedColor)
-                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
-                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
-                    setSlideMode(IndicatorSlideMode.WORM)
-                    setIndicatorStyle(IndicatorStyle.CIRCLE)
-                    setupWithViewPager(view_pager2)
-                }
-
-```
-
- 或者：
-
-```
          indicatorView.apply {
                              setSliderColor(normalColor, checkedColor)
                              setSliderWidth(resources.getDimension(R.dimen.dp_10))
@@ -138,6 +123,22 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                  indicatorView.onPageSelected(position)
              }
          })
+
+```
+
+ 或者：
+
+```
+        val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
+        indicatorView.apply {
+                    setSliderColor(normalColor, checkedColor)
+                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                    setSlideMode(IndicatorSlideMode.WORM)
+                    setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    setupWithViewPager(view_pager2)
+                }
+
 ```
 ### 2.DrawableIndicator
 
@@ -169,8 +170,8 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 #### (2) DrawableIndicator与ViewPager/ViewPager2关联:
 
 ```
-        val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
-        val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
+        val drawableIndicator = findViewById<DrawableIndicator>(R.id.indicator_view)
+        val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
         drawableIndicator.apply {
                     setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
                     setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
@@ -255,9 +256,9 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ```
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
-            indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
-            indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
-                    .setupWithViewPager(viewPager)
+    indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
+    indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
+    indicatorView.setupWithViewPager(viewPager)
 ```
 
 ## FAQ

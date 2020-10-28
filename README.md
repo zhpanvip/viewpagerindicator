@@ -103,21 +103,6 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 #### (2).Use IndicatorView with ViewPager/ViewPager2:
 
 ```
-        val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
-        indicatorView.apply {
-                    setSliderColor(normalColor, checkedColor)
-                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
-                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
-                    setSlideMode(IndicatorSlideMode.WORM)
-                    setIndicatorStyle(IndicatorStyle.CIRCLE)
-                    setupWithViewPager(view_pager2)
-                }
-
-```
-
-Or you can do like this:
-
-```
          indicatorView.apply {
                              setSliderColor(normalColor, checkedColor)
                              setSliderWidth(resources.getDimension(R.dimen.dp_10))
@@ -137,6 +122,21 @@ Or you can do like this:
                  indicatorView.onPageSelected(position)
              }
          })
+```
+
+Or you can do like the following code:
+
+```
+        val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
+        indicatorView.apply {
+                    setSliderColor(normalColor, checkedColor)
+                    setSliderWidth(resources.getDimension(R.dimen.dp_10))
+                    setSliderHeight(resources.getDimension(R.dimen.dp_5))
+                    setSlideMode(IndicatorSlideMode.WORM)
+                    setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    setupWithViewPager(view_pager2)
+                }
+
 ```
 
 ### 2.DrawableIndicator
@@ -169,13 +169,14 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
 #### (2) Use DrawableIndicator with ViewPager/ViewPager2:
 
 ```
-        val indicatorView = findViewById<DrawableIndicator>(R.id.indicator_view)
-        val dp10 = resources.getDimensionPixelOffset(R.dimen.dp_10)
-        indicatorView
-              .setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
-              .setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
-              .setIndicatorSize(dp10, dp10, dp10, dp10)
-              .setupWithViewPager(viewPager)
+        val drawableIndicator = findViewById<DrawableIndicator>(R.id.indicator_view)
+        val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
+        drawableIndicator.apply {
+                            setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
+                            setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
+                            setIndicatorSize(dp20, dp20, dp20, dp20)
+                            setupWithViewPager(view_pager2)
+                        }
 ```
 
 ### 3.Custom IndicatorView Supported
@@ -254,20 +255,20 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ```
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
-            indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
-            indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
-                    .setupWithViewPager(viewPager)
+    indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
+    indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
+    indicatorView.setupWithViewPager(viewPager)
 ```
 
 ## FAQ
 
  **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
 
-![QQ交流群60902509](https://github.com/zhpanvip/Resource/blob/master/image/group/qq_group.png)
+![QQ交流群60902509](https://gitee.com/zhpanvip/images/raw/master/project/group/qq_group.png)
 
 | Alipay | WeChat |
 |--|--|
-| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/pay/pay_alipay.jpg) |  ![SMOOTH](https://github.com/zhpanvip/Resource/blob/master/image/pay/pay_wechat.png) |
+| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_alipay.jpg) |  ![SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_wechat.png) |
 
 ##  More details
 
