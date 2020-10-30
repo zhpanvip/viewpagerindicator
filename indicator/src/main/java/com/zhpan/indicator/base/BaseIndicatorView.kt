@@ -19,6 +19,7 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description:IndicatorView基类，处理了页面滑动。
  * </pre>
  */
+@Suppress("UNUSED")
 open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr), IIndicator {
 
     var mIndicatorOptions: IndicatorOptions
@@ -110,7 +111,7 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     }
 
     fun setNormalSlideWidth(normalSliderWidth: Float) {
-        mIndicatorOptions.normalSliderWidth = normalSliderWidth;
+        mIndicatorOptions.normalSliderWidth = normalSliderWidth
     }
 
 
@@ -119,7 +120,7 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     }
 
     fun setCheckedSlideWidth(checkedSliderWidth: Float) {
-        mIndicatorOptions.checkedSliderWidth = checkedSliderWidth;
+        mIndicatorOptions.checkedSliderWidth = checkedSliderWidth
     }
 
     val checkedSliderWidth: Float
@@ -218,10 +219,6 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     fun setupWithViewPager(viewPager2: ViewPager2) {
         mViewPager2 = viewPager2
         notifyDataChanged()
-    }
-
-    fun getIndicatorOptions(): IndicatorOptions? {
-        return mIndicatorOptions
     }
 
     override fun onPageScrollStateChanged(state: Int) {

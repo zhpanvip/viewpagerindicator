@@ -18,7 +18,7 @@ import java.util.List;
  * </pre>
  */
 public class ViewPagerAdapter extends PagerAdapter {
-    private List<Integer> mDrawableList = new ArrayList<>();
+    private final List<Integer> mDrawableList = new ArrayList<>();
 
     public ViewPagerAdapter(List<Integer> drawableList) {
         mDrawableList.addAll(drawableList);

@@ -33,25 +33,28 @@ class IndicatorOptions {
      * 页面size
      */
     var pageSize: Int = 0
+
     /**
      * 未选中时Indicator颜色
      */
     var normalSliderColor: Int = 0
+
     /**
      * 选中时Indicator颜色
      */
     var checkedSliderColor: Int = 0
+
     /**
      * Indicator间距
      */
-    var sliderGap: Float = 0.toFloat()
+    var sliderGap: Float = 0f
 
-    var sliderHeight: Float = 0.toFloat()
+    var sliderHeight: Float = 0f
         get() = if (field > 0) field else normalSliderWidth / 2
 
-    var normalSliderWidth: Float = 0.toFloat()
+    var normalSliderWidth: Float = 0f
 
-    var checkedSliderWidth: Float = 0.toFloat()
+    var checkedSliderWidth: Float = 0f
 
     /**
      * 指示器当前位置
@@ -61,7 +64,7 @@ class IndicatorOptions {
     /**
      * 从一个点滑动到另一个点的进度
      */
-    var slideProgress: Float = 0.toFloat()
+    var slideProgress: Float = 0f
 
     init {
         normalSliderWidth = IndicatorUtils.dp2px(8f).toFloat()
