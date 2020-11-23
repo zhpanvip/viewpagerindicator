@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/page1"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_bar_24"
+        android:title="@string/view_pager2"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/page2"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_fire_department_24"
+        android:title="@string/view_pager"
+        app:showAsAction="ifRoom" />
+
+</menu>

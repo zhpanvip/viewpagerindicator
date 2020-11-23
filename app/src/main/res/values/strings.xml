@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ViewPagerIndicator</string>
     <string name="image_description">Image description</string>
+    <string name="view_pager">ViewPager</string>
+    <string name="view_pager2">ViewPager2</string>
 </resources>

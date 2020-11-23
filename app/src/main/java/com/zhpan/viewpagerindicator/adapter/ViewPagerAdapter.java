@@ -1,4 +1,4 @@
-package com.zhpan.viewpagerindicator;
+package com.zhpan.viewpagerindicator.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.zhpan.viewpagerindicator.R;
 
 import java.util.ArrayList;
 import java.util.List;
