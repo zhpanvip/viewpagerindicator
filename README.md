@@ -110,6 +110,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
                              setSlideMode(IndicatorSlideMode.WORM)
                              setIndicatorStyle(IndicatorStyle.CIRCLE)
                              setPageSize(view_pager2!!.adapter!!.itemCount)
+                             notifyDataChanged()
                          }
          view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
              override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {

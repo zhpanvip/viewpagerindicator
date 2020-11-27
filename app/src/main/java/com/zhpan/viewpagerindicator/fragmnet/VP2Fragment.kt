@@ -84,8 +84,8 @@ class VP2Fragment : BaseFragment() {
         }
         initRadioGroup()
 
-
 //        indicatorView.setPageSize(view_pager2!!.adapter!!.itemCount)
+//        indicatorView.notifyDataChanged()
 //        view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 //            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 //                super.onPageScrolled(position, positionOffset, positionOffsetPixels)

@@ -111,6 +111,7 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                              setSlideMode(IndicatorSlideMode.WORM)
                              setIndicatorStyle(IndicatorStyle.CIRCLE)
                              setPageSize(view_pager2!!.adapter!!.itemCount)
+                             notifyDataChanged()
                          }
          view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
              override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
