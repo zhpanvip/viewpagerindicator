@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
@@ -36,7 +37,7 @@ class VP2Fragment : BaseFragment() {
 
     companion object {
         @JvmStatic
-        fun getInstance(): VP2Fragment{
+        fun getInstance(): VP2Fragment {
             return VP2Fragment()
         }
     }
@@ -80,6 +81,7 @@ class VP2Fragment : BaseFragment() {
             setSliderHeight(resources.getDimension(R.dimen.dp_5))
             setSlideMode(IndicatorSlideMode.WORM)
             setIndicatorStyle(IndicatorStyle.CIRCLE)
+            setOrientation(ViewPager2.ORIENTATION_HORIZONTAL)
             setupWithViewPager(view_pager2)
         }
         initRadioGroup()

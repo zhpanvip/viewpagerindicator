@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 
 import com.zhpan.indicator.base.BaseIndicatorView
-import com.zhpan.indicator.base.IIndicator
 import com.zhpan.indicator.drawer.DrawerProxy
 import com.zhpan.indicator.option.IndicatorOptions
 

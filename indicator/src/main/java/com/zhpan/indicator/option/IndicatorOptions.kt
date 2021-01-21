@@ -1,6 +1,7 @@
 package com.zhpan.indicator.option
 
 import android.graphics.Color
+import androidx.viewpager2.widget.ViewPager2
 
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
 import com.zhpan.indicator.annotation.AIndicatorStyle
@@ -15,6 +16,9 @@ import com.zhpan.indicator.utils.IndicatorUtils
 </pre> *
  */
 class IndicatorOptions {
+
+    @ViewPager2.Orientation
+    var orientation= ViewPager2.ORIENTATION_HORIZONTAL
 
     @AIndicatorStyle
     var indicatorStyle: Int = 0

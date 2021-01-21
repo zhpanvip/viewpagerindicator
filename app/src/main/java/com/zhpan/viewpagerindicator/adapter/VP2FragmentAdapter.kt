@@ -22,16 +22,8 @@ class VP2FragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdap
     }
 
     override fun createFragment(position: Int): Fragment {
-        var fragment: Fragment
+        val fragment: Fragment
         when (position) {
-            0 -> {
-                if (fragments.get(PAGE_FIRST_TAB) == null) {
-                    fragment = VP2Fragment.getInstance()
-                    fragments.put(PAGE_FIRST_TAB, fragment)
-                } else {
-                    fragment = fragments.get(PAGE_FIRST_TAB)
-                }
-            }
             1 -> {
                 if (fragments.get(PAGE_SECOND_TAB) == null) {
                     fragment = VPFragment.getInstance();
