@@ -1,16 +1,12 @@
 package com.zhpan.indicator
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Matrix
+import android.graphics.*
 import android.os.Build
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.viewpager2.widget.ViewPager2
 import com.zhpan.indicator.base.BaseIndicatorView
 
 /**
@@ -44,11 +40,7 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val maxHeight = mCheckedBitmapHeight.coerceAtLeast(mNormalBitmapHeight)
         val realWidth = mCheckedBitmapWidth + (mNormalBitmapWidth + mIndicatorPadding) * (getPageSize() - 1)
-        if (mIndicatorOptions.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
-            setMeasuredDimension(realWidth, maxHeight)
-        } else {
-            setMeasuredDimension(maxHeight, realWidth)
-        }
+        setMeasuredDimension(realWidth, maxHeight)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -77,6 +69,10 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
                 drawIcon(canvas, left, top, bitmap)
             }
         }
+    }
+
+    override fun rotateCanvas(canvas: Canvas) {
+
     }
 
     private fun drawIcon(canvas: Canvas, left: Int, top: Int, icon: Bitmap?) {

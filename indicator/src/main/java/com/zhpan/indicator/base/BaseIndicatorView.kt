@@ -8,10 +8,11 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
 import com.zhpan.indicator.annotation.AIndicatorStyle
-import com.zhpan.indicator.drawer.BaseDrawer
+import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -49,9 +50,12 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (mIndicatorOptions.orientation == ViewPager2.ORIENTATION_VERTICAL) {
-            canvas.rotate(90f, (mIndicatorOptions.checkedSliderWidth + BaseDrawer.INDICATOR_PADDING) / 2,
-                    (mIndicatorOptions.checkedSliderWidth + BaseDrawer.INDICATOR_PADDING) / 2)
+        rotateCanvas(canvas)
+    }
+
+    protected open fun rotateCanvas(canvas: Canvas) {
+        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
+            canvas.rotate(90f, width / 2f, width / 2f)
         }
     }
 
@@ -206,7 +210,7 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
         return mIndicatorOptions.slideMode
     }
 
-    fun setOrientation(@ViewPager2.Orientation orientation: Int) {
+    fun setOrientation(@AIndicatorOrientation orientation: Int) {
         mIndicatorOptions.orientation = orientation;
     }
 

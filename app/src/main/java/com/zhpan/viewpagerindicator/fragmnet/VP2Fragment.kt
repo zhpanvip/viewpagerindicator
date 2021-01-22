@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
-import androidx.viewpager2.widget.ViewPager2
+import com.zhpan.indicator.annotation.AIndicatorOrientation
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
+import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 import com.zhpan.indicator.utils.IndicatorUtils
@@ -27,6 +28,9 @@ class VP2Fragment : BaseFragment() {
     private var mCheckId = R.id.rb_circle
     private var normalWidth: Float = 0f
     private var checkedWidth: Float = 0f
+
+    @AIndicatorOrientation
+    private var orientation: Int = IndicatorOrientation.INDICATOR_HORIZONTAL
 
     @androidx.annotation.ColorInt
     private var normalColor: Int = 0
@@ -72,6 +76,7 @@ class VP2Fragment : BaseFragment() {
             setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
             setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
             setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
+            setOrientation(IndicatorOrientation.INDICATOR_VERTICAL)
             setupWithViewPager(view_pager2)
         }
 
@@ -81,7 +86,7 @@ class VP2Fragment : BaseFragment() {
             setSliderHeight(resources.getDimension(R.dimen.dp_5))
             setSlideMode(IndicatorSlideMode.WORM)
             setIndicatorStyle(IndicatorStyle.CIRCLE)
-            setOrientation(ViewPager2.ORIENTATION_HORIZONTAL)
+            setOrientation(orientation)
             setupWithViewPager(view_pager2)
         }
         initRadioGroup()
@@ -104,6 +109,7 @@ class VP2Fragment : BaseFragment() {
 
 
     private fun initRadioGroup() {
+        rbOrientation.setOnCheckedChangeListener { _, checkedId -> changeOrientation(checkedId) }
         radioGroupStyle.setOnCheckedChangeListener { _, checkedId -> checkedChange(checkedId) }
         radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             when (checkedId) {
@@ -138,6 +144,18 @@ class VP2Fragment : BaseFragment() {
         rb_circle.performClick()
     }
 
+    private fun changeOrientation(checkedId: Int) {
+        when (checkedId) {
+            R.id.rb_horizontal -> {
+                orientation = IndicatorOrientation.INDICATOR_HORIZONTAL
+            }
+            R.id.rb_vertical -> {
+                orientation = IndicatorOrientation.INDICATOR_VERTICAL
+            }
+        }
+        checkedChange(mCheckId)
+    }
+
     private fun checkedChange(checkedId: Int) {
         mCheckId = checkedId
         when (checkedId) {
@@ -161,6 +179,7 @@ class VP2Fragment : BaseFragment() {
             setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
             setSliderColor(normalColor, checkedColor)
             setSliderWidth(normalWidth, checkedWidth)
+            setOrientation(orientation)
             notifyDataChanged()
         }
     }
@@ -179,6 +198,7 @@ class VP2Fragment : BaseFragment() {
             setSliderGap(resources.getDimension(R.dimen.dp_6))
             setSliderWidth(normalWidth, checkedWidth)
             setSliderColor(normalColor, checkedColor)
+            setOrientation(orientation)
             notifyDataChanged()
         }
     }
@@ -198,6 +218,7 @@ class VP2Fragment : BaseFragment() {
             setSliderHeight(resources.getDimension(R.dimen.dp_8))
             setSliderColor(normalColor, checkedColor)
             setSliderWidth(normalWidth, checkedWidth)
+            setOrientation(orientation)
             notifyDataChanged()
         }
     }

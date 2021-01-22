@@ -3,6 +3,7 @@ package com.zhpan.indicator.drawer
 import android.animation.ArgbEvaluator
 import android.graphics.Paint
 import androidx.viewpager2.widget.ViewPager2
+import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 
 import com.zhpan.indicator.option.IndicatorOptions
@@ -43,7 +44,7 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): MeasureResult {
         maxWidth = mIndicatorOptions.normalSliderWidth.coerceAtLeast(mIndicatorOptions.checkedSliderWidth)
         minWidth = mIndicatorOptions.normalSliderWidth.coerceAtMost(mIndicatorOptions.checkedSliderWidth)
-        if (mIndicatorOptions.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
+        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_HORIZONTAL) {
             mMeasureResult.setMeasureResult(measureWidth(), measureHeight())
         } else {
             mMeasureResult.setMeasureResult(measureHeight(), measureWidth())
