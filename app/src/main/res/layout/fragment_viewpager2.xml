@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -25,7 +27,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="@dimen/dp_16" />
+                android:layout_margin="@dimen/dp_16"
+                app:vpi_orientation="vertical"
+                app:vpi_slide_mode="worm"
+                app:vpi_slider_checked_color="@color/red_checked_color"
+                app:vpi_slider_normal_color="@color/red_normal_color"
+                app:vpi_slider_radius="@dimen/dp_20"
+                app:vpi_style="circle" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,6 +120,12 @@
 
             </RelativeLayout>
         </RelativeLayout>
+    </LinearLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,8 +155,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
-                    android:checked="true"
                     android:layout_marginBottom="@dimen/dp_10"
+                    android:checked="true"
                     android:text="Horizontal"
                     android:textSize="@dimen/sp_16" />
 
@@ -270,6 +284,7 @@
             </RadioGroup>
 
         </LinearLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
 

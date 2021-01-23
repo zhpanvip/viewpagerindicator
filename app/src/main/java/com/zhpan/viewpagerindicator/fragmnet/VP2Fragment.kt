@@ -76,7 +76,6 @@ class VP2Fragment : BaseFragment() {
             setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
             setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
             setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
-            setOrientation(IndicatorOrientation.INDICATOR_VERTICAL)
             setupWithViewPager(view_pager2)
         }
 

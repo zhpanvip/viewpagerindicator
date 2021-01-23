@@ -210,10 +210,6 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
         return mIndicatorOptions.slideMode
     }
 
-    fun setOrientation(@AIndicatorOrientation orientation: Int) {
-        mIndicatorOptions.orientation = orientation;
-    }
-
     fun setSlideMode(@AIndicatorSlideMode slideMode: Int): BaseIndicatorView {
         mIndicatorOptions.slideMode = slideMode
         return this

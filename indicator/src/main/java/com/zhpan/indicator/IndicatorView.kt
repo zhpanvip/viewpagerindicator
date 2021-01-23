@@ -3,9 +3,11 @@ package com.zhpan.indicator
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.base.BaseIndicatorView
 import com.zhpan.indicator.drawer.DrawerProxy
+import com.zhpan.indicator.option.AttrsController
 import com.zhpan.indicator.option.IndicatorOptions
 
 
@@ -23,6 +25,7 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
     private var mDrawerProxy: DrawerProxy
 
     init {
+        AttrsController.initAttrs(context, attrs, mIndicatorOptions)
         mDrawerProxy = DrawerProxy(mIndicatorOptions)
     }
 
@@ -50,5 +53,9 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
     override fun notifyDataChanged() {
         mDrawerProxy = DrawerProxy(mIndicatorOptions)
         super.notifyDataChanged()
+    }
+
+    fun setOrientation(@AIndicatorOrientation orientation: Int) {
+        mIndicatorOptions.orientation = orientation;
     }
 }
