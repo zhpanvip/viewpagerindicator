@@ -38,8 +38,9 @@
 
 | Method | Description | Default |
 |--|--|--|
+| setOrientation(int) | 设置指示器的方向,可选值(INDICATOR_HORIZONTAL/INDICATOR_VERTICAL) | 默认值为INDICATOR_HORIZONTAL |
 | setIndicatorStyle(Int) | 设置指示器样式 | 枚举类型(CIRCLE；DASH；ROUND_RECT) 默认值：CIRCLE  |
-| setSliderColor(normalColor: Int,selectedColor: Int)| 设置指示器滑块颜色 |normalColor：未选中时的滑块颜色, 默认值："#8C6C6D72"， checkedColor：选中时滑块颜色，默认值："#8C18171C" |
+| setSliderColor(normalColor: Int,selectedColor: Int)| 设置指示器滑块颜色 |normalColor：未选中时的滑块颜色, 默认值："#8C18171C"， checkedColor：选中时滑块颜色，默认值："#6C6D72" |
 | setSlideMode(slideMode: Int)  | 设置滑块滑动模式 | 枚举类型（NORMAL;SMOOTH;WORM;COLOR;SCALE），默认值：NORMAL  |
 | setSliderWidth(indicatorWidth:Int) | 设置滑块宽度，如果是圆形指示器则为滑块直径 | 默认值：8dp|
 | setSliderWidth(normalWidth Int , checkWidth Int) | 设置滑块宽度，如果是圆形指示器则为滑块直径 | 默认值 8dp |
@@ -47,6 +48,17 @@
 | setSliderGap(indicatorMargin Int ) | 设置滑块之间的间距| 默认值为滑块宽度或者直径|
 | setupWithViewPager(ViewPager) | indicator与ViewPager关联 |  |
 | setupWithViewPager(ViewPager2) | indicator与ViewPager2关联 |  |
+
+## XML Attrs
+
+| Attributes | format | description |
+|--|--|--|
+| vpi_slider_checked_color | color | 设置选中时滑块颜色,默认值为"#6C6D72" |
+| vpi_slider_normal_color | color | 设置未选中时滑块颜色,默认值为"#8C18171C" |
+| vpi_slider_radius | dimension | 设置指示器滑块半径或者宽度. 如果是CIRCLE样式，该值为滑块半径,如果是DASH或者ROUND_RECT样式，该值为滑块宽度的1/2 |
+| vpi_orientation | enum | 设置滑动方向(horizontal/vertical) |
+| vpi_slide_mode | enum | 设置滑动模式（normal/smooth/worm/scale/color） |
+| vpi_style | enum | 设置指示器滑块样式(circle/dash/round_rect) |
 
 
 ## 如何使用

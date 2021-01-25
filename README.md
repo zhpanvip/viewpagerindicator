@@ -37,6 +37,7 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 
 | Method | Description | Default |
 |--|--|--|
+| setOrientation(int) | set indicator orientation,enum(INDICATOR_HORIZONTAL/INDICATOR_VERTICAL) | Default value is INDICATOR_HORIZONTAL |
 | setIndicatorStyle(Int) | set indicator style | enum(CIRCLE；DASH；ROUND_RECT) default CIRCLE  |
 | setSliderColor(normalColor: Int,selectedColor: Int)| set indicator slider color |normalColor：color of indicator dot not selected, default value  "#8C6C6D72"， checkedColor：color of indicator selected default value is "#8C18171C" |
 | setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM;COLOR;SCALE），default value NORMAL  |
@@ -46,6 +47,18 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 | setSliderGap(indicatorMargin Int ) | set the gap of indicator slider| default value is indicator slider width（or the diameter of circle）|
 | setupWithViewPager(ViewPager) | To link IndicatorView with ViewPager together. |  |
 | setupWithViewPager(ViewPager2) | To link IndicatorView with ViewPager2 together. |  |
+
+
+## XML Attrs
+
+| Attributes | format | description |
+|--|--|--|
+| vpi_slider_checked_color | color | set slider checked color,default value is "#6C6D72" |
+| vpi_slider_normal_color | color | set slider normal color,default value is "#8C18171C" |
+| vpi_slider_radius | dimension | set slider radius or width. if it's circle style the value is radius of circle,if the indicator style is DASH or ROUND_RECT the value is width/2 |
+| vpi_orientation | enum | set orientation(horizontal/vertical) |
+| vpi_slide_mode | enum | set indicator slide mode（normal/smooth/worm/scale/color） |
+| vpi_style | enum | set indicator slider style (circle/dash/round_rect) |
 
 
 ## Usage
