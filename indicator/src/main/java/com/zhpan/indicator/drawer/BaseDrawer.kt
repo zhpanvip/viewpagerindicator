@@ -44,10 +44,10 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): MeasureResult {
         maxWidth = mIndicatorOptions.normalSliderWidth.coerceAtLeast(mIndicatorOptions.checkedSliderWidth)
         minWidth = mIndicatorOptions.normalSliderWidth.coerceAtMost(mIndicatorOptions.checkedSliderWidth)
-        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_HORIZONTAL) {
-            mMeasureResult.setMeasureResult(measureWidth(), measureHeight())
-        } else {
+        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
             mMeasureResult.setMeasureResult(measureHeight(), measureWidth())
+        } else {
+            mMeasureResult.setMeasureResult(measureWidth(), measureHeight())
         }
         return mMeasureResult
     }

@@ -169,6 +169,15 @@
                     android:text="Vertical"
                     android:textSize="@dimen/sp_16" />
 
+                <RadioButton
+                    android:id="@+id/rb_rtl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:text="RTL"
+                    android:textSize="@dimen/sp_16" />
+
             </RadioGroup>
 
             <TextView

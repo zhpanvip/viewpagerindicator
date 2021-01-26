@@ -56,7 +56,7 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
     protected open fun rotateCanvas(canvas: Canvas) {
         if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
             canvas.rotate(90f, width / 2f, width / 2f)
-        } else if (mIndicatorOptions.rtl) {
+        } else if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_RTL) {
             canvas.rotate(180f, width / 2f, height / 2f)
         }
     }

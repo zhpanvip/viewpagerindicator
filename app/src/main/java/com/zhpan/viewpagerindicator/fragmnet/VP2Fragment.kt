@@ -151,6 +151,9 @@ class VP2Fragment : BaseFragment() {
             R.id.rb_vertical -> {
                 orientation = IndicatorOrientation.INDICATOR_VERTICAL
             }
+            R.id.rb_rtl -> {
+                orientation = IndicatorOrientation.INDICATOR_RTL
+            }
         }
         checkedChange(mCheckId)
     }
