@@ -58,4 +58,8 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
     fun setOrientation(@AIndicatorOrientation orientation: Int) {
         mIndicatorOptions.orientation = orientation;
     }
+
+    fun setRTLMode(rtl: Boolean) {
+        mIndicatorOptions.rtl = rtl
+    }
 }

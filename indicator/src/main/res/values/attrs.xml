@@ -5,6 +5,7 @@
         <attr name="vpi_slider_checked_color" format="color" />
         <attr name="vpi_slider_normal_color" format="color" />
         <attr name="vpi_slider_radius" format="dimension" />
+        <attr name="vpi_rtl" format="boolean" />
 
         <attr name="vpi_orientation" format="enum">
             <enum name="horizontal" value="0" />

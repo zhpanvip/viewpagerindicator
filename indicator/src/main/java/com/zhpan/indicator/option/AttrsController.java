@@ -22,11 +22,13 @@ public class AttrsController {
             int normalColor = typedArray.getColor(R.styleable.IndicatorView_vpi_slider_normal_color, Color.parseColor("#8C18171C"));
             int orientation = typedArray.getInt(R.styleable.IndicatorView_vpi_orientation, 0);
             float radius = typedArray.getDimension(R.styleable.IndicatorView_vpi_slider_radius, IndicatorUtils.dp2px(8));
+            boolean rtl = typedArray.getBoolean(R.styleable.IndicatorView_vpi_rtl, false);
             indicatorOptions.setCheckedColor(checkedColor);
             indicatorOptions.setNormalSliderColor(normalColor);
             indicatorOptions.setOrientation(orientation);
             indicatorOptions.setIndicatorStyle(indicatorStyle);
             indicatorOptions.setSlideMode(indicatorSlideMode);
+            indicatorOptions.setRtl(rtl);
             indicatorOptions.setSliderWidth(radius * 2, radius * 2);
             typedArray.recycle();
         }

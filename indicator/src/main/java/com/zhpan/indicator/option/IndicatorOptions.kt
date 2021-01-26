@@ -19,8 +19,13 @@ import com.zhpan.indicator.utils.IndicatorUtils
  */
 class IndicatorOptions {
 
+    /**
+     * Right To Left Mode.
+     */
+    var rtl: Boolean = false
+
     @AIndicatorOrientation
-    var orientation= IndicatorOrientation.INDICATOR_HORIZONTAL
+    var orientation = IndicatorOrientation.INDICATOR_HORIZONTAL
 
     @AIndicatorStyle
     var indicatorStyle: Int = 0
