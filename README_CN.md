@@ -27,12 +27,6 @@
 | COLOR| ![CIRCLE_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_color.gif) |
 | SCALE| ![CIRCLE_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_scale.gif) |
 
-### DrawableIndicator
-
-| Bitmap Drawable| Vector Drawable|
-|--|--|
-| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/vector_drawable_indicator.gif) |
-
 
 ## API
 
@@ -155,10 +149,14 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
 ```
 
 
-### 3.自定义Indicator样式
+### 2.自定义Indicator样式
 
 
 #### DrawableIndicator
+
+| Bitmap Drawable| Vector Drawable|
+|--|--|
+| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/vector_drawable_indicator.gif) |
 
 DrawableIndicator是一个自定义的Indicator，位于Sample中，使用DrawableIndicator可以设置bitmap drawable或者vector drawable,可以自定义drawable的大小,具体使用步骤如下：
 
@@ -204,7 +202,7 @@ DrawableIndicator是一个自定义的Indicator，位于Sample中，使用Drawab
 
 | Custom IndicatorView Style|
 |--|
-| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/banner/style_custum.gif) |
+| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_custum.gif) |
 
 #### (1)自定义View并继承BaseIndicatorView
 

@@ -26,13 +26,6 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 | COLOR| ![CIRCLE_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_color.gif) |
 | SCALE| ![CIRCLE_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_scale.gif) |
 
-### DrawableIndicator
-
-| Bitmap Drawable| Vector Drawable|
-|--|--|
-| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/vector_drawable_indicator.gif) |
-
-
 ## API
 
 | Method | Description | Default |
@@ -153,10 +146,14 @@ Or you can do like the following code:
 
 ```
 
-### 3.Custom IndicatorView Supported
+### 2.Custom IndicatorView 
 
 
 #### DrawableIndicator
+
+| Bitmap Drawable| Vector Drawable|
+|--|--|
+| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/vector_drawable_indicator.gif) |
 
 You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.
 
@@ -202,7 +199,7 @@ The example will implement an custom IndicatorView as the follow gif.
 
 | Custom IndicatorView Style|
 |--|
-| ![NORMAL](https://github.com/zhpanvip/Resource/blob/master/image/banner/style_custum.gif) |
+| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_custum.gif) |
 
 #### (1)Custom View and extends BaseIndicatorView
 
@@ -286,10 +283,6 @@ public class FigureIndicatorView extends BaseIndicatorView {
 | Alipay | WeChat |
 |--|--|
 | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_alipay.jpg) |  ![SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_wechat.png) |
-
-##  More details
-
-[《聊一聊ViewPagerIndicator重构的一些经验》](https://juejin.im/post/5dda0b6d518825731f569a8c)
 
 
 License
