@@ -153,9 +153,14 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                 }
 
 ```
-### 2.DrawableIndicator
 
-使用DrawableIndicator可以设置bitmap drawable或者vector drawable,可以自定义drawable的大小,具体使用步骤如下：
+
+### 3.自定义Indicator样式
+
+
+#### DrawableIndicator
+
+DrawableIndicator是一个自定义的Indicator，位于Sample中，使用DrawableIndicator可以设置bitmap drawable或者vector drawable,可以自定义drawable的大小,具体使用步骤如下：
 
 #### (1) Add IndicatorView in layout.xml
 ```
@@ -169,7 +174,7 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <com.zhpan.indicator.DrawableIndicator
+            <com.zhpan.viewpagerindicator.DrawableIndicator
                 android:id="@+id/indicator_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,9 +198,9 @@ latestVersion:[![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator
                 }
 ```
 
-### 3.自定义Indicator样式
+#### FigureIndicatorView
 
-例子将实现一个如下图的indicator样式
+这是一个演示如何实现自定义指示器的例子，例子将实现一个如下图的indicator样式
 
 | Custom IndicatorView Style|
 |--|

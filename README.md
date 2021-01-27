@@ -37,7 +37,7 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 
 | Method | Description | Default |
 |--|--|--|
-| setOrientation(int) | set indicator orientation,enum(INDICATOR_HORIZONTAL/INDICATOR_VERTICAL) | Default value is INDICATOR_HORIZONTAL |
+| setOrientation(int) | set indicator orientation,enum(INDICATOR_HORIZONTAL/INDICATOR_VERTICAL/INDICATOR_RTL) | Default value is INDICATOR_HORIZONTAL |
 | setIndicatorStyle(Int) | set indicator style | enum(CIRCLE；DASH；ROUND_RECT) default CIRCLE  |
 | setSliderColor(normalColor: Int,selectedColor: Int)| set indicator slider color |normalColor：color of indicator dot not selected, default value  "#8C6C6D72"， checkedColor：color of indicator selected default value is "#8C18171C" |
 | setSlideMode(slideMode: Int)  | set indicator slide mode | enum（NORMAL;SMOOTH;WORM;COLOR;SCALE），default value NORMAL  |
@@ -56,7 +56,7 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 | vpi_slider_checked_color | color | set slider checked color,default value is "#6C6D72" |
 | vpi_slider_normal_color | color | set slider normal color,default value is "#8C18171C" |
 | vpi_slider_radius | dimension | set slider radius or width. if it's circle style the value is radius of circle,if the indicator style is DASH or ROUND_RECT the value is width/2 |
-| vpi_orientation | enum | set orientation(horizontal/vertical) |
+| vpi_orientation | enum | set orientation(horizontal/vertical/rtl) |
 | vpi_slide_mode | enum | set indicator slide mode（normal/smooth/worm/scale/color） |
 | vpi_style | enum | set indicator slider style (circle/dash/round_rect) |
 
@@ -153,11 +153,14 @@ Or you can do like the following code:
 
 ```
 
-### 2.DrawableIndicator
+### 3.Custom IndicatorView Supported
+
+
+#### DrawableIndicator
 
 You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.
 
-#### (1) Add IndicatorView in layout.xml
+#####  Add IndicatorView in layout.xml
 ```
     <RelativeLayout
             android:layout_width="match_parent"
@@ -169,7 +172,7 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <com.zhpan.indicator.DrawableIndicator
+            <com.zhpan.viewpagerindicator.DrawableIndicator
                 android:id="@+id/indicator_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -180,7 +183,7 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
     </RelativeLayout>
 ```
 
-#### (2) Use DrawableIndicator with ViewPager/ViewPager2:
+#####  Use DrawableIndicator with ViewPager/ViewPager2:
 
 ```
         val drawableIndicator = findViewById<DrawableIndicator>(R.id.indicator_view)
@@ -193,7 +196,7 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
                         }
 ```
 
-### 3.Custom IndicatorView Supported
+#### FigureIndicatorView
 
 The example will implement an custom IndicatorView as the follow gif.
 
