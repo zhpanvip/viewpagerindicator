@@ -7,6 +7,7 @@ import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.base.BaseIndicatorView
 import com.zhpan.indicator.drawer.DrawerProxy
+import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.option.AttrsController
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -42,6 +43,7 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        rotateCanvas(canvas)
         mDrawerProxy.onDraw(canvas)
     }
 
@@ -53,6 +55,14 @@ class IndicatorView @JvmOverloads constructor(context: Context, attrs: Attribute
     override fun notifyDataChanged() {
         mDrawerProxy = DrawerProxy(mIndicatorOptions)
         super.notifyDataChanged()
+    }
+
+    private fun rotateCanvas(canvas: Canvas) {
+        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
+            canvas.rotate(90f, width / 2f, width / 2f)
+        } else if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_RTL) {
+            canvas.rotate(180f, width / 2f, height / 2f)
+        }
     }
 
     fun setOrientation(@AIndicatorOrientation orientation: Int) {

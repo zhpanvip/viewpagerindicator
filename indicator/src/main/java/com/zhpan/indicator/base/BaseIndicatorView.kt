@@ -1,18 +1,15 @@
 package com.zhpan.indicator.base
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
 
 import androidx.annotation.ColorInt
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
 import com.zhpan.indicator.annotation.AIndicatorStyle
-import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -24,6 +21,17 @@ import com.zhpan.indicator.option.IndicatorOptions
  */
 @Suppress("UNUSED")
 open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr), IIndicator {
+
+//    companion object {
+//        const val DEFAULT_ANIMATION_DURATION = 200L
+//    }
+//
+//    var valueAnimator: ValueAnimator = ValueAnimator.ofFloat(-1f, 1f)
+//
+//
+//    init {
+//        valueAnimator.duration = DEFAULT_ANIMATION_DURATION
+//    }
 
     var mIndicatorOptions: IndicatorOptions
 
@@ -46,19 +54,6 @@ open class BaseIndicatorView constructor(context: Context, attrs: AttributeSet?,
 
     init {
         mIndicatorOptions = IndicatorOptions()
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        rotateCanvas(canvas)
-    }
-
-    protected open fun rotateCanvas(canvas: Canvas) {
-        if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
-            canvas.rotate(90f, width / 2f, width / 2f)
-        } else if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_RTL) {
-            canvas.rotate(180f, width / 2f, height / 2f)
-        }
     }
 
     override fun onPageSelected(position: Int) {

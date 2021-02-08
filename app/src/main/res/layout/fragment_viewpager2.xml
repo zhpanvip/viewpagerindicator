@@ -35,15 +35,6 @@
                 app:vpi_slider_radius="@dimen/dp_20"
                 app:vpi_style="circle" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/view_pager2"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/sp_20" />
-
-
         </RelativeLayout>
 
 

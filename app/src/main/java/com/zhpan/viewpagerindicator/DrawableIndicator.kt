@@ -71,10 +71,6 @@ class DrawableIndicator @JvmOverloads constructor(context: Context?, attrs: Attr
         }
     }
 
-    override fun rotateCanvas(canvas: Canvas) {
-
-    }
-
     private fun drawIcon(canvas: Canvas, left: Int, top: Int, icon: Bitmap?) {
         if (icon == null) {
             return
