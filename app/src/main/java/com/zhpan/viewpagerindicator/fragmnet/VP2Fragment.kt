@@ -53,6 +53,9 @@ class VP2Fragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val dp12 = resources.getDimensionPixelOffset(R.dimen.dp_12)
+        val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
+        val dp10 = resources.getDimension(R.dimen.dp_10)
         view_pager2.adapter = ViewPager2Adapter(getData(4))
         figureIndicator.setRadius(resources.getDimensionPixelOffset(R.dimen.dp_20))
         figureIndicator.setTextSize(resources.getDimensionPixelSize(R.dimen.dp_16))
@@ -60,11 +63,8 @@ class VP2Fragment : BaseFragment() {
         figureIndicator.setBackgroundColor(Color.parseColor("#aa118EEA"))
         normalColor = ContextCompat.getColor(context!!, R.color.red_normal_color)
         checkedColor = ContextCompat.getColor(context!!, R.color.red_checked_color)
-        normalWidth = resources.getDimension(R.dimen.dp_20)
+        normalWidth = dp20.toFloat()
         checkedWidth = normalWidth
-        val dp12 = resources.getDimensionPixelOffset(R.dimen.dp_12)
-        val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
-
         drawableIndicator.apply {
             setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
             setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
@@ -81,7 +81,7 @@ class VP2Fragment : BaseFragment() {
 
         indicatorView.apply {
             setSliderColor(normalColor, checkedColor)
-            setSliderWidth(resources.getDimension(R.dimen.dp_10))
+            setSliderWidth(dp10, dp10)
             setSliderHeight(resources.getDimension(R.dimen.dp_5))
             setSlideMode(IndicatorSlideMode.WORM)
             setIndicatorStyle(IndicatorStyle.CIRCLE)
