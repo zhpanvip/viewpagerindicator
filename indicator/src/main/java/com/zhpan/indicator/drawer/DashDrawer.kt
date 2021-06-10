@@ -10,9 +10,11 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description: Dash Indicator Drawer.
 </pre> *
  */
-class DashDrawer internal constructor(indicatorOptions: IndicatorOptions) : RectDrawer(indicatorOptions) {
+class DashDrawer internal constructor(indicatorOptions: IndicatorOptions) : RectDrawer(
+  indicatorOptions
+) {
 
-    override fun drawDash(canvas: Canvas) {
-        canvas.drawRect(mRectF, mPaint)
-    }
+  override fun drawDash(canvas: Canvas) {
+    canvas.drawRect(mRectF, mPaint)
+  }
 }

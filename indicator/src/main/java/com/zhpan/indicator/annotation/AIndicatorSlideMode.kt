@@ -7,7 +7,6 @@ import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.SCALE
 import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.SMOOTH
 import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.WORM
 
-
 /**
  * <pre>
  * Created by zhangpan on 2019-10-18.

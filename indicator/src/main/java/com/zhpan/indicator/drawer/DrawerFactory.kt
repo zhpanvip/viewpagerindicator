@@ -10,11 +10,11 @@ import com.zhpan.indicator.option.IndicatorOptions
 </pre> *
  */
 internal object DrawerFactory {
-    fun createDrawer(indicatorOptions: IndicatorOptions): IDrawer {
-        return when (indicatorOptions.indicatorStyle) {
-            IndicatorStyle.DASH -> DashDrawer(indicatorOptions)
-            IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions)
-            else -> CircleDrawer(indicatorOptions)
-        }
+  fun createDrawer(indicatorOptions: IndicatorOptions): IDrawer {
+    return when (indicatorOptions.indicatorStyle) {
+        IndicatorStyle.DASH -> DashDrawer(indicatorOptions)
+        IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions)
+      else -> CircleDrawer(indicatorOptions)
     }
+  }
 }

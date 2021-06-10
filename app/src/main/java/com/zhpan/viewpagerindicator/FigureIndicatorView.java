@@ -20,68 +20,69 @@ import com.zhpan.indicator.utils.IndicatorUtils;
  */
 public class FigureIndicatorView extends BaseIndicatorView {
 
-    private int radius = IndicatorUtils.dp2px(20);
+  private int radius = IndicatorUtils.dp2px(20);
 
-    private int backgroundColor = Color.parseColor("#88FF5252");
+  private int backgroundColor = Color.parseColor("#88FF5252");
 
-    private int textColor = Color.WHITE;
+  private int textColor = Color.WHITE;
 
-    private int textSize = IndicatorUtils.dp2px(13);
+  private int textSize = IndicatorUtils.dp2px(13);
 
-    private Paint mPaint;
+  private Paint mPaint;
 
-    public FigureIndicatorView(Context context) {
-        this(context, null);
+  public FigureIndicatorView(Context context) {
+    this(context, null);
+  }
+
+  public FigureIndicatorView(Context context, @Nullable AttributeSet attrs) {
+    this(context, attrs, 0);
+  }
+
+  public FigureIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+    mPaint = new Paint();
+    mPaint.setAntiAlias(true);
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    setMeasuredDimension(2 * radius, 2 * radius);
+  }
+
+  @Override
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
+    if (getPageSize() > 1) {
+      mPaint.setColor(backgroundColor);
+      canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, radius, mPaint);
+      mPaint.setColor(textColor);
+      mPaint.setTextSize(textSize);
+      String text = getCurrentPosition() + 1 + "/" + getPageSize();
+      int textWidth = (int) mPaint.measureText(text);
+      Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
+      int baseline = (getMeasuredHeight() - fontMetricsInt.bottom + fontMetricsInt.top) / 2
+          - fontMetricsInt.top;
+      canvas.drawText(text, (getWidth() - textWidth) / 2f, baseline, mPaint);
     }
+  }
 
-    public FigureIndicatorView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
+  public void setRadius(int radius) {
+    this.radius = radius;
+  }
 
-    public FigureIndicatorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-    }
+  @Override
+  public void setBackgroundColor(@ColorInt int backgroundColor) {
+    this.backgroundColor = backgroundColor;
+  }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(2 * radius, 2 * radius);
-    }
+  public FigureIndicatorView setTextSize(int textSize) {
+    this.textSize = textSize;
+    return this;
+  }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (getPageSize() > 1) {
-            mPaint.setColor(backgroundColor);
-            canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, radius, mPaint);
-            mPaint.setColor(textColor);
-            mPaint.setTextSize(textSize);
-            String text = getCurrentPosition() + 1 + "/" + getPageSize();
-            int textWidth = (int) mPaint.measureText(text);
-            Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
-            int baseline = (getMeasuredHeight() - fontMetricsInt.bottom + fontMetricsInt.top) / 2 - fontMetricsInt.top;
-            canvas.drawText(text, (getWidth() - textWidth) / 2f, baseline, mPaint);
-        }
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    public void setBackgroundColor(@ColorInt int backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    public FigureIndicatorView setTextSize(int textSize) {
-        this.textSize = textSize;
-        return this;
-    }
-
-    public FigureIndicatorView setTextColor(int textColor) {
-        this.textColor = textColor;
-        return this;
-    }
+  public FigureIndicatorView setTextColor(int textColor) {
+    this.textColor = textColor;
+    return this;
+  }
 }

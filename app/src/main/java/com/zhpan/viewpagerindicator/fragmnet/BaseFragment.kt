@@ -10,12 +10,12 @@ import java.util.ArrayList
  */
 open class BaseFragment : Fragment() {
 
-    protected fun getData(j: Int): List<Int> {
-        val mDrawableList = ArrayList<Int>()
-        for (i in 0 until j) {
-            val drawable = resources.getIdentifier("color$i", "color", context?.packageName)
-            mDrawableList.add(drawable)
-        }
-        return mDrawableList
+  protected fun getData(j: Int): List<Int> {
+    val mDrawableList = ArrayList<Int>()
+    for (i in 0 until j) {
+      val drawable = resources.getIdentifier("color$i", "color", context?.packageName)
+      mDrawableList.add(drawable)
     }
+    return mDrawableList
+  }
 }

@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * </pre>
  */
 public class PagerViewHolder extends RecyclerView.ViewHolder {
-    public PagerViewHolder(@NonNull View itemView) {
-        super(itemView);
-    }
+  public PagerViewHolder(@NonNull View itemView) {
+    super(itemView);
+  }
 
-    public void bind(int res, int position) {
-        ImageView imageView = itemView.findViewById(R.id.banner_image);
-        imageView.setBackgroundColor(itemView.getContext().getResources().getColor(res));
-    }
+  public void bind(int res, int position) {
+    ImageView imageView = itemView.findViewById(R.id.banner_image);
+    imageView.setBackgroundColor(itemView.getContext().getResources().getColor(res));
+  }
 }

@@ -4,7 +4,6 @@ import androidx.viewpager.widget.ViewPager
 
 import com.zhpan.indicator.option.IndicatorOptions
 
-
 /**
  * <pre>
  * Created by zhangpan on 2019-09-02.
@@ -13,8 +12,7 @@ import com.zhpan.indicator.option.IndicatorOptions
  */
 interface IIndicator : ViewPager.OnPageChangeListener {
 
-    fun notifyDataChanged()
+  fun notifyDataChanged()
 
-    fun setIndicatorOptions(options: IndicatorOptions)
-
+  fun setIndicatorOptions(options: IndicatorOptions)
 }
