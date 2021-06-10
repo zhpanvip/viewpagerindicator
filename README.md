@@ -274,8 +274,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
     indicatorView.setupWithViewPager(viewPager)
 ```
 
-## FAQ
-
+## Contact
  **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
 
 ![QQ交流群60902509](https://gitee.com/zhpanvip/images/raw/master/project/group/qq_group.png)
