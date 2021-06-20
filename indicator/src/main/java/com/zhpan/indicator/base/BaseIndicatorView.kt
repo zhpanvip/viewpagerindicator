@@ -21,9 +21,9 @@ import com.zhpan.indicator.option.IndicatorOptions
  */
 @Suppress("UNUSED")
 open class BaseIndicatorView constructor(
-    context: Context,
-    attrs: AttributeSet?,
-    defStyleAttr: Int
+  context: Context,
+  attrs: AttributeSet?,
+  defStyleAttr: Int
 ) : View(context, attrs, defStyleAttr), IIndicator {
 
 //    companion object {
@@ -44,9 +44,9 @@ open class BaseIndicatorView constructor(
 
   private val mOnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
     override fun onPageScrolled(
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int
+      position: Int,
+      positionOffset: Float,
+      positionOffsetPixels: Int
     ) {
       this@BaseIndicatorView.onPageScrolled(position, positionOffset, positionOffsetPixels)
     }
@@ -73,9 +73,9 @@ open class BaseIndicatorView constructor(
   }
 
   override fun onPageScrolled(
-      position: Int,
-      positionOffset: Float,
-      positionOffsetPixels: Int
+    position: Int,
+    positionOffset: Float,
+    positionOffsetPixels: Int
   ) {
     if (getSlideMode() != IndicatorSlideMode.NORMAL && getPageSize() > 1) {
       scrollSlider(position, positionOffset)
@@ -84,11 +84,11 @@ open class BaseIndicatorView constructor(
   }
 
   private fun scrollSlider(
-      position: Int,
-      positionOffset: Float
+    position: Int,
+    positionOffset: Float
   ) {
     if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE
-      || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR
+        || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR
     ) {
       setCurrentPosition(position)
       setSlideProgress(positionOffset)
@@ -197,8 +197,8 @@ open class BaseIndicatorView constructor(
   }
 
   fun setSliderColor(
-      @ColorInt normalColor: Int,
-      @ColorInt selectedColor: Int
+    @ColorInt normalColor: Int,
+    @ColorInt selectedColor: Int
   ): BaseIndicatorView {
     mIndicatorOptions.setSliderColor(normalColor, selectedColor)
     return this
@@ -210,8 +210,8 @@ open class BaseIndicatorView constructor(
   }
 
   fun setSliderWidth(
-      normalSliderWidth: Float,
-      selectedSliderWidth: Float
+    normalSliderWidth: Float,
+    selectedSliderWidth: Float
   ): BaseIndicatorView {
     mIndicatorOptions.setSliderWidth(normalSliderWidth, selectedSliderWidth)
     return this
@@ -249,6 +249,10 @@ open class BaseIndicatorView constructor(
   fun setupWithViewPager(viewPager2: ViewPager2) {
     mViewPager2 = viewPager2
     notifyDataChanged()
+  }
+
+  fun showIndicatorWhenOneItem(showIndicatorWhenOneItem: Boolean) {
+    mIndicatorOptions.showIndicatorOneItem = showIndicatorWhenOneItem
   }
 
   override fun onPageScrollStateChanged(state: Int) {

@@ -71,8 +71,11 @@ class IndicatorOptions {
    */
   var slideProgress: Float = 0f
 
+  var showIndicatorOneItem: Boolean = false
+
   init {
-    normalSliderWidth = IndicatorUtils.dp2px(8f).toFloat()
+    normalSliderWidth = IndicatorUtils.dp2px(8f)
+        .toFloat()
     checkedSliderWidth = normalSliderWidth
     sliderGap = normalSliderWidth
     normalSliderColor = Color.parseColor("#8C18171C")
@@ -85,8 +88,8 @@ class IndicatorOptions {
   }
 
   fun setSliderWidth(
-      normalIndicatorWidth: Float,
-      checkedIndicatorWidth: Float
+    normalIndicatorWidth: Float,
+    checkedIndicatorWidth: Float
   ) {
     this.normalSliderWidth = normalIndicatorWidth
     this.checkedSliderWidth = checkedIndicatorWidth
@@ -97,8 +100,8 @@ class IndicatorOptions {
   }
 
   fun setSliderColor(
-      normalColor: Int,
-      checkedColor: Int
+    normalColor: Int,
+    checkedColor: Int
   ) {
     this.normalSliderColor = normalColor
     this.checkedSliderColor = checkedColor

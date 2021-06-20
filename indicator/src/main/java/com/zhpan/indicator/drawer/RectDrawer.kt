@@ -20,7 +20,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
 
   override fun onDraw(canvas: Canvas) {
     val pageSize = mIndicatorOptions.pageSize
-    if (pageSize > 1) {
+    if (pageSize > 1 || mIndicatorOptions.showIndicatorOneItem && pageSize == 1) {
       if (isWidthEquals && mIndicatorOptions.slideMode != IndicatorSlideMode.NORMAL) {
         drawUncheckedSlider(canvas, pageSize)
         drawCheckedSlider(canvas)

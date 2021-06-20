@@ -8,6 +8,7 @@ import com.zhpan.indicator.annotation.AIndicatorOrientation
 import com.zhpan.indicator.base.BaseIndicatorView
 import com.zhpan.indicator.drawer.DrawerProxy
 import com.zhpan.indicator.enums.IndicatorOrientation
+import com.zhpan.indicator.enums.IndicatorOrientation.Companion.INDICATOR_HORIZONTAL
 import com.zhpan.indicator.option.AttrsController
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -21,9 +22,9 @@ import com.zhpan.indicator.option.IndicatorOptions
 </pre> *
  */
 class IndicatorView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
 ) : BaseIndicatorView(context, attrs, defStyleAttr) {
 
   private var mDrawerProxy: DrawerProxy
@@ -34,19 +35,19 @@ class IndicatorView @JvmOverloads constructor(
   }
 
   override fun onLayout(
-      changed: Boolean,
-      left: Int,
-      top: Int,
-      right: Int,
-      bottom: Int
+    changed: Boolean,
+    left: Int,
+    top: Int,
+    right: Int,
+    bottom: Int
   ) {
     super.onLayout(changed, left, top, right, bottom)
     mDrawerProxy.onLayout(changed, left, top, right, bottom)
   }
 
   override fun onMeasure(
-      widthMeasureSpec: Int,
-      heightMeasureSpec: Int
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int
   ) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     val measureResult = mDrawerProxy.onMeasure(widthMeasureSpec, heightMeasureSpec)
