@@ -4,6 +4,8 @@
 [![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ViewPagerIndicator-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8096)
 
+![公众号:玩转安卓Dev](https://gitee.com/zhpanvip/images/raw/master/project/group/wechat_dyh.png)
+
 ## English | [中文](https://github.com/zhpanvip/viewpagerindicator/blob/master/README_CN.md)
 
 ## [Use case of ViewPagerIndicator](https://github.com/zhpanvip/BannerViewPager)
