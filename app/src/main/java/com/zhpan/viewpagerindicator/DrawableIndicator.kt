@@ -21,19 +21,14 @@ class DrawableIndicator @JvmOverloads constructor(
 ) : BaseIndicatorView(context!!, attrs, defStyleAttr) {
   // 选中时的Bitmap
   private var mCheckedBitmap: Bitmap? = null
-
   // 未选中时的Bitmap
   private var mNormalBitmap: Bitmap? = null
-
   // 图片之间的间距
   private var mIndicatorPadding = 0
-
   // 选中图片的宽度
   private var mCheckedBitmapWidth = 0
-
   // 选中图片的高度
   private var mCheckedBitmapHeight = 0
-
   //未选中图片的宽高
   private var mNormalBitmapWidth = 0
   private var mNormalBitmapHeight = 0
@@ -54,23 +49,22 @@ class DrawableIndicator @JvmOverloads constructor(
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
     if (getPageSize() > 1 && mCheckedBitmap != null && mNormalBitmap != null) {
-      for (i in 1 until getPageSize() + 1) {
+      for (i in 0 until getPageSize()) {
         var left: Int
         var top: Int
         var bitmap = mNormalBitmap
-        val index = i - 1
         when {
-          index < getCurrentPosition() -> {
-            left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
+          i < getCurrentPosition() -> {
+            left = (i) * (mNormalBitmapWidth + mIndicatorPadding)
             top = measuredHeight / 2 - mNormalBitmapHeight / 2
           }
-          index == getCurrentPosition() -> {
-            left = (i - 1) * (mNormalBitmapWidth + mIndicatorPadding)
+          i == getCurrentPosition() -> {
+            left = (i) * (mNormalBitmapWidth + mIndicatorPadding)
             top = measuredHeight / 2 - mCheckedBitmapHeight / 2
             bitmap = mCheckedBitmap
           }
           else -> {
-            left = (i - 1) * mIndicatorPadding + (i - 2) * mNormalBitmapWidth + mCheckedBitmapWidth
+            left = (i) * mIndicatorPadding + (i - 1) * mNormalBitmapWidth + mCheckedBitmapWidth
             top = measuredHeight / 2 - mNormalBitmapHeight / 2
           }
         }
