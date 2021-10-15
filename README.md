@@ -1,6 +1,6 @@
 # ViewPagerIndicator
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-![MinSdk](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)
+![MinSdk](https://img.shields.io/badge/API-19%2B-brightgreen)
 [![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ViewPagerIndicator-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8096)
 
