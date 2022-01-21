@@ -62,7 +62,7 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
    
 Please add it in your root build.gradle at the end of repositories:
 
-```
+```groovy
 allprojects {
 		repositories {
 			...
@@ -73,7 +73,7 @@ allprojects {
 ```
 Then add the dependency in your app build.gradle
 
-```
+```groovy
 implementation 'com.github.zhpanvip:viewpagerindicator:latestVersion'
 
 ```
@@ -86,7 +86,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 
 #### (1).Add IndicatorView in layout.xml
 
-```
+```xml
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_200"
@@ -110,7 +110,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 
 #### (2).Use IndicatorView with ViewPager/ViewPager2:
 
-```
+```kotlin
          indicatorView.apply {
                              setSliderColor(normalColor, checkedColor)
                              setSliderWidth(resources.getDimension(R.dimen.dp_10))
@@ -135,7 +135,7 @@ Three indicator styles and five slide mode supported with IndicatorView as so fa
 
 Or you can do like the following code:
 
-```
+```kotlin
         val indicatorView = findViewById<IndicatorView>(R.id.indicator_view2)
         indicatorView.apply {
                     setSliderColor(normalColor, checkedColor)
@@ -160,7 +160,7 @@ Or you can do like the following code:
 You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.
 
 #####  Add IndicatorView in layout.xml
-```
+```xml
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_200"
@@ -184,7 +184,7 @@ You can set bitmap drawable indicator and vector drawable indicator by DrawableI
 
 #####  Use DrawableIndicator with ViewPager/ViewPager2:
 
-```
+```kotlin
         val drawableIndicator = findViewById<DrawableIndicator>(R.id.indicator_view)
         val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
         drawableIndicator.apply {
@@ -205,7 +205,7 @@ The example will implement an custom IndicatorView as the follow gif.
 
 #### (1)Custom View and extends BaseIndicatorView
 
-```
+```java
 public class FigureIndicatorView extends BaseIndicatorView {
 
     private int radius = DpUtils.dp2px(20);
@@ -269,7 +269,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
 ```
 #### (2)Use custom indicator with ViewPager/ViewPager2
 
-```
+```kotlin
     val indicatorView = findViewById<FigureIndicatorView>(R.id.indicator_view)
     indicatorView.setBackgroundColor(Color.parseColor("#aa118EEA"))
     indicatorView.setTextSize(IndicatorUtils.dp2px(13f))
