@@ -4,7 +4,7 @@
 [![latestVersion](https://jitpack.io/v/zhpanvip/viewpagerindicator.svg)](https://jitpack.io/#zhpanvip/viewpagerindicator)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ViewPagerIndicator-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/8096)
 
-![公众号:玩转安卓Dev](https://gitee.com/zhpanvip/images/raw/master/project/group/wechat_dyh.png)
+![公众号:玩转安卓Dev](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/wechat_dyh.png)
 
 ## English | [中文](https://github.com/zhpanvip/viewpagerindicator/blob/master/README_CN.md)
 
@@ -14,7 +14,7 @@
 
  ### [Click here or scan the QR code to download demo apk](https://github.com/zhpanvip/viewpagerindicator/raw/master/app/release/app-release.apk)
 
-![QRCode](https://gitee.com/zhpanvip/images/raw/master/project/indicator/qrcode.png)
+![QRCode](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/qrcode.png)
 
 Various Indicator Styles and various Indicator Slide mode was supported now.It's also support drawable indicator and custom indicator.
 
@@ -22,11 +22,11 @@ Various Indicator Styles and various Indicator Slide mode was supported now.It's
 
 | Attrs | CIRCLE | DASH | ROUND_RECT |
 |--|--|--|--|
-| NORMAL| ![CIRCLE_NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_normal.gif) | ![DASH_NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_normal.gif) | ![ROUND_RECT_NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_normal.gif) |
-| SMOOTH| ![CIRCLE_SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_smooth.gif) | ![DASH_SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_smooth.gif) | ![ROUND_RECT_SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_smooth.gif) |
-| WORM| ![CIRCLE_WORM](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_worm.gif) | ![DASH_WORM](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_worm.gif) | ![ROUND_WORM](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_worm.gif) |
-| COLOR| ![CIRCLE_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_color.gif) |
-| SCALE| ![CIRCLE_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_round_rect_scale.gif) |
+| NORMAL| ![CIRCLE_NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/slide_circle_normal.gif) | ![DASH_NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_dash_normal.gif) | ![ROUND_RECT_NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_round_rect_normal.gif) |
+| SMOOTH| ![CIRCLE_SMOOTH](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/slide_circle_smooth.gif) | ![DASH_SMOOTH](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_dash_smooth.gif) | ![ROUND_RECT_SMOOTH](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_round_rect_smooth.gif) |
+| WORM| ![CIRCLE_WORM](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/slide_circle_worm.gif) | ![DASH_WORM](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_dash_worm.gif) | ![ROUND_WORM](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_round_rect_worm.gif) |
+| COLOR| ![CIRCLE_COLOR](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/slide_circle_color.gif) | ![DASH_COLOR](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_dash_color.gif) | ![ROUND_COLOR](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_round_rect_color.gif) |
+| SCALE| ![CIRCLE_SCALE](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/slide_circle_scale.gif) | ![DASH_SCALE](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_dash_scale.gif) | ![ROUND_SCALE](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_round_rect_scale.gif) |
 
 ## API
 
@@ -155,7 +155,7 @@ Or you can do like the following code:
 
 | Bitmap Drawable| Vector Drawable|
 |--|--|
-| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/vector_drawable_indicator.gif) |
+| ![NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/bitmap_drawable_indicator.gif) | ![NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/vector_drawable_indicator.gif) |
 
 You can set bitmap drawable indicator and vector drawable indicator by DrawableIndicator,also you can resize the drawable easily.
 
@@ -201,7 +201,7 @@ The example will implement an custom IndicatorView as the follow gif.
 
 | Custom IndicatorView Style|
 |--|
-| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/indicator/style_custum.gif) |
+| ![NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/style_custum.gif) |
 
 #### (1)Custom View and extends BaseIndicatorView
 
@@ -279,11 +279,11 @@ public class FigureIndicatorView extends BaseIndicatorView {
 ## Contact
  **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
 
-![QQ交流群60902509](https://gitee.com/zhpanvip/images/raw/master/project/group/qq_group.png)
+![QQ交流群60902509](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/qq_group.png)
 
 | Alipay | WeChat |
 |--|--|
-| ![NORMAL](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_alipay.jpg) |  ![SMOOTH](https://gitee.com/zhpanvip/images/raw/master/project/pay/pay_wechat.png) |
+| ![NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/pay/pay_alipay.jpg) |  ![SMOOTH](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/pay/pay_wechat.png) |
 
 
 License
