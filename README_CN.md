@@ -13,7 +13,7 @@
 
  ### [点击链接或扫描二维码下载demo APK](https://github.com/zhpanvip/viewpagerindicator/raw/master/app/release/app-release.apk)
 
-![QRCode](https://github.com/zhpanvip/Resource/blob/master/image/indicator/qrcode.png)
+![QRCode](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/indicator/qrcode.png)
 
 目前，该库已经可以支持多种指示器样式和多种滑动模式，同时，也支持Drawable指示器和自定义指示器
 
@@ -281,7 +281,7 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
  **如有问题可以加入QQ群交流**
 
-![QQ交流群60902509](https://github.com/zhpanvip/Resource/blob/master/image/group/qq_group.png)
+![QQ交流群60902509](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/qq_group.png)
 
 
 ## <span id="Sponsor"> Sponsor </span>
