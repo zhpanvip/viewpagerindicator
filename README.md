@@ -281,9 +281,6 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ![QQ交流群60902509](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/qq_group.png)
 
-| Alipay | WeChat |
-|--|--|
-| ![NORMAL](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/pay/pay_alipay.jpg) |  ![SMOOTH](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/pay/pay_wechat.png) |
 
 
 License
