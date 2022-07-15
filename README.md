@@ -278,8 +278,10 @@ public class FigureIndicatorView extends BaseIndicatorView {
 
 ## Contact
  **If you have any question regard to ViewPagerIndicator, please scan the QR code and join the QQ group to communicate.**
-
-![QQ交流群60902509](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/qq_group.png)
+ 
+| QQ群 | 微信群 |
+|--|--|
+| ![QQ Group](https://cdn.jsdelivr.net/gh/zhpanvip/images/project/group/qq_group.png) |  ![WeChat](https://github.com/zhpanvip/images/blob/master/project/group/wechat.png) |
 
 
 
