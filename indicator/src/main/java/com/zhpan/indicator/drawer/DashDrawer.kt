@@ -13,8 +13,11 @@ import com.zhpan.indicator.option.IndicatorOptions
 class DashDrawer internal constructor(indicatorOptions: IndicatorOptions) : RectDrawer(
   indicatorOptions
 ) {
-
-  override fun drawDash(canvas: Canvas) {
+  override fun drawRect(
+    canvas: Canvas,
+    rx: Float,
+    ry: Float
+  ) {
     canvas.drawRect(mRectF, mPaint)
   }
 }

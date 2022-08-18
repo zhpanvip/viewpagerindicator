@@ -14,7 +14,7 @@ class RoundRectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
   indicatorOptions
 ) {
 
-  override fun drawRoundRect(
+  override fun drawRect(
       canvas: Canvas,
       rx: Float,
       ry: Float

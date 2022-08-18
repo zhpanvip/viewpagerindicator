@@ -40,7 +40,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70"
+            android:layout_height="@dimen/dp_65"
             android:background="#FF7F50">
 
             <RelativeLayout
@@ -138,7 +138,7 @@
                 android:id="@+id/rbOrientation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="@dimen/dp_15">
 
                 <RadioButton
@@ -176,7 +176,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
                 android:text="Indicator Slide Style"
                 android:textColor="#000000"
                 android:textSize="@dimen/sp_18"
@@ -186,7 +185,7 @@
                 android:id="@+id/radioGroupStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="@dimen/dp_15">
 
                 <RadioButton
@@ -223,7 +222,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
                 android:text="Indicator Slide Mode"
                 android:textColor="#000000"
                 android:textSize="@dimen/sp_18"

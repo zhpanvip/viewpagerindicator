@@ -13,7 +13,7 @@ import com.zhpan.indicator.utils.IndicatorUtils
  * Description:
 </pre> *
  */
-open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) : BaseDrawer(
+abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) : BaseDrawer(
   indicatorOptions
 ) {
   internal var mRectF: RectF = RectF()
@@ -55,7 +55,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
           (i * normalWidth + i * indicatorGap)
         }
         mRectF.set(left, 0f, left + normalWidth, sliderHeight)
-        drawRoundRect(canvas, sliderHeight, sliderHeight)
+        drawRect(canvas, sliderHeight, sliderHeight)
       }
       i == currentPosition -> {
         mPaint.color = checkedColor
@@ -69,7 +69,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             (mIndicatorOptions.pageSize - 1) * (normalWidth + mIndicatorOptions.sliderGap) + checkedWidth
           val left = right - checkedWidth + (checkedWidth - normalWidth) * (slideProgress)
           mRectF.set(left, 0f, right, sliderHeight)
-          drawRoundRect(canvas, sliderHeight, sliderHeight)
+          drawRect(canvas, sliderHeight, sliderHeight)
         } else {
           if (slideProgress < 1) {
             val evaluate = argbEvaluator?.evaluate(
@@ -79,7 +79,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             val left = i * normalWidth + i * indicatorGap
             val right = left + normalWidth + (checkedWidth - normalWidth) * (1 - slideProgress)
             mRectF.set(left, 0f, right, sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
+            drawRect(canvas, sliderHeight, sliderHeight)
           }
         }
 
@@ -93,7 +93,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
             val right = left + normalWidth + (checkedWidth - normalWidth) * slideProgress
 
             mRectF.set(left, 0f, right, sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
+            drawRect(canvas, sliderHeight, sliderHeight)
           }
         } else {
           if (slideProgress > 0) {
@@ -105,7 +105,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
               i * normalWidth + i * indicatorGap + normalWidth + (indicatorGap + checkedWidth)
             val left = right - (normalWidth) - (checkedWidth - normalWidth) * (slideProgress)
             mRectF.set(left, 0f, right, sliderHeight)
-            drawRoundRect(canvas, sliderHeight, sliderHeight)
+            drawRect(canvas, sliderHeight, sliderHeight)
           }
         }
       }
@@ -114,7 +114,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
           mPaint.color = mIndicatorOptions.normalSliderColor
           val left = i * minWidth + i * indicatorGap + (checkedWidth - minWidth)
           mRectF.set(left, 0f, left + minWidth, sliderHeight)
-          drawRoundRect(canvas, sliderHeight, sliderHeight)
+          drawRect(canvas, sliderHeight, sliderHeight)
         }
       }
     }
@@ -128,7 +128,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
       mPaint.color = mIndicatorOptions.normalSliderColor
       val left = i * maxWidth + i * +mIndicatorOptions.sliderGap + (maxWidth - minWidth)
       mRectF.set(left, 0f, left + minWidth, mIndicatorOptions.sliderHeight)
-      drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+      drawRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
     }
   }
 
@@ -142,7 +142,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
       mPaint.color =
         if (i == mIndicatorOptions.currentPosition) mIndicatorOptions.checkedSliderColor else mIndicatorOptions.normalSliderColor
       mRectF.set(left, 0f, left + sliderWidth, mIndicatorOptions.sliderHeight)
-      drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+      drawRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
       left += sliderWidth + mIndicatorOptions.sliderGap
     }
   }
@@ -166,7 +166,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
       )
       mPaint.color = (evaluate as Int)
       mRectF.set(left, 0f, left + minWidth, mIndicatorOptions.sliderHeight)
-      drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+      drawRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
     }
 
     var nextSliderLeft = left + mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
@@ -178,7 +178,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
     )
     mPaint.color = evaluate as Int
     mRectF.set(nextSliderLeft, 0f, nextSliderLeft + minWidth, mIndicatorOptions.sliderHeight)
-    drawRoundRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
+    drawRect(canvas, mIndicatorOptions.sliderHeight, mIndicatorOptions.sliderHeight)
   }
 
   private fun drawWormSlider(canvas: Canvas) {
@@ -195,7 +195,7 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
       distance
     ) + mIndicatorOptions.normalSliderWidth / 2
     mRectF.set(left, 0f, right, sliderHeight)
-    drawRoundRect(canvas, sliderHeight, sliderHeight)
+    drawRect(canvas, sliderHeight, sliderHeight)
   }
 
   private fun drawSmoothSlider(canvas: Canvas) {
@@ -205,16 +205,12 @@ open class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) :
     val left =
       currentPosition * maxWidth + currentPosition * +indicatorGap + (maxWidth + indicatorGap) * mIndicatorOptions.slideProgress
     mRectF.set(left, 0f, left + maxWidth, sliderHeight)
-    drawRoundRect(canvas, sliderHeight, sliderHeight)
+    drawRect(canvas, sliderHeight, sliderHeight)
   }
 
-  protected open fun drawRoundRect(
+  abstract fun drawRect(
     canvas: Canvas,
     rx: Float,
     ry: Float
-  ) {
-    drawDash(canvas)
-  }
-
-  protected open fun drawDash(canvas: Canvas) {}
+  )
 }
