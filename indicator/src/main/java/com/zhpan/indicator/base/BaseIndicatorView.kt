@@ -21,6 +21,7 @@ import android.util.AttributeSet
 import android.view.View
 
 import androidx.annotation.ColorInt
+import androidx.annotation.Px
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 
@@ -104,7 +105,7 @@ open class BaseIndicatorView constructor(
     positionOffset: Float
   ) {
     if (mIndicatorOptions.slideMode == IndicatorSlideMode.SCALE
-        || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR
+      || mIndicatorOptions.slideMode == IndicatorSlideMode.COLOR
     ) {
       setCurrentPosition(position)
       setSlideProgress(positionOffset)
@@ -160,7 +161,7 @@ open class BaseIndicatorView constructor(
     return mIndicatorOptions.checkedSliderWidth
   }
 
-  fun setCheckedSlideWidth(checkedSliderWidth: Float) {
+  fun setCheckedSlideWidth(@Px checkedSliderWidth: Float) {
     mIndicatorOptions.checkedSliderWidth = checkedSliderWidth
   }
 
@@ -220,14 +221,25 @@ open class BaseIndicatorView constructor(
     return this
   }
 
-  fun setSliderWidth(sliderWidth: Float): BaseIndicatorView {
+  /**
+   * set width for indicator slider,unit is px.
+   *
+   * @param sliderWidth the indicator slider width,checked width equals unchecked width.
+   */
+  fun setSliderWidth(@Px sliderWidth: Float): BaseIndicatorView {
     mIndicatorOptions.setSliderWidth(sliderWidth)
     return this
   }
 
+  /**
+   * set width for indicator slider ,unit is px.
+   *
+   * @param normalSliderWidth unchecked slider radius
+   * @param selectedSliderWidth checked slider radius
+   */
   fun setSliderWidth(
-    normalSliderWidth: Float,
-    selectedSliderWidth: Float
+    @Px normalSliderWidth: Float,
+    @Px selectedSliderWidth: Float
   ): BaseIndicatorView {
     mIndicatorOptions.setSliderWidth(normalSliderWidth, selectedSliderWidth)
     return this
