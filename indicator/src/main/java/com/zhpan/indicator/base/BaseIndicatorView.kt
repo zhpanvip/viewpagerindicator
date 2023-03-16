@@ -176,8 +176,8 @@ open class BaseIndicatorView constructor(
     return mIndicatorOptions.currentPosition
   }
 
-  fun getIndicatorGap(indicatorGap: Float) {
-    mIndicatorOptions.sliderGap = indicatorGap
+  fun getIndicatorGap(): Float {
+    return mIndicatorOptions.sliderGap
   }
 
   fun setIndicatorGap(indicatorGap: Float) {
