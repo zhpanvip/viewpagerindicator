@@ -18,7 +18,6 @@ package com.zhpan.indicator.drawer
 
 import android.animation.ArgbEvaluator
 import android.graphics.Paint
-import androidx.viewpager2.widget.ViewPager2
 import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 

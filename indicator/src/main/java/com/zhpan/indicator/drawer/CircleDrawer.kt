@@ -1,5 +1,6 @@
 package com.zhpan.indicator.drawer
 
+import android.animation.ArgbEvaluator
 import android.graphics.Canvas
 import android.graphics.RectF
 import com.zhpan.indicator.enums.IndicatorSlideMode
@@ -52,21 +53,29 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
   }
 
   private fun drawColor(canvas: Canvas) {
+    if (argbEvaluator == null) {
+      argbEvaluator = ArgbEvaluator()
+    }
     val currentPosition = mIndicatorOptions.currentPosition
     val slideProgress = mIndicatorOptions.slideProgress
     val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
-    var evaluate = argbEvaluator?.evaluate(
-      slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
-    )
-    mPaint.color = (evaluate as Int)
+
+    argbEvaluator?.apply {
+      val evaluate = evaluate(
+        slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
+      )
+      mPaint.color = (evaluate as Int)
+    }
     drawCircle(canvas, coordinateX, coordinateY, mIndicatorOptions.normalSliderWidth / 2)
 
-    // 绘制可循环的ViewPager指示器渐变
-    evaluate = argbEvaluator?.evaluate(
-      1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
-    )
-    mPaint.color = evaluate as Int
+    argbEvaluator?.apply {
+      // 绘制可循环的ViewPager指示器渐变
+      val evaluate = evaluate(
+        1 - slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
+      )
+      mPaint.color = evaluate as Int
+    }
     val nextCoordinateX = if (currentPosition == mIndicatorOptions.pageSize - 1) {
       IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, 0)
     } else {
@@ -80,11 +89,16 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
     val slideProgress = mIndicatorOptions.slideProgress
     val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
+    if (argbEvaluator == null) {
+      argbEvaluator = ArgbEvaluator()
+    }
     if (slideProgress < 1) {
-      val evaluate = argbEvaluator?.evaluate(
-        slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
-      )
-      mPaint.color = (evaluate as Int)
+      argbEvaluator?.apply {
+        val evaluate = evaluate(
+          slideProgress, mIndicatorOptions.checkedSliderColor, mIndicatorOptions.normalSliderColor
+        )
+        mPaint.color = (evaluate as Int)
+      }
       val radius =
         mIndicatorOptions.checkedSliderWidth / 2 - (mIndicatorOptions.checkedSliderWidth / 2 - mIndicatorOptions.normalSliderWidth / 2) * slideProgress
       drawCircle(canvas, coordinateX, coordinateY, radius)
@@ -145,10 +159,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions) : Ba
   }
 
   private fun drawCircle(
-    canvas: Canvas,
-    coordinateX: Float,
-    coordinateY: Float,
-    radius: Float
+    canvas: Canvas, coordinateX: Float, coordinateY: Float, radius: Float
   ) {
     canvas.drawCircle(
       coordinateX + INDICATOR_PADDING, coordinateY + INDICATOR_PADDING, radius, mPaint
