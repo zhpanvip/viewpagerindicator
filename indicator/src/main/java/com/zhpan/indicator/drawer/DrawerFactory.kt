@@ -25,12 +25,14 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description: Indicator Drawer Factory.
 </pre> *
  */
+import android.view.View
+
 internal object DrawerFactory {
-  fun createDrawer(indicatorOptions: IndicatorOptions): IDrawer {
+  fun createDrawer(indicatorOptions: IndicatorOptions, view: View): IDrawer {
     return when (indicatorOptions.indicatorStyle) {
         IndicatorStyle.DASH -> DashDrawer(indicatorOptions)
         IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions)
-      else -> CircleDrawer(indicatorOptions)
+      else -> CircleDrawer(indicatorOptions, view)
     }
   }
 }

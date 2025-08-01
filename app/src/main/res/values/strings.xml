@@ -3,4 +3,5 @@
     <string name="image_description">Image description</string>
     <string name="view_pager">ViewPager</string>
     <string name="view_pager2">ViewPager2</string>
+    <string name="test_animation">测试动画</string>
 </resources>

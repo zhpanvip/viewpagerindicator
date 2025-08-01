@@ -89,6 +89,16 @@ class IndicatorOptions {
 
   var showIndicatorOneItem: Boolean = false
 
+  /**
+   * 是否在页面切换完成后才执行指示器动画
+   */
+  var animateAfterPageChange: Boolean = false
+
+  /**
+   * 动画持续时间（毫秒）
+   */
+  var animationDuration: Int = 300
+
   init {
     normalSliderWidth = IndicatorUtils.dp2px(8f)
         .toFloat()
@@ -98,6 +108,15 @@ class IndicatorOptions {
     checkedSliderColor = Color.parseColor("#8C6C6D72")
     slideMode = IndicatorSlideMode.NORMAL
   }
+
+  // 属性已自动生成setter方法，无需手动添加
+  // fun setAnimateAfterPageChange(animateAfterPageChange: Boolean) {
+  //   this.animateAfterPageChange = animateAfterPageChange
+  // }
+  //
+  // fun setAnimationDuration(animationDuration: Int) {
+  //   this.animationDuration = animationDuration
+  // }
 
   fun setCheckedColor(checkedColor: Int) {
     this.checkedSliderColor = checkedColor

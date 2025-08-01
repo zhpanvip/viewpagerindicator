@@ -15,8 +15,15 @@ class VP2FragmentAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdap
   fragmentActivity
 ) {
 
+  private var itemCount: Int = 2
+
+  fun setItemCount(count: Int) {
+    itemCount = count
+    notifyDataSetChanged()
+  }
+
   override fun getItemCount(): Int {
-    return 2
+    return itemCount
   }
 
   override fun createFragment(position: Int): Fragment {

@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/TranslucentStatus">
         <activity android:name=".BaseDataActivity"></activity>
+        <activity android:name=".AnimationTestActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

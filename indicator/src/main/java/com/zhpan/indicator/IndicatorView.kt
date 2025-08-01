@@ -43,11 +43,17 @@ class IndicatorView @JvmOverloads constructor(
   defStyleAttr: Int = 0
 ) : BaseIndicatorView(context, attrs, defStyleAttr) {
 
-  private var mDrawerProxy: DrawerProxy
+  private lateinit var mDrawerProxy: DrawerProxy
+  private var mCurrentPosition: Int = 0
 
   init {
     AttrsController.initAttrs(context, attrs, mIndicatorOptions)
-    mDrawerProxy = DrawerProxy(mIndicatorOptions)
+    // 延迟初始化，确保 this 可用
+  }
+
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+    mDrawerProxy = DrawerProxy(mIndicatorOptions, this)
   }
 
   override fun onLayout(
@@ -82,7 +88,8 @@ class IndicatorView @JvmOverloads constructor(
   }
 
   override fun notifyDataChanged() {
-    mDrawerProxy = DrawerProxy(mIndicatorOptions)
+    mDrawerProxy = DrawerProxy(mIndicatorOptions, this)
+    mCurrentPosition = mIndicatorOptions.currentPosition
     super.notifyDataChanged()
   }
 
@@ -96,5 +103,12 @@ class IndicatorView @JvmOverloads constructor(
 
   fun setOrientation(@AIndicatorOrientation orientation: Int) {
     mIndicatorOptions.orientation = orientation;
+  }
+
+  override fun onPageSelectedWithAnimation(position: Int) {
+    val fromPosition = mCurrentPosition
+    mCurrentPosition = position
+    // 通知 Drawer 开始动画
+    mDrawerProxy.startAnimation(fromPosition, position)
   }
 }

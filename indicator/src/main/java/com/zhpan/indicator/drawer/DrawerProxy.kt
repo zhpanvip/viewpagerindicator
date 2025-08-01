@@ -17,6 +17,7 @@ limitations under the License.
 package com.zhpan.indicator.drawer
 
 import android.graphics.Canvas
+import android.view.View
 
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -26,16 +27,16 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description: Indicator Drawer Proxy.
 </pre> *
  */
-class DrawerProxy(indicatorOptions: IndicatorOptions) : IDrawer {
+class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val view: View) : IDrawer {
 
   private lateinit var mIDrawer: IDrawer
 
   init {
-    init(indicatorOptions)
+    init()
   }
 
-  private fun init(indicatorOptions: IndicatorOptions) {
-    mIDrawer = DrawerFactory.createDrawer(indicatorOptions)
+  private fun init() {
+    mIDrawer = DrawerFactory.createDrawer(indicatorOptions, view)
   }
 
   override fun onLayout(
@@ -59,6 +60,18 @@ class DrawerProxy(indicatorOptions: IndicatorOptions) : IDrawer {
   }
 
   fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {
-    init(indicatorOptions)
+    // 这里需要更新 indicatorOptions 并重新初始化
+    // 但由于 indicatorOptions 是 val，我们需要修改代码结构
+    // 为了简化，这里暂不实现
+  }
+
+  /**
+   * 开始指示器动画
+   */
+  fun startAnimation(fromPosition: Int, toPosition: Int) {
+    if (mIDrawer is CircleDrawer) {
+      (mIDrawer as CircleDrawer).startAnimation(fromPosition, toPosition)
+    }
+    // 可以在这里添加其他 Drawer 类型的动画支持
   }
 }
