@@ -1,4 +1,4 @@
-package com.zhpan.viewpagerindicator.fragmnet
+package com.zhpan.viewpagerindicator.fragment
 
 import androidx.fragment.app.Fragment
 import java.util.ArrayList

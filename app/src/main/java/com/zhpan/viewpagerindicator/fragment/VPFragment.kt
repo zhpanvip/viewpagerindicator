@@ -1,4 +1,4 @@
-package com.zhpan.viewpagerindicator.fragmnet
+package com.zhpan.viewpagerindicator.fragment
 
 import android.graphics.Color
 import android.os.Bundle

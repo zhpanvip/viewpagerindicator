@@ -4,8 +4,8 @@ import android.util.SparseArray
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.zhpan.viewpagerindicator.fragmnet.BaseFragment
-import com.zhpan.viewpagerindicator.fragmnet.VP2Fragment
+import com.zhpan.viewpagerindicator.fragment.BaseFragment
+import com.zhpan.viewpagerindicator.fragment.VP2Fragment
 
 /**
  *

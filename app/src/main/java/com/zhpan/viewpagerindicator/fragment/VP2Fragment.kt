@@ -1,4 +1,4 @@
-package com.zhpan.viewpagerindicator.fragmnet
+package com.zhpan.viewpagerindicator.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -115,7 +115,7 @@ class VP2Fragment : BaseFragment() {
             setSlideMode(IndicatorSlideMode.WORM)
             setIndicatorStyle(IndicatorStyle.CIRCLE)
             setOrientation(orientation)
-            setAnimateAfterPageChange(false)
+            setAnimateAfterPageChange(true)
             setupWithViewPager(viewPager2)
         }
         

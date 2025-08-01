@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.graphics.Canvas
 import android.graphics.RectF
+import android.util.Log
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.option.IndicatorOptions
 import com.zhpan.indicator.utils.IndicatorUtils
@@ -15,10 +16,18 @@ import com.zhpan.indicator.utils.IndicatorUtils
 </pre> *
  */
 import android.view.View
+import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.COLOR
+import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.NORMAL
+import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.SCALE
+import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.SMOOTH
+import com.zhpan.indicator.enums.IndicatorSlideMode.Companion.WORM
 
-class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, private val view: View) : BaseDrawer(
+class CircleDrawer internal constructor(
+  indicatorOptions: IndicatorOptions,
+  private val view: View
+) : BaseDrawer(
   indicatorOptions
-) {    
+) {
   private var animationProgress: Float = 0f
   private var animator: ValueAnimator? = null
   private var isAnimating: Boolean = false
@@ -51,10 +60,10 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
   private fun drawSlider(canvas: Canvas) {
     mPaint.color = mIndicatorOptions.checkedSliderColor
     when (mIndicatorOptions.slideMode) {
-      IndicatorSlideMode.NORMAL, IndicatorSlideMode.SMOOTH -> drawCircleSlider(canvas)
-      IndicatorSlideMode.WORM -> drawWormSlider(canvas)
-      IndicatorSlideMode.SCALE -> drawScaleSlider(canvas)
-      IndicatorSlideMode.COLOR -> drawColor(canvas)
+      NORMAL, SMOOTH -> drawCircleSlider(canvas)
+      WORM -> drawWormSlider(canvas)
+      SCALE -> drawScaleSlider(canvas)
+      COLOR -> drawColor(canvas)
     }
   }
 
@@ -64,17 +73,33 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
    * @param toPosition 目标位置
    */
   fun startAnimation(fromPosition: Int, toPosition: Int) {
-    if (!mIndicatorOptions.animateAfterPageChange || isAnimating) {
+    if (!mIndicatorOptions.animateAfterPageChange || fromPosition == toPosition) {
       return
     }
 
-    targetPosition = toPosition
+    if (isAnimating) {
+      animator?.cancel()
+    }
+
+    targetPosition = if (fromPosition < toPosition) {
+      toPosition - 1
+    } else {
+      toPosition
+    }
     animationProgress = 0f
     isAnimating = true
 
-    animator?.cancel()
-    animator = ValueAnimator.ofFloat(0f, 1f)
-    animator?.duration = mIndicatorOptions.animationDuration.toLong()
+
+    animator = if (fromPosition < toPosition) {
+      ValueAnimator.ofFloat(0f, 1f)
+    } else {
+      ValueAnimator.ofFloat(1f, 0f)
+    }
+    animator?.duration = if (mIndicatorOptions.slideMode == NORMAL) {
+      0L
+    } else {
+      mIndicatorOptions.animationDuration.toLong()
+    }
     animator?.addUpdateListener {
       animationProgress = it.animatedValue as Float
       invalidate()
@@ -85,7 +110,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
       override fun onAnimationEnd(animation: android.animation.Animator) {
         isAnimating = false
         animationProgress = 0f
-        mIndicatorOptions.currentPosition = targetPosition
+        mIndicatorOptions.currentPosition = toPosition
       }
 
       override fun onAnimationCancel(animation: android.animation.Animator) {
@@ -107,7 +132,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
       argbEvaluator = ArgbEvaluator()
     }
     val currentPosition = if (mIndicatorOptions.animateAfterPageChange && isAnimating) {
-      targetPosition - 1
+      targetPosition
     } else {
       mIndicatorOptions.currentPosition
     }
@@ -144,7 +169,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
 
   private fun drawScaleSlider(canvas: Canvas) {
     val currentPosition = if (mIndicatorOptions.animateAfterPageChange && isAnimating) {
-      targetPosition - 1
+      targetPosition
     } else {
       mIndicatorOptions.currentPosition
     }
@@ -195,7 +220,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
 
   private fun drawCircleSlider(canvas: Canvas) {
     val currentPosition = if (mIndicatorOptions.animateAfterPageChange && isAnimating) {
-      targetPosition - 1
+      targetPosition
     } else {
       mIndicatorOptions.currentPosition
     }
@@ -204,12 +229,12 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
     } else {
       mIndicatorOptions.slideProgress
     }
-    val startCoordinateX = 
+    val startCoordinateX =
       IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val endCoordinateX = IndicatorUtils.getCoordinateX(
       mIndicatorOptions, maxWidth, (currentPosition + 1) % mIndicatorOptions.pageSize
     )
-    val coordinateX = 
+    val coordinateX =
       startCoordinateX + (endCoordinateX - startCoordinateX) * slideProgress
     val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
     val radius = mIndicatorOptions.checkedSliderWidth / 2
@@ -219,7 +244,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
   private fun drawWormSlider(canvas: Canvas) {
     val sliderHeight = mIndicatorOptions.normalSliderWidth
     val currentPosition = if (mIndicatorOptions.animateAfterPageChange && isAnimating) {
-      targetPosition - 1
+      targetPosition
     } else {
       mIndicatorOptions.currentPosition
     }
@@ -229,7 +254,7 @@ class CircleDrawer internal constructor(indicatorOptions: IndicatorOptions, priv
       mIndicatorOptions.slideProgress
     }
     val distance = mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
-    val startCoordinateX = 
+    val startCoordinateX =
       IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val left = startCoordinateX + (distance * (slideProgress - 0.5f) * 2.0f).coerceAtLeast(
       0f
