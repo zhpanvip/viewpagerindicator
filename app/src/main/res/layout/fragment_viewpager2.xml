@@ -127,6 +127,7 @@
                 android:id="@+id/cb_animate_after_page_change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
                 android:text="页面切换后执行动画" />
 
             <TextView

@@ -19,6 +19,7 @@ package com.zhpan.indicator.drawer
 import android.animation.ArgbEvaluator
 import android.graphics.Canvas
 import android.graphics.RectF
+import android.view.View
 
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.option.IndicatorOptions

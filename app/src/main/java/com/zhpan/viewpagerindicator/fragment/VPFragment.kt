@@ -13,13 +13,15 @@ import com.zhpan.indicator.enums.IndicatorStyle
 import com.zhpan.indicator.utils.IndicatorUtils
 import com.zhpan.viewpagerindicator.R
 import com.zhpan.viewpagerindicator.adapter.ViewPagerAdapter
-import kotlinx.android.synthetic.main.fragment_viewpager.*
+import com.zhpan.viewpagerindicator.databinding.FragmentViewpagerBinding
 
 /**
  * @author zhangpan
  * @date 2020/11/23
  */
 class VPFragment : BaseFragment() {
+
+  private lateinit var binding: FragmentViewpagerBinding
 
   @AIndicatorSlideMode
   private var mSlideMode = IndicatorSlideMode.SMOOTH
@@ -45,7 +47,8 @@ class VPFragment : BaseFragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_viewpager, container, false)
+    binding = FragmentViewpagerBinding.inflate(inflater, container, false)
+    return binding.root
   }
 
   override fun onViewCreated(
@@ -56,37 +59,37 @@ class VPFragment : BaseFragment() {
     val dp12 = resources.getDimensionPixelOffset(R.dimen.dp_12)
     val dp20 = resources.getDimensionPixelOffset(R.dimen.dp_20)
     val dp10 = resources.getDimension(R.dimen.dp_10)
-    view_pager.adapter = ViewPagerAdapter(getData(4))
-    figureIndicator.setRadius(resources.getDimensionPixelOffset(R.dimen.dp_20))
-    figureIndicator.setTextSize(resources.getDimensionPixelSize(R.dimen.dp_16))
-      .setupWithViewPager(view_pager)
-    figureIndicator.setBackgroundColor(Color.parseColor("#aa118EEA"))
-    normalColor = ContextCompat.getColor(context!!, R.color.red_normal_color)
-    checkedColor = ContextCompat.getColor(context!!, R.color.red_checked_color)
+    binding.viewPager.adapter = ViewPagerAdapter(getData(4))
+    binding.figureIndicator.setRadius(resources.getDimensionPixelOffset(R.dimen.dp_20))
+    binding.figureIndicator.setTextSize(resources.getDimensionPixelSize(R.dimen.dp_16))
+      .setupWithViewPager(binding.viewPager)
+    binding.figureIndicator.setBackgroundColor(Color.parseColor("#aa118EEA"))
+    normalColor = ContextCompat.getColor(requireContext(), R.color.red_normal_color)
+    checkedColor = ContextCompat.getColor(requireContext(), R.color.red_checked_color)
     normalWidth = dp20.toFloat()
     checkedWidth = normalWidth
 
-    drawableIndicator.apply {
+    binding.drawableIndicator.apply {
       setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
       setIndicatorDrawable(R.drawable.heart_empty, R.drawable.heart_red)
       setIndicatorSize(dp20, dp20, dp20, dp20)
-      setupWithViewPager(view_pager)
+      setupWithViewPager(binding.viewPager)
     }
 
-    vectorIndicator.apply {
+    binding.vectorIndicator.apply {
       setIndicatorGap(resources.getDimensionPixelOffset(R.dimen.dp_2_5))
       setIndicatorDrawable(R.drawable.banner_indicator_nornal, R.drawable.banner_indicator_focus)
       setIndicatorSize(dp12, dp12, resources.getDimensionPixelOffset(R.dimen.dp_26), dp12)
-      setupWithViewPager(view_pager)
+      setupWithViewPager(binding.viewPager)
     }
 
-    indicatorView.apply {
+    binding.indicatorView.apply {
       setSliderColor(normalColor, checkedColor)
       setSliderWidth(dp10, dp10)
       setSliderHeight(resources.getDimension(R.dimen.dp_5))
       setSlideMode(IndicatorSlideMode.WORM)
       setIndicatorStyle(IndicatorStyle.CIRCLE)
-      setupWithViewPager(view_pager)
+      setupWithViewPager(binding.viewPager)
     }
     initRadioGroup()
 
@@ -105,8 +108,8 @@ class VPFragment : BaseFragment() {
   }
 
   private fun initRadioGroup() {
-    radioGroupStyle.setOnCheckedChangeListener { _, checkedId -> checkedChange(checkedId) }
-    radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
+    binding.radioGroupStyle.setOnCheckedChangeListener { _, checkedId -> checkedChange(checkedId) }
+    binding.radioGroupMode.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
       when (checkedId) {
           R.id.rb_normal -> {
               normalWidth = resources.getDimension(R.dimen.dp_20)
@@ -136,7 +139,7 @@ class VPFragment : BaseFragment() {
       }
       checkedChange(mCheckId)
     }
-    rb_circle.performClick()
+    binding.rbCircle.performClick()
   }
 
   private fun checkedChange(checkedId: Int) {
@@ -155,7 +158,7 @@ class VPFragment : BaseFragment() {
     } else {
       normalWidth = checkedWidth
     }
-    indicatorView.apply {
+    binding.indicatorView.apply {
       setIndicatorStyle(IndicatorStyle.ROUND_RECT)
       setSliderGap(IndicatorUtils.dp2px(4f).toFloat())
       setSlideMode(mSlideMode)
@@ -173,7 +176,7 @@ class VPFragment : BaseFragment() {
     } else {
       normalWidth = checkedWidth
     }
-    indicatorView.apply {
+    binding.indicatorView.apply {
       setIndicatorStyle(IndicatorStyle.DASH)
       setSliderHeight(resources.getDimensionPixelOffset(R.dimen.dp_6).toFloat())
       setSlideMode(mSlideMode)
@@ -192,7 +195,7 @@ class VPFragment : BaseFragment() {
       normalWidth = checkedWidth
     }
 
-    indicatorView.apply {
+    binding.indicatorView.apply {
       setIndicatorStyle(IndicatorStyle.CIRCLE)
       setSliderGap(resources.getDimension(R.dimen.dp_6))
       setSlideMode(mSlideMode)

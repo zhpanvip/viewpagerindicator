@@ -78,8 +78,7 @@ class IndicatorView @JvmOverloads constructor(
 
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
-    rotateCanvas(canvas)
-    mDrawerProxy.onDraw(canvas)
+    mDrawerProxy.onDraw(canvas,this)
   }
 
   override fun setIndicatorOptions(options: IndicatorOptions) {
@@ -91,14 +90,6 @@ class IndicatorView @JvmOverloads constructor(
     mDrawerProxy = DrawerProxy(mIndicatorOptions, this)
     mCurrentPosition = mIndicatorOptions.currentPosition
     super.notifyDataChanged()
-  }
-
-  private fun rotateCanvas(canvas: Canvas) {
-    if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
-      canvas.rotate(90f, width / 2f, width / 2f)
-    } else if (mIndicatorOptions.orientation == IndicatorOrientation.INDICATOR_RTL) {
-      canvas.rotate(180f, width / 2f, height / 2f)
-    }
   }
 
   fun setOrientation(@AIndicatorOrientation orientation: Int) {

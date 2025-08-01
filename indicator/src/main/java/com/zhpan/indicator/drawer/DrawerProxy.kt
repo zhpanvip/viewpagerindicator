@@ -18,6 +18,7 @@ package com.zhpan.indicator.drawer
 
 import android.graphics.Canvas
 import android.view.View
+import com.zhpan.indicator.enums.IndicatorOrientation
 
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -27,7 +28,8 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description: Indicator Drawer Proxy.
 </pre> *
  */
-class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val view: View) : IDrawer {
+class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val view: View) :
+  IDrawer {
 
   private lateinit var mIDrawer: IDrawer
 
@@ -40,23 +42,36 @@ class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val vi
   }
 
   override fun onLayout(
-      changed: Boolean,
-      left: Int,
-      top: Int,
-      right: Int,
-      bottom: Int
+    changed: Boolean,
+    left: Int,
+    top: Int,
+    right: Int,
+    bottom: Int
   ) {
   }
 
   override fun onMeasure(
-      widthMeasureSpec: Int,
-      heightMeasureSpec: Int
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int
   ): BaseDrawer.MeasureResult {
     return mIDrawer.onMeasure(widthMeasureSpec, heightMeasureSpec)
   }
 
   override fun onDraw(canvas: Canvas) {
     mIDrawer.onDraw(canvas)
+  }
+
+  fun onDraw(canvas: Canvas, view: View) {
+    rotateCanvasIfNeed(canvas, view)
+    onDraw(canvas)
+  }
+
+  private fun rotateCanvasIfNeed(canvas: Canvas, view: View) {
+    if (indicatorOptions.orientation == IndicatorOrientation.INDICATOR_VERTICAL) {
+      canvas.rotate(90f, view.width / 2f, view.width / 2f)
+    } else if (indicatorOptions.orientation == IndicatorOrientation.INDICATOR_RTL) {
+      canvas.rotate(180f, view.width / 2f, view.height / 2f)
+    }
   }
 
   fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {

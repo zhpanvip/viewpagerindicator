@@ -2,12 +2,11 @@ package com.zhpan.viewpagerindicator
 
 import android.content.Context
 import android.graphics.*
-import android.os.Build
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import com.zhpan.indicator.base.BaseIndicatorView
+import androidx.core.graphics.createBitmap
 
 /**
  * @ author : zhouweibin
@@ -174,18 +173,11 @@ class DrawableIndicator @JvmOverloads constructor(
       context: Context,
       drawableId: Int
   ): Bitmap? {
-    var drawable = ContextCompat.getDrawable(context, drawableId)
-    drawable?.let {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-        drawable = DrawableCompat.wrap(drawable!!).mutate()
-      }
-      val bitmap = Bitmap.createBitmap(
-        drawable!!.intrinsicWidth,
-        drawable!!.intrinsicHeight, Bitmap.Config.ARGB_8888
-      )
+    ContextCompat.getDrawable(context, drawableId)?.apply {
+      val bitmap = createBitmap(intrinsicWidth, intrinsicHeight)
       val canvas = Canvas(bitmap)
-      drawable!!.setBounds(0, 0, canvas.width, canvas.height)
-      drawable!!.draw(canvas)
+      setBounds(0, 0, canvas.width, canvas.height)
+      draw(canvas)
       return bitmap
     }
     return null
