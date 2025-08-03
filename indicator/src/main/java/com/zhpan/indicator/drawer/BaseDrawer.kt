@@ -164,6 +164,22 @@ abstract class BaseDrawer internal constructor(
     }
   }
 
+  protected fun calSlideProgress(): Float {
+    return if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
+      animationProgress
+    } else {
+      mIndicatorOptions.slideProgress
+    }
+  }
+
+  protected fun calSlidePosition(): Int {
+    return if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
+      targetPosition
+    } else {
+      mIndicatorOptions.currentPosition
+    }
+  }
+
   inner class MeasureResult {
 
     var measureWidth: Int = 0

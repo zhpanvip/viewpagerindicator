@@ -34,9 +34,9 @@ object IndicatorUtils {
   }
 
   fun getCoordinateX(
-      indicatorOptions: IndicatorOptions,
-      maxDiameter: Float,
-      index: Int
+    indicatorOptions: IndicatorOptions,
+    maxDiameter: Float,
+    index: Int
   ): Float {
     val normalIndicatorWidth = indicatorOptions.normalSliderWidth
     return maxDiameter / 2 + (normalIndicatorWidth + indicatorOptions.sliderGap) * index

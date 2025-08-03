@@ -62,16 +62,8 @@ class CircleDrawer internal constructor(
     if (argbEvaluator == null) {
       argbEvaluator = ArgbEvaluator()
     }
-    val currentPosition = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      targetPosition
-    } else {
-      mIndicatorOptions.currentPosition
-    }
-    val slideProgress = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      animationProgress
-    } else {
-      mIndicatorOptions.slideProgress
-    }
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
 
@@ -99,16 +91,8 @@ class CircleDrawer internal constructor(
   }
 
   private fun drawScaleSlider(canvas: Canvas) {
-    val currentPosition = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      targetPosition
-    } else {
-      mIndicatorOptions.currentPosition
-    }
-    val slideProgress = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      animationProgress
-    } else {
-      mIndicatorOptions.slideProgress
-    }
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val coordinateX = IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
     val coordinateY = IndicatorUtils.getCoordinateY(maxWidth)
     if (argbEvaluator == null) {
@@ -150,11 +134,7 @@ class CircleDrawer internal constructor(
   }
 
   private fun drawCircleSlider(canvas: Canvas) {
-    val currentPosition = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      targetPosition
-    } else {
-      mIndicatorOptions.currentPosition
-    }
+    val currentPosition = calSlidePosition()
     val slideProgress = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
       animationProgress
     } else {
@@ -174,16 +154,8 @@ class CircleDrawer internal constructor(
 
   private fun drawWormSlider(canvas: Canvas) {
     val sliderHeight = mIndicatorOptions.normalSliderWidth
-    val currentPosition = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      targetPosition
-    } else {
-      mIndicatorOptions.currentPosition
-    }
-    val slideProgress = if (mIndicatorOptions.animateAfterPageChanged() && isAnimating) {
-      animationProgress
-    } else {
-      mIndicatorOptions.slideProgress
-    }
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val distance = mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
     val startCoordinateX =
       IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)

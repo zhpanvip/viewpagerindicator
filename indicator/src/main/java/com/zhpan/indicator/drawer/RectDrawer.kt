@@ -61,7 +61,8 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
     val checkedColor = mIndicatorOptions.checkedSliderColor
     val indicatorGap = mIndicatorOptions.sliderGap
     val sliderHeight = mIndicatorOptions.sliderHeight
-    val currentPosition = mIndicatorOptions.currentPosition
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val normalWidth = mIndicatorOptions.normalSliderWidth
     val checkedWidth = mIndicatorOptions.checkedSliderWidth
     if (argbEvaluator == null) {
@@ -71,7 +72,7 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
       i < currentPosition -> {
         mPaint.color = mIndicatorOptions.normalSliderColor
         val left: Float = if (currentPosition == mIndicatorOptions.pageSize - 1) {
-          (i * normalWidth + i * indicatorGap) + (checkedWidth - normalWidth) * mIndicatorOptions.slideProgress
+          (i * normalWidth + i * indicatorGap) + (checkedWidth - normalWidth) * slideProgress
         } else {
           (i * normalWidth + i * indicatorGap)
         }
@@ -81,7 +82,7 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
 
       i == currentPosition -> {
         mPaint.color = checkedColor
-        val slideProgress = mIndicatorOptions.slideProgress
+        val slideProgress = slideProgress
         if (currentPosition == mIndicatorOptions.pageSize - 1) {
           argbEvaluator?.apply {
             val evaluate = evaluate(
@@ -141,7 +142,7 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
       }
 
       else -> {
-        if ((currentPosition + 1 != i || mIndicatorOptions.slideProgress == 0f)) { // 避免多余绘制
+        if ((currentPosition + 1 != i || slideProgress == 0f)) { // 避免多余绘制
           mPaint.color = mIndicatorOptions.normalSliderColor
           val left = i * minWidth + i * indicatorGap + (checkedWidth - minWidth)
           mRectF.set(left, 0f, left + minWidth, sliderHeight)
@@ -186,8 +187,8 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
   }
 
   private fun drawColorSlider(canvas: Canvas) {
-    val currentPosition = mIndicatorOptions.currentPosition
-    val slideProgress = mIndicatorOptions.slideProgress
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val left = currentPosition * minWidth + currentPosition * mIndicatorOptions.sliderGap
     if (argbEvaluator == null) {
       argbEvaluator = ArgbEvaluator()
@@ -220,8 +221,8 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
 
   private fun drawWormSlider(canvas: Canvas) {
     val sliderHeight = mIndicatorOptions.sliderHeight
-    val slideProgress = mIndicatorOptions.slideProgress
-    val currentPosition = mIndicatorOptions.currentPosition
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val distance = mIndicatorOptions.sliderGap + mIndicatorOptions.normalSliderWidth
     val startCoordinateX =
       IndicatorUtils.getCoordinateX(mIndicatorOptions, maxWidth, currentPosition)
@@ -236,11 +237,12 @@ abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOption
   }
 
   private fun drawSmoothSlider(canvas: Canvas) {
-    val currentPosition = mIndicatorOptions.currentPosition
+    val currentPosition = calSlidePosition()
+    val slideProgress = calSlideProgress()
     val indicatorGap = mIndicatorOptions.sliderGap
     val sliderHeight = mIndicatorOptions.sliderHeight
     val left =
-      currentPosition * maxWidth + currentPosition * +indicatorGap + (maxWidth + indicatorGap) * mIndicatorOptions.slideProgress
+      currentPosition * maxWidth + currentPosition * +indicatorGap + (maxWidth + indicatorGap) * slideProgress
     mRectF.set(left, 0f, left + maxWidth, sliderHeight)
     drawRect(canvas, sliderHeight, sliderHeight)
   }
