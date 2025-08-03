@@ -31,9 +31,10 @@ import com.zhpan.indicator.utils.IndicatorUtils
  * Description:
 </pre> *
  */
-abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOptions) : BaseDrawer(
-  indicatorOptions
-) {
+abstract class RectDrawer internal constructor(indicatorOptions: IndicatorOptions, hostView: View) :
+  BaseDrawer(
+    indicatorOptions, hostView
+  ) {
   internal var mRectF: RectF = RectF()
 
   override fun onDraw(canvas: Canvas) {

@@ -69,7 +69,7 @@ class VP2Fragment : BaseFragment() {
     val cbAnimateAfterPageChange = view.findViewById<CheckBox>(R.id.cb_animate_after_page_change)
 
     cbAnimateAfterPageChange.setOnCheckedChangeListener { _, isChecked ->
-      binding.indicatorView.setAnimateAfterPageChange(isChecked)
+      binding.indicatorView.setInteractiveAnimate(isChecked)
     }
 
     binding.viewPager2.adapter = ViewPager2Adapter(getData(4))
@@ -130,19 +130,19 @@ class VP2Fragment : BaseFragment() {
       when (checkedId) {
         R.id.rb_normal -> {
           normalWidth = resources.getDimension(R.dimen.dp_20)
-          checkedWidth = normalWidth;
+          checkedWidth = normalWidth
           mSlideMode = IndicatorSlideMode.NORMAL
         }
 
         R.id.rb_worm -> {
           normalWidth = resources.getDimension(R.dimen.dp_20)
-          checkedWidth = normalWidth;
+          checkedWidth = normalWidth
           mSlideMode = IndicatorSlideMode.WORM
         }
 
         R.id.rb_smooth -> {
           normalWidth = resources.getDimension(R.dimen.dp_20)
-          checkedWidth = normalWidth;
+          checkedWidth = normalWidth
           mSlideMode = IndicatorSlideMode.SMOOTH
         }
 

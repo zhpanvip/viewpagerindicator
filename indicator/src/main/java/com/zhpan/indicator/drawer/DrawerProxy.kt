@@ -33,12 +33,15 @@ class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val vi
 
   private lateinit var mIDrawer: IDrawer
 
+  private var mCurrentPosition: Int = 0
+
   init {
-    init()
+    init(indicatorOptions)
   }
 
-  private fun init() {
+  private fun init(indicatorOptions: IndicatorOptions) {
     mIDrawer = DrawerFactory.createDrawer(indicatorOptions, view)
+    mCurrentPosition = indicatorOptions.currentPosition
   }
 
   override fun onLayout(
@@ -75,18 +78,15 @@ class DrawerProxy(private val indicatorOptions: IndicatorOptions, private val vi
   }
 
   fun setIndicatorOptions(indicatorOptions: IndicatorOptions) {
-    // 这里需要更新 indicatorOptions 并重新初始化
-    // 但由于 indicatorOptions 是 val，我们需要修改代码结构
-    // 为了简化，这里暂不实现
+    init(indicatorOptions)
   }
 
   /**
    * 开始指示器动画
    */
-  fun startAnimation(fromPosition: Int, toPosition: Int) {
-    if (mIDrawer is CircleDrawer) {
-      (mIDrawer as CircleDrawer).startAnimation(fromPosition, toPosition)
-    }
-    // 可以在这里添加其他 Drawer 类型的动画支持
+   fun startAnimation(toPosition: Int) {
+    val fromPosition = mCurrentPosition
+    mCurrentPosition = toPosition
+    mIDrawer.startAnimation(fromPosition, toPosition)
   }
 }

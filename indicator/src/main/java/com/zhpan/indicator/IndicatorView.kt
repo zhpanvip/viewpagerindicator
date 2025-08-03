@@ -23,8 +23,6 @@ import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.base.BaseIndicatorView
 import com.zhpan.indicator.drawer.DrawerProxy
-import com.zhpan.indicator.enums.IndicatorOrientation
-import com.zhpan.indicator.enums.IndicatorOrientation.Companion.INDICATOR_HORIZONTAL
 import com.zhpan.indicator.option.AttrsController
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -44,7 +42,6 @@ class IndicatorView @JvmOverloads constructor(
 ) : BaseIndicatorView(context, attrs, defStyleAttr) {
 
   private lateinit var mDrawerProxy: DrawerProxy
-  private var mCurrentPosition: Int = 0
 
   init {
     AttrsController.initAttrs(context, attrs, mIndicatorOptions)
@@ -78,7 +75,7 @@ class IndicatorView @JvmOverloads constructor(
 
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
-    mDrawerProxy.onDraw(canvas,this)
+    mDrawerProxy.onDraw(canvas, this)
   }
 
   override fun setIndicatorOptions(options: IndicatorOptions) {
@@ -88,18 +85,15 @@ class IndicatorView @JvmOverloads constructor(
 
   override fun notifyDataChanged() {
     mDrawerProxy = DrawerProxy(mIndicatorOptions, this)
-    mCurrentPosition = mIndicatorOptions.currentPosition
     super.notifyDataChanged()
   }
 
   fun setOrientation(@AIndicatorOrientation orientation: Int) {
-    mIndicatorOptions.orientation = orientation;
+    mIndicatorOptions.orientation = orientation
   }
 
-  override fun onPageSelectedWithAnimation(position: Int) {
-    val fromPosition = mCurrentPosition
-    mCurrentPosition = position
-    // 通知 Drawer 开始动画
-    mDrawerProxy.startAnimation(fromPosition, position)
+  override fun animateAfterPageSelected(position: Int) {
+    // 如果启用了延迟动画，则在此处触发动画
+    mDrawerProxy.startAnimation(position)
   }
 }

@@ -17,7 +17,6 @@ limitations under the License.
 package com.zhpan.indicator.drawer
 
 import android.graphics.Canvas
-import android.view.View
 
 /**
  * <pre>
@@ -41,4 +40,6 @@ interface IDrawer {
   ): BaseDrawer.MeasureResult
 
   fun onDraw(canvas: Canvas)
+
+  fun startAnimation(fromPosition: Int, toPosition: Int){}
 }

@@ -16,8 +16,12 @@ limitations under the License.
 
 package com.zhpan.indicator.drawer
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.graphics.Paint
+import android.view.View
 import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 
@@ -29,7 +33,10 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description:
 </pre> *
  */
-abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: IndicatorOptions) :
+abstract class BaseDrawer internal constructor(
+  internal var mIndicatorOptions: IndicatorOptions,
+  val view: View
+) :
   IDrawer {
 
   private val mMeasureResult: MeasureResult
@@ -37,6 +44,11 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
   internal var minWidth: Float = 0.toFloat()
   internal var mPaint: Paint = Paint()
   internal var argbEvaluator: ArgbEvaluator? = null
+
+  protected var animationProgress: Float = 0f
+  protected var animator: ValueAnimator? = null
+  protected var isAnimating: Boolean = false
+  protected var targetPosition: Int = 0
 
   companion object {
     const val INDICATOR_PADDING_ADDITION = 6
@@ -57,8 +69,8 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
   }
 
   override fun onMeasure(
-      widthMeasureSpec: Int,
-      heightMeasureSpec: Int
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int
   ): MeasureResult {
     maxWidth =
       mIndicatorOptions.normalSliderWidth.coerceAtLeast(mIndicatorOptions.checkedSliderWidth)
@@ -83,12 +95,73 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
   }
 
   override fun onLayout(
-      changed: Boolean,
-      left: Int,
-      top: Int,
-      right: Int,
-      bottom: Int
+    changed: Boolean,
+    left: Int,
+    top: Int,
+    right: Int,
+    bottom: Int
   ) {
+  }
+
+  /**
+   * 开始指示器动画
+   * @param fromPosition 起始位置
+   * @param toPosition 目标位置
+   */
+  override fun startAnimation(fromPosition: Int, toPosition: Int) {
+    if (!mIndicatorOptions.animateAfterPageChanged() || fromPosition == toPosition) {
+      return
+    }
+
+    if (isAnimating) {
+      animator?.cancel()
+    }
+
+    targetPosition = calTargetPosition(fromPosition, toPosition)
+    animationProgress = 0f
+    isAnimating = true
+
+    animator = createValueAnimator(object : AnimatorListenerAdapter() {
+      override fun onAnimationEnd(animation: Animator) {
+        isAnimating = false
+        animationProgress = 0f
+        mIndicatorOptions.currentPosition = toPosition
+      }
+
+      override fun onAnimationCancel(animation: Animator) {
+        isAnimating = false
+      }
+
+    })
+    if (fromPosition < toPosition) {
+      animator?.start()
+    } else {
+      animator?.reverse()
+    }
+  }
+
+  private fun createValueAnimator(animatorListener: Animator.AnimatorListener): ValueAnimator? {
+    return ValueAnimator.ofFloat(0f, 1f)?.apply {
+      duration = mIndicatorOptions.animationDuration.toLong()
+      addUpdateListener {
+        animationProgress = it.animatedValue as Float
+        invalidate()
+      }
+      addListener(animatorListener)
+    }
+  }
+
+  fun invalidate() {
+    // 触发重绘
+    view.invalidate()
+  }
+
+  private fun calTargetPosition(fromPosition: Int, toPosition: Int): Int {
+    return if (fromPosition < toPosition) {
+      toPosition - 1
+    } else {
+      toPosition
+    }
   }
 
   inner class MeasureResult {
@@ -100,8 +173,8 @@ abstract class BaseDrawer internal constructor(internal var mIndicatorOptions: I
       internal set
 
     internal fun setMeasureResult(
-        measureWidth: Int,
-        measureHeight: Int
+      measureWidth: Int,
+      measureHeight: Int
     ) {
       this.measureWidth = measureWidth
       this.measureHeight = measureHeight

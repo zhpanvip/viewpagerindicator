@@ -16,8 +16,6 @@ limitations under the License.
 
 package com.zhpan.indicator.option
 
-import android.graphics.Color
-import androidx.viewpager2.widget.ViewPager2
 import com.zhpan.indicator.annotation.AIndicatorOrientation
 
 import com.zhpan.indicator.annotation.AIndicatorSlideMode
@@ -25,6 +23,7 @@ import com.zhpan.indicator.annotation.AIndicatorStyle
 import com.zhpan.indicator.enums.IndicatorOrientation
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.utils.IndicatorUtils
+import androidx.core.graphics.toColorInt
 
 /**
  * <pre>
@@ -92,7 +91,11 @@ class IndicatorOptions {
   /**
    * 是否在页面切换完成后才执行指示器动画
    */
-  var animateAfterPageChange: Boolean = false
+  var interactiveAnimate: Boolean = true
+
+  fun animateAfterPageChanged(): Boolean {
+    return !interactiveAnimate
+  }
 
   /**
    * 动画持续时间（毫秒）
@@ -101,11 +104,11 @@ class IndicatorOptions {
 
   init {
     normalSliderWidth = IndicatorUtils.dp2px(8f)
-        .toFloat()
+      .toFloat()
     checkedSliderWidth = normalSliderWidth
     sliderGap = normalSliderWidth
-    normalSliderColor = Color.parseColor("#8C18171C")
-    checkedSliderColor = Color.parseColor("#8C6C6D72")
+    normalSliderColor = "#8C18171C".toColorInt()
+    checkedSliderColor = "#8C6C6D72".toColorInt()
     slideMode = IndicatorSlideMode.NORMAL
   }
 

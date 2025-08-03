@@ -17,6 +17,7 @@ limitations under the License.
 package com.zhpan.indicator.drawer
 
 import android.graphics.Canvas
+import android.view.View
 
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -26,14 +27,15 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description:
 </pre> *
  */
-class RoundRectDrawer internal constructor(indicatorOptions: IndicatorOptions) : RectDrawer(
-  indicatorOptions
-) {
+class RoundRectDrawer internal constructor(indicatorOptions: IndicatorOptions, view: View) :
+  RectDrawer(
+    indicatorOptions, view
+  ) {
 
   override fun drawRect(
-      canvas: Canvas,
-      rx: Float,
-      ry: Float
+    canvas: Canvas,
+    rx: Float,
+    ry: Float
   ) {
     canvas.drawRoundRect(mRectF, rx, ry, mPaint)
   }

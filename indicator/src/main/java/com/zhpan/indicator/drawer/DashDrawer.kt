@@ -17,6 +17,7 @@ limitations under the License.
 package com.zhpan.indicator.drawer
 
 import android.graphics.Canvas
+import android.view.View
 
 import com.zhpan.indicator.option.IndicatorOptions
 
@@ -26,9 +27,10 @@ import com.zhpan.indicator.option.IndicatorOptions
  * Description: Dash Indicator Drawer.
 </pre> *
  */
-class DashDrawer internal constructor(indicatorOptions: IndicatorOptions) : RectDrawer(
-  indicatorOptions
-) {
+class DashDrawer internal constructor(indicatorOptions: IndicatorOptions, hostView: View) :
+  RectDrawer(
+    indicatorOptions, hostView
+  ) {
   override fun drawRect(
     canvas: Canvas,
     rx: Float,

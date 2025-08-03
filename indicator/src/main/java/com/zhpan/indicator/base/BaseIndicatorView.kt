@@ -82,23 +82,18 @@ open class BaseIndicatorView constructor(
   }
 
   override fun onPageSelected(position: Int) {
-    if (mIndicatorOptions.animateAfterPageChange) {
-      // 如果启用了延迟动画，则在此处触发动画
-      onPageSelectedWithAnimation(position)
-    } else if (getSlideMode() == IndicatorSlideMode.NORMAL) {
+    if (getSlideMode() == IndicatorSlideMode.NORMAL) {
       setCurrentPosition(position)
       setSlideProgress(0f)
       invalidate()
+    } else if (mIndicatorOptions.animateAfterPageChanged()) {
+      // 如果启用了延迟动画，则在此处触发动画
+      animateAfterPageSelected(position)
     }
   }
 
-  /**
-   * 页面切换完成后执行动画
-   */
-  protected open fun onPageSelectedWithAnimation(position: Int) {
-    setCurrentPosition(position)
-    setSlideProgress(0f)
-    invalidate()
+  open fun animateAfterPageSelected(position: Int) {
+
   }
 
   override fun onPageScrolled(
@@ -106,7 +101,7 @@ open class BaseIndicatorView constructor(
     positionOffset: Float,
     positionOffsetPixels: Int
   ) {
-    if (!mIndicatorOptions.animateAfterPageChange && getSlideMode() != IndicatorSlideMode.NORMAL && getPageSize() > 1) {
+    if (!mIndicatorOptions.animateAfterPageChanged() && getSlideMode() != IndicatorSlideMode.NORMAL && getPageSize() > 1) {
       scrollSlider(position, positionOffset)
       invalidate()
     }
@@ -279,8 +274,8 @@ open class BaseIndicatorView constructor(
   /**
    * 设置是否在页面切换完成后才执行指示器动画
    */
-  fun setAnimateAfterPageChange(animateAfterPageChange: Boolean): BaseIndicatorView {
-    mIndicatorOptions.animateAfterPageChange = animateAfterPageChange
+  fun setInteractiveAnimate(interactiveAnimate: Boolean): BaseIndicatorView {
+    mIndicatorOptions.interactiveAnimate = interactiveAnimate
     return this
   }
 

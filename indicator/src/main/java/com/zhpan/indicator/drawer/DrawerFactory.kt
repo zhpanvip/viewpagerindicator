@@ -30,8 +30,8 @@ import android.view.View
 internal object DrawerFactory {
   fun createDrawer(indicatorOptions: IndicatorOptions, view: View): IDrawer {
     return when (indicatorOptions.indicatorStyle) {
-        IndicatorStyle.DASH -> DashDrawer(indicatorOptions)
-        IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions)
+      IndicatorStyle.DASH -> DashDrawer(indicatorOptions, view)
+      IndicatorStyle.ROUND_RECT -> RoundRectDrawer(indicatorOptions, view)
       else -> CircleDrawer(indicatorOptions, view)
     }
   }
